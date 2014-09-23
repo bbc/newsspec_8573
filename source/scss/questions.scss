@@ -1,0 +1,39 @@
+.q-page{
+	display: none; /* All questions are hidden by default */
+
+	margin-top: 20px;
+
+	.q-page--label{
+		font-weight: bold;
+	}
+
+	/* Label with selection on a new line */
+	.q-page--label__nl{
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	.q-page--radio-button{
+		display: block;
+		margin: 5px;
+	}
+}
+
+.pagination{
+	overflow: hidden;
+
+	.pagination--previous, .pagination--next{
+		padding: 10px 20px;
+		font-size: 1.2em;
+	}
+
+	.pagination--previous{
+		display: none;
+		float: left;
+		margin: 30px 0 0 10%;
+	}
+	.pagination--next{
+		float: right;
+		margin: 30px 10% 0 0;
+	}
+}

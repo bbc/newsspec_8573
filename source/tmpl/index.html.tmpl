@@ -1,0 +1,42 @@
+<%= include('includes/top.tmpl') %>
+
+    <div class="main">
+    	<h2>Price of Football calculator: How much do you spend on a match day?</h2>
+
+    	<p>How much do you spend following your team. Try our calculator to work out your costs, then share your results with your friends.</p>
+    	<p>It found average ticket prices across English football's top four divisions have fallen by up to 2.4%</p>
+    	<form>
+    		<div class="select-team q-page">
+    			<label class="q-page--label" for="user-team"> Select your team: </label>
+    			<select class="q-page--dropdown" id="user-team">
+    				<option value="0" selected="selected"></option>
+    				<option value="1">Manchester United</option>
+    				<option value="2">Liverpool</option>
+    				<option value="3">Arsenal</option>
+    			</select>
+    		</div>
+
+    		<div class="select-ticket q-page">
+    			<label class="q-page--label q-page--label__nl" for="user-team"> Which type of ticket do you buy? </label>
+    			<span class="q-page--radio-button">
+    				<input type="radio" id="ticket_season" name="user-ticket" value="season" />
+    				<label class="q-page--label" for="ticket_season"> Season ticket </label>
+    			</span>
+    			<span class="q-page--radio-button">
+    				<input type="radio" id="ticket_individual" name="user-ticket" value="individual" />
+    				<label class="q-page--label" for="ticket_individual"> Individual tickets </label>
+				</span>
+				<span class="q-page--radio-button">
+    				<input type="radio" id="ticket_none" name="user-ticket" value="none" />
+    				<label class="q-page--label" for="ticket_none"> I don't go to home games </label>
+    			</span>
+    		</div>
+
+    		<div class="pagination">
+    			<input class="pagination--previous" type="button" value="Previous" />
+    			<input class="pagination--next" type="button" value="Next" />
+    		</div>
+    	</form>
+    </div>
+
+<%= include('includes/bottom.tmpl') %>

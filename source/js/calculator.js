@@ -23,14 +23,23 @@ define([
 
 			var resultsBreakDown = {};
 
-			resultsBreakDown.tickets = 0;
+			resultsBreakDown.tickets = getTicketCosts();
 			resultsBreakDown.food = getFoodCost();
-			resultsBreakDown.programmes = 0;
-			resultsBreakDown.kit = 0;
+			resultsBreakDown.programmes = getProgrammeCost();
+			resultsBreakDown.kit = getKitCost();
 
 			/* Returns true or false if the user only buys kit and nothing else */
 			function isJustKit() {
 				return ($('input[name="user-ticket"]:checked').val()==='none');
+			}
+
+
+			function getTicketCosts() {
+				if(!justKit){
+					return $('#ticket-price').val()*1;
+				}else{
+					return 0;
+				}
 			}
 
 			function getFoodCost() {
@@ -41,6 +50,17 @@ define([
 				}
 			}
 
+			function getProgrammeCost() {
+				if(!justKit){
+					return ($('#programmes-price').val() * league.homeGames);
+				}else{
+					return 0;
+				}
+			}
+
+			function getKitCost() {
+				return $('#kit-price').val()*1;
+			}
 			console.log(resultsBreakDown);
 
 		}

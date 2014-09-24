@@ -67,6 +67,7 @@ define([
 		*/
 		function getNextPage() {
 			switch (currentPage) {
+				/* Season ticket/indivudal ticket flow */
 				case 'select-team':
 					return 'select-ticket';
 				case 'select-ticket':
@@ -79,6 +80,9 @@ define([
 					return 'kit-price-page';
 				case 'kit-price-page':
 					return 'results-page';
+				/* No season ticket */
+				case 'kit-select-page':
+					return getNextPageAfterKit();
 			}
 		}
 
@@ -88,7 +92,16 @@ define([
 				case 'individual':
 					return 'ticket-price-page';
 				case 'none':
+					return 'kit-select-page';
+			}
+		}
+
+		function getNextPageAfterKit() {
+			switch ($('input[name="buys-kit"]:checked').val()){
+				case 'yes':
 					return 'kit-price-page';
+				case 'no':
+					return 'results-page';
 			}
 		}
 

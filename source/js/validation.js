@@ -12,6 +12,8 @@ define(['lib/news_special/bootstrap'], function (news) {
 					return validateSelectTeam();
 				case 'select-ticket':
 					return validateSelectTicket();
+				case 'kit-select-page':
+					return validateSelectKit();
 				case 'ticket-price-page':
 					return validateTicketPrice();
 				case 'food-price-page':
@@ -20,6 +22,8 @@ define(['lib/news_special/bootstrap'], function (news) {
 					return validateProgrammesPrice();
 				case 'kit-price-page':
 					return validateKitPrice();
+				default:
+					return true;
 			}
 
 
@@ -34,6 +38,14 @@ define(['lib/news_special/bootstrap'], function (news) {
 			function validateSelectTicket() {
 				if (!$('input[name="user-ticket"]:checked').val()) {
 					latestError = 'Select a ticket type!';
+					return false;
+				}
+				return true;
+			}
+
+			function validateSelectKit() {
+				if (!$('input[name="buys-kit"]:checked').val()) {
+					latestError = 'Choose an option!';
 					return false;
 				}
 				return true;

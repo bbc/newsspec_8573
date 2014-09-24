@@ -22,28 +22,55 @@ define(['lib/news_special/bootstrap'], function (news) {
 					return updateProgrammesPriceContent();
 				case 'kit-price-page':
 					return updateKitPriceContent();
+				case 'results-page':
+					return updateResultsPageContent();
+			}
+
+			/* 
+				Returns wether to hide the breadcrums, 
+				determined by if the user doesn't buy tickets 
+			*/
+			function shouldShowBreadcrums() {
+				switch ($('input[name="user-ticket"]:checked').val()){
+					case 'season':
+					case 'individual':
+						return true;
+					case 'none':
+						return false;
+				}
 			}
 
 			function updateBreadcrums(newSelection) {
-				$('.tickets-nav').show();
+				if(shouldShowBreadcrums()){
+					$('.tickets-nav').show();
 
-				$('.tickets-nav .tickets-nav--item').each(function (index){
-					$(this).removeClass('tickets-nav--item__active');
+					$('.tickets-nav .tickets-nav--item').each(function (index){
+						$(this).removeClass('tickets-nav--item__active');
+					});
+					$('#' + newSelection).addClass('tickets-nav--item__active');
+				} else {
+					$('.tickets-nav').hide();
+				}
+			}
+
+			function updateTeamName(){
+				var userTeamSelect = $('#user-team').get(0);
+				var teamText = userTeamSelect.options[userTeamSelect.selectedIndex].text;
+
+				$('.team-name--text').each(function(){
+					$(this).text(teamText);
 				});
-				$('#' + newSelection).addClass('tickets-nav--item__active');
 			}
 
 			function updateSelectTeamContent() {
-				$('.team-name--text').hide();
+				$('.team-header').hide();
 				$('.tickets-nav').hide();
 			}
 
 			function updateSelectTicketContent() {
-				var userTeamSelect = $('#user-team').get(0);
-				var teamText = userTeamSelect.options[userTeamSelect.selectedIndex].text;
-
-				$('.team-name--text').text(teamText);
-				$('.team-name--text').show();
+				updateTeamName();
+					
+				$('.team-header').show();
 
 				$('.tickets-nav').hide();
 			}
@@ -88,6 +115,12 @@ define(['lib/news_special/bootstrap'], function (news) {
 
 			function updateKitPriceContent(){
 				updateBreadcrums('tickets-nav--item__kit');
+			}
+
+			function updateResultsPageContent(){
+				$('.pagination').hide();
+				$('.tickets-nav').hide();
+				$('.team-header').hide();
 			}
 
 		}

@@ -5,14 +5,14 @@ define(['lib/news_special/bootstrap', 'lib/news_special/share_tools/controller',
 
             news.pubsub.emit('istats', ['app-initiated', 'newsspec-nonuser', true]);
 
-            /*
-            shareTools.init('.tempShareToolsHolder', {
+            
+            shareTools.init('.shareToolsHolder', {
                 storyPageUrl:  storyPageUrl,
                 header:       'Share this page',
                 message:      'Custom message',
                 hashtag:      'BBCNewsGraphics',
-                template:     'dropdown'
-            });*/
+                template:     'default'
+            });
 
             news.sendMessageToremoveLoadingImage();
 

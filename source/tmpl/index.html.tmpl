@@ -5,6 +5,16 @@
 
     	<p>How much do you spend following your team. Try our calculator to work out your costs, then share your results with your friends.</p>
     	<p>It found average ticket prices across English football's top four divisions have fallen by up to 2.4%</p>
+
+		<h3 class="team-name--text">Your team</h3>
+		<ul class="tickets-nav">
+			<li class="tickets-nav--item" id="tickets-nav--item__tickets">Tickets</li>
+			<li class="tickets-nav--item" id="tickets-nav--item__food">Food and drink</li>
+			<li class="tickets-nav--item" id="tickets-nav--item__programmes">Programmes</li>
+			<li class="tickets-nav--item" id="tickets-nav--item__kit">Kit</li>
+			<li class="tickets-nav--item tickets-nav--item__last" id="tickets-nav--item__results">Results</li>
+		</ul>
+
     	<form>
     		<div class="select-team q-page">
     			<label class="q-page--label" for="user-team"> Select your team: </label>
@@ -30,6 +40,56 @@
     				<input type="radio" id="ticket_none" name="user-ticket" value="none" />
     				<label class="q-page--label" for="ticket_none"> I don't go to home games </label>
     			</span>
+    		</div>
+
+    		<div class="ticket-price-page q-page">
+    			
+    			<label class="q-page--label" for="ticket-price">
+    				How much do you spend on <span class="ticket-type--text">tickets</span>?
+    			</label>
+    			<p>
+    				The average cost of tickets at your club has gone 
+    				<span class="ticket-price--text">up/down since 2011</span>
+    			</p>
+    			£<input id="ticket-price" type="text" class="q-page--input" />
+
+    		</div>
+
+    		<div class="food-price-page q-page">
+    			
+    			<label class="q-page--label" for="food-price">
+    				How much do you spend on food/drink?
+    			</label>
+    			<p>
+    				The average cost of tea and pies at your club has gone 
+    				<span class="food-price--text">up/down since 2011</span>
+    			</p>
+    			£<input id="food-price" type="text" class="q-page--input" />
+
+    		</div>
+
+    		<div class="programmes-price-page q-page">
+    			
+    			<label class="q-page--label" for="programmes-price">
+    				How much do you spend on programmes?
+    			</label>
+    			<p>
+    				You pay <span class="programmes-price--text">more/less</span> than the average price for your league.
+    			</p>
+    			£<input id="programmes-price" type="text" class="q-page--input" />
+
+    		</div>
+
+    		<div class="kit-price-page q-page">
+    			
+    			<label class="q-page--label" for="kit-price">
+    				How much do you spend on kit and merchandise?
+    			</label>
+    			<p>
+    				Some fact about the club to go here.
+    			</p>
+    			£<input id="kit-price" type="text" class="q-page--input" />
+
     		</div>
 
     		<div class="pagination">

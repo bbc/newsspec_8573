@@ -1,4 +1,9 @@
-define(['lib/news_special/bootstrap', 'validation'], function (news, validator) {
+define([
+	'lib/news_special/bootstrap', 
+	'validation', 
+	'update_content'
+], function (news, validator, contentManager) {
+
 	return function () {
 		var $ = news.$;
 		var currentPage = 'select-team'; // Change this variable to the first page.
@@ -17,6 +22,9 @@ define(['lib/news_special/bootstrap', 'validation'], function (news, validator) 
 
 				var nextPage = getNextPage();
 				previousStack.push(currentPage); /* Push old page to stack */
+
+				contentManager.update(nextPage);
+				
 				switchToPage(nextPage);
 
 				$('.pagination--previous').show();
@@ -33,6 +41,8 @@ define(['lib/news_special/bootstrap', 'validation'], function (news, validator) 
 		*/
 		$('.pagination--previous').on('click', function () {
 			var previousPage = previousStack.pop();
+
+			contentManager.update(previousPage);
 
 			switchToPage(previousPage);
 
@@ -57,15 +67,29 @@ define(['lib/news_special/bootstrap', 'validation'], function (news, validator) 
 		*/
 		function getNextPage() {
 			switch (currentPage) {
-			case 'select-team':
-				return 'select-ticket';
-			case 'select-ticket':
-				return getNextPageAfterTicket();
+				case 'select-team':
+					return 'select-ticket';
+				case 'select-ticket':
+					return getNextPageAfterTicket();
+				case 'ticket-price-page':
+					return 'food-price-page';
+				case 'food-price-page':
+					return 'programmes-price-page';
+				case 'programmes-price-page':
+					return 'kit-price-page';
+				case 'kit-price-page':
+					return 'results-page';
 			}
 		}
 
 		function getNextPageAfterTicket() {
-			//switch ()
+			switch ($('input[name="user-ticket"]:checked').val()){
+				case 'season':
+				case 'individual':
+					return 'ticket-price-page';
+				case 'none':
+					return 'kit-price-page';
+			}
 		}
 
 	};

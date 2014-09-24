@@ -8,24 +8,68 @@ define(['lib/news_special/bootstrap'], function (news) {
 			latestError = '';
 
 			switch (currentPage) {
-			case 'select-team':
-				return validateSelectTeam();
-			case 'select-ticket':
-				return validateSelectTicket();
+				case 'select-team':
+					return validateSelectTeam();
+				case 'select-ticket':
+					return validateSelectTicket();
+				case 'ticket-price-page':
+					return validateTicketPrice();
+				case 'food-price-page':
+					return validateFoodPrice();
+				case 'programmes-price-page':
+					return validateProgrammesPrice();
+				case 'kit-price-page':
+					return validateKitPrice();
 			}
 
 
 			function validateSelectTeam() {
-				if ($('#user-team').val() === 0) {
-					latestError = 'You never selected a team';
+				if ($('#user-team').val() === '0') {
+					latestError = 'Select a team!';
 					return false;
 				}
 				return true;
 			}
 
 			function validateSelectTicket() {
-				if (!$('input[name='user-ticket']:checked').val()) {
-					latestError = 'You haven\'t selected a ticket type';
+				if (!$('input[name="user-ticket"]:checked').val()) {
+					latestError = 'Select a ticket type!';
+					return false;
+				}
+				return true;
+			}
+
+			function validateTicketPrice() {
+				var ticketPrice = $('#ticket-price').val();
+				if (!$.isNumeric(ticketPrice) || ticketPrice<0) {
+					latestError = 'Enter a ticket price of £0 or higher!';
+					return false;
+				}
+				return true;
+			}
+
+			function validateFoodPrice() {
+				var foodPrice = $('#food-price').val();
+				if (!$.isNumeric(foodPrice) || foodPrice<0) {
+					latestError = 'Enter a food price of £0 or higher!';
+					return false;
+				}
+				return true;
+			}
+
+			function validateProgrammesPrice() {
+				var programmePrice = $('#programmes-price').val();
+				if (!$.isNumeric(programmePrice) || programmePrice<0) {
+					latestError = 'Enter a programme price of £0 or higher!';
+					return false;
+				}
+				return true;
+			}
+
+			function validateKitPrice() {
+				var kirPrice = $('#kit-price').val();
+				if (!$.isNumeric(kirPrice) || kirPrice<0) {
+					latestError = 'Enter a kit price of £0 or higher!';
 					return false;
 				}
 				return true;

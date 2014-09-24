@@ -1,3 +1,34 @@
+.tickets-nav{
+	display: none;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	border: 0;
+
+	.tickets-nav--item{
+		margin-right: 6px;
+		float: left;
+		list-style-type: none;
+	}
+
+	.tickets-nav--item__active{
+		font-weight: bold;
+	}
+
+	.tickets-nav--item::after { 
+	    content: " >";
+	}
+
+	.tickets-nav--item__last::after { 
+	    content: "";
+	}
+
+}
+
+.team-name--text{
+	display: none;
+}
+
 .q-page{
 	display: none; /* All questions are hidden by default */
 
@@ -5,6 +36,10 @@
 
 	.q-page--label{
 		font-weight: bold;
+	}
+
+	.q-page--input{
+		margin-left: 5px;
 	}
 
 	/* Label with selection on a new line */

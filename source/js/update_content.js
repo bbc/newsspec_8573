@@ -2,12 +2,10 @@
 	This module updates the content on the page when the user navigates through the app
 */
 
-define(['lib/news_special/bootstrap'], function (news) {
+define(['jquery', 'calculator'], function ($, calculator) {
 	
 	return {
 		update: function (nextPage) {
-
-			var $ = news.$;
 
 			switch (nextPage) {
 				case 'select-team':
@@ -121,6 +119,8 @@ define(['lib/news_special/bootstrap'], function (news) {
 				$('.pagination').hide();
 				$('.tickets-nav').hide();
 				$('.team-header').hide();
+				
+				calculator.getResultsBreakDown();
 			}
 
 		}

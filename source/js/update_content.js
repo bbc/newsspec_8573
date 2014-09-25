@@ -4,6 +4,8 @@
 
 define(['jquery', 'calculator'], function ($, calculator) {
 	
+	var genericText = 'The average {TEAM_NAME} fan spends £{AMOUNT} supporting them.';
+
 	return {
 		update: function (nextPage) {
 
@@ -38,6 +40,11 @@ define(['jquery', 'calculator'], function ($, calculator) {
 				}
 			}
 
+			function getSelectedTeamName(){
+				var userTeamSelect = $('#user-team').get(0);
+				return userTeamSelect.options[userTeamSelect.selectedIndex].text;
+			}
+
 			function updateBreadcrums(newSelection) {
 				if(shouldShowBreadcrums()){
 					$('.tickets-nav').show();
@@ -52,8 +59,8 @@ define(['jquery', 'calculator'], function ($, calculator) {
 			}
 
 			function updateTeamName(){
-				var userTeamSelect = $('#user-team').get(0);
-				var teamText = userTeamSelect.options[userTeamSelect.selectedIndex].text;
+				
+				var teamText = getSelectedTeamName();
 
 				$('.team-name--text').each(function(){
 					$(this).text(teamText);
@@ -119,8 +126,26 @@ define(['jquery', 'calculator'], function ($, calculator) {
 				$('.pagination').hide();
 				$('.tickets-nav').hide();
 				$('.team-header').hide();
-				
-				calculator.getResultsBreakDown();
+
+				if(calculator.shouldShowBreakDown()){
+					showBreakDownResults(calculator.getResultsBreakDown());
+				}else{
+					$('.results-breakdown').hide();
+
+					var parsedText = genericText.replace('{TEAM_NAME}', getSelectedTeamName());
+					parsedText = parsedText.replace('{AMOUNT}', 500);
+
+					$('#results-page--summary').text(parsedText);
+					/* Show generic results */
+				}
+			}
+
+			function showBreakDownResults(resultsBreakdown){
+				$('#result-text-total').text(resultsBreakdown.total.toFixed(2));
+				$('#result-text-tickets').text('£' + resultsBreakdown.tickets.toFixed(2));
+				$('#result-text-food').text('£' + resultsBreakdown.food.toFixed(2));
+				$('#result-text-programme').text('£' + resultsBreakdown.programmes.toFixed(2));
+				$('#result-text-kit').text('£' + resultsBreakdown.kit.toFixed(2));
 			}
 
 		}

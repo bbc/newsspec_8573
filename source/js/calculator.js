@@ -16,6 +16,20 @@ define([
 
 
 	return {
+
+		/* Wether to show a breakdown of results or just a generic result */
+		shouldShowBreakDown: function () {
+			var noTickets = ($('input[name="user-ticket"]:checked').val()==='none');
+			var noKit = ($('input[name="buys-kit"]:checked').val()==='no');
+
+			var resultsBreakdown = this.getResultsBreakDown();
+
+			if((noTickets && noKit) || resultsBreakdown.total <= 0){
+				return false;
+			}
+			return true;
+		},
+
 		getResultsBreakDown: function () {
 			
 			var justKit = isJustKit();
@@ -27,6 +41,7 @@ define([
 			resultsBreakDown.food = getFoodCost();
 			resultsBreakDown.programmes = getProgrammeCost();
 			resultsBreakDown.kit = getKitCost();
+			resultsBreakDown.total = getTotal();
 
 			/* Returns true or false if the user only buys kit and nothing else */
 			function isJustKit() {
@@ -61,7 +76,19 @@ define([
 			function getKitCost() {
 				return $('#kit-price').val()*1;
 			}
-			console.log(resultsBreakDown);
+
+			function getTotal(){
+				/* Calculate total */
+				var returnTotal = 0;
+				returnTotal += resultsBreakDown.tickets;
+				returnTotal += resultsBreakDown.food;
+				returnTotal += resultsBreakDown.programmes;
+				returnTotal += resultsBreakDown.kit;
+
+				return returnTotal;
+			}
+			
+			return resultsBreakDown;
 
 		}
 	};

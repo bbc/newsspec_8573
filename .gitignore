@@ -5,4 +5,6 @@ _SpecRunner.html
 node_modules
 tmp
 content
+data/generated
+data/vendor
 npm-debug.log

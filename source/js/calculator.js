@@ -3,18 +3,6 @@ define([
 	'data/teams', 
 	'data/leagues'
 ], function ($, teams, leagues) {
-
-	this.getTeam = function(){
-		var selectTeam = $('#user-team').val();
-		return teams[selectTeam];
-	};
-
-	this.getLeagueData = function(){
-		var team = getTeam();
-		return leagues[team.league];
-	};
-
-
 	return {
 
 		/* Wether to show a breakdown of results or just a generic result */
@@ -33,7 +21,7 @@ define([
 		getResultsBreakDown: function () {
 			
 			var justKit = isJustKit();
-			var league = getLeagueData();
+			var league = this.getLeagueData();
 
 			var resultsBreakDown = {};
 
@@ -77,7 +65,7 @@ define([
 				return $('#kit-price').val()*1;
 			}
 
-			function getTotal(){
+			function getTotal() {
 				/* Calculate total */
 				var returnTotal = 0;
 				returnTotal += resultsBreakDown.tickets;
@@ -90,6 +78,18 @@ define([
 			
 			return resultsBreakDown;
 
+		},
+
+		getTeam: function() {
+			var selectTeam = $('#user-team').val();
+			return teams[selectTeam];
+		},
+
+		getLeagueData: function() {
+			var team = this.getTeam();
+			console.log(team);
+			console.log(leagues);
+			return leagues[team.league];
 		}
 	};
 });

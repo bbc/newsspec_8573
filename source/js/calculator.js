@@ -21,7 +21,7 @@ define([
 		getResultsBreakDown: function () {
 			
 			var justKit = isJustKit();
-			var league = this.getLeagueData();
+			var league = this.getLeague();
 
 			var resultsBreakDown = {};
 
@@ -85,11 +85,9 @@ define([
 			return teams[selectTeam];
 		},
 
-		getLeagueData: function() {
+		getLeague: function() {
 			var team = this.getTeam();
-			console.log(team);
-			console.log(leagues);
-			return leagues[team.league];
+			return leagues[team.prettyLeague];
 		}
 	};
 });

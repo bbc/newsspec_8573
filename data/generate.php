@@ -3,35 +3,37 @@
 	require_once "vendor/autoload.php";
 	require_once 'classes/iRequire.php';
 
-	require_once 'classes/ProcessSpreadsheet.php';
+	require_once 'classes/ProcessSpreadsheets.php';
 	require_once 'classes/ContentGenerator.php';
 
-	$shortopts = "d::"; // Optional value
+	$shortopts = "t::"; // Optional value
 
 	$options = getopt($shortopts);
 
-	$xlsFile = (array_key_exists("d", $options)) ? $options['d'] : "data.xls";
+	$teamsXlsFile = (array_key_exists("t", $options)) ? $options['t'] : "teams.xls";
+	$leaguesXlsFile = (array_key_exists("l", $options)) ? $options['l'] : "leagues.xls";
 
-	echo "================== USING DIRECTORYS: ==================\n";
-	echo " 1. Spreadsheet:            ".$xlsFile."\n";
-	echo " 2. Team data output:       teams.json\n";
-	echo " 3. League data output:     leagues.json\n";
-	echo " 3. Team drop down html:    dropdown.html\n";
+	echo "==================== USING FILES: =====================\n";
+	echo " 1. Team spreadsheet:       ".$teamsXlsFile."\n";
+	echo " 2. Leagues spreadsheet:    ".$leaguesXlsFile."\n";
+	echo " 3. Team data output:       generated/teams.json\n";
+	echo " 4. League data output:     generated/leagues.json\n";
+	echo " 5. Team drop down html:    generated/dropdown.html\n";
 	echo "================= CONVERTING TO CSV: ==================\n";
 
-	$xlsProcessor = new ProcessSpreadsheet($xlsFile);
+	$xlsProcessor = new ProcessSpreadsheets($teamsXlsFile, $leaguesXlsFile);
 
 
-	echo "=============== PARSING DATA TO ARRAY: ================\n";
+	echo "=============== PARSING DATA TO ARRAYS: ================\n";
 
-	$teamsArray = $xlsProcessor->getDataObject();
+	$teamsObject = $xlsProcessor->getTeamsObject();
+	$leaguesObject = $xlsProcessor->getLeaguesObject();
 
 	echo "=============== SAVING ARRAY TO JSON: ================\n";
 
 
-	$contentGenerator = new ContentGenerator($teamsArray);
+	$contentGenerator = new ContentGenerator($teamsObject, $leaguesObject);
 	$contentGenerator->generateAll();
 
 	echo "====================== COMPLETE =======================\n";
-
 ?>

@@ -19,6 +19,22 @@ module.exports = function (grunt) {
             }
         }
     });
-    
+
+    grunt.config('passParams', {
+        options: {
+            staticPath: '<%= env[config.whichEnv].domainStatic %>/news/special/<%= config.year %>/newsspec_<%= config.project_number %>/content/'
+        }
+    });
+
+    grunt.registerTask('passParams', function () {
+        var options = this.options();
+        grunt.log.ok(options.staticPath);
+
+        var pathStatic = 'test';
+        var staticPathDir = pathStatic + '/english';
+
+        grunt.file.write('source/scss/news_special/grunt-values.scss', '$staticPath: "' + staticPathDir + '";');
+    });
+        
     grunt.registerTask('css', ['clean:sasscache', 'sass:main', 'sass:inline', 'csslint', 'cssmin']);
 };

@@ -11,6 +11,7 @@ define(['jquery', 'calculator'], function ($, calculator) {
 	statsTexts['individualTicket'] = 'The cost of the cheapest matchday ticket at your club has gone {UP_DOWN} £{AMOUNT} since 2011';
 	statsTexts['food'] = 'The cost of a tea and a pies at your club has gone {UP_DOWN} £{AMOUNT} since 2011';
 	statsTexts['programme'] = 'The cost of a programme at your club has gone {UP_DOWN} £{AMOUNT} since 2011';
+	statsTexts['kit'] = '{TEAM_NAME} kit costs £{AMOUNT} {UP_DOWN} than the average cost for {THE}{LEAGUE_NAME}.';
 
 	return {
 		update: function (nextPage) {
@@ -72,23 +73,19 @@ define(['jquery', 'calculator'], function ($, calculator) {
 					For example "up/down" or "more/less" are valid params
 				@param currentValue the latest value to test
 				@param oldValue the older value to (Last years data).
+				@param pence wether or not to show the pence value
 			*/
-			function makeStatText(text, upDown, currentValue, oldValue){
+			function makeStatText(text, currentValue, oldValue, pence){
 
 				/* If data is missing return null */
 				if(currentValue==null || oldValue==null){
 					return null;
 				}
 
-				/* Find the up and down texts */
-				var upDownSplit = upDown.split('/');
-				var upText = upDownSplit[0];
-				var downText = upDownSplit[1];
-
 				var diff = currentValue - oldValue;
 
-				var upDownValue = (diff>=0) ? upText : downText;
-				var amount = Math.abs(diff).toFixed(2);
+				var upDownValue = (diff>=0) ? 'up' : 'down';
+				var amount = (pence) ? Math.abs(diff).toFixed(2) :  Math.round(Math.abs(diff));
 
 				text = text.replace('{AMOUNT}', amount);
 				text = text.replace('{UP_DOWN}', upDownValue);
@@ -132,11 +129,11 @@ define(['jquery', 'calculator'], function ($, calculator) {
 				switch ($('input[name="user-ticket"]:checked').val()){
 					case 'season':
 						$('.ticket-type--text').text('season ticket');
-						updateText = makeStatText(statsTexts['seasonTicket'], 'up/down', userTeam['cheapSeason'], userTeam['cheapSeason2013']);
+						updateText = makeStatText(statsTexts['seasonTicket'], userTeam['cheapSeason'], userTeam['cheapSeason2013'], false);
 						break;
 					case 'individual':
 						$('.ticket-type--text').text('indivudal tickets');
-						updateText = makeStatText(statsTexts['individualTicket'], 'up/down', userTeam['cheapTicket'], userTeam['cheapestMatchdayTicket2011']);
+						updateText = makeStatText(statsTexts['individualTicket'], userTeam['cheapTicket'], userTeam['cheapestMatchdayTicket2011'], false);
 						break;
 
 				}
@@ -154,11 +151,10 @@ define(['jquery', 'calculator'], function ($, calculator) {
 
 
 				var currentFood = (userTeam['pie']==null||userTeam['tea']==null) ? null : (parseFloat(userTeam['pie']) + parseFloat(userTeam['tea']));
-				var oldFood = 5;//userTeam['2011pie'] + userTeam['2011tea'];
+				var oldFood = (userTeam['pie2011']==null||userTeam['tea2011']==null) ? null : (parseFloat(userTeam['pie2011']) + parseFloat(userTeam['tea2011']));
 
-				console.log(currentFood);
+				var updateText = makeStatText(statsTexts['food'], currentFood, oldFood, true);
 
-				var updateText = makeStatText(statsTexts['food'], 'up/down', currentFood, oldFood);
 				if(updateText!=null){
 					$('.food-price--text').text(updateText);
 					$('.food-price--text').show();
@@ -168,17 +164,46 @@ define(['jquery', 'calculator'], function ($, calculator) {
 			}
 
 			function updateProgrammesPriceContent(){
-
+				var userTeam = calculator.getTeam();
 				updateBreadcrums('tickets-nav--item__programmes');
 
-				var priceDifference = Math.floor(Math.random() * 10) -5;
-				var moreOrLess = (priceDifference>0) ? 'more' : 'less';
+				var updateText = makeStatText(statsTexts['programme'], userTeam['programme'], userTeam['programme2011'], true);
 
-				$('.programmes-price--text').text('£' + Math.abs(priceDifference) + ' ' + moreOrLess);
+				if(updateText!=null){
+					$('.programmes-price--text').text(updateText);
+					$('.programmes-price--text').show();
+				}else{
+					$('.programmes-price--text').hide();
+				}
+
 			}
 
 			function updateKitPriceContent(){
+				var userTeam = calculator.getTeam();
+				var userLeague = calculator.getLeague();
+
 				updateBreadcrums('tickets-nav--item__kit');
+
+				if(userTeam['adultShirt'] !== null && userLeague['avgKitCost'] !== null){
+					var diff = userTeam['adultShirt'] - userLeague['avgKitCost'];
+
+					var upDownValue = (diff>=0) ? 'more' : 'less';
+					var amount = Math.abs(Math.round(diff));
+					var theText = (userLeague.needThe) ? 'the ' : '';
+
+					updateText = statsTexts['kit'];
+					updateText = updateText.replace('{AMOUNT}', amount);
+					updateText = updateText.replace('{UP_DOWN}', upDownValue);
+					updateText = updateText.replace('{THE}', theText);
+					updateText = updateText.replace('{TEAM_NAME}', userTeam['name']);
+					updateText = updateText.replace('{LEAGUE_NAME}', userLeague['name']);
+
+					$('.kit-price--text').text(updateText);
+					$('.kit-price--text').show();
+				}else{
+					$('.kit-price--text').hide();
+				}
+
 			}
 
 			function updateResultsPageContent(){

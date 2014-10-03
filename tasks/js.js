@@ -53,7 +53,7 @@ module.exports = function (grunt) {
     });
 
     grunt.config(['concurrent', 'js'], {
-        tasks: ['jshint', 'jasmine', 'requirejs:jquery1', 'requirejs:jquery2']
+        tasks: ['jshint', 'requirejs:jquery1', 'requirejs:jquery2']
     });
     grunt.registerTask('js', ['clean:allJs', 'overrideImagerImageSizes', 'concurrent:js', 'copyRequiredJs']);
 };

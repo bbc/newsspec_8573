@@ -1,0 +1,54 @@
+.bar-chart{
+	width: 100%;
+
+	.bar-chart--row{
+		width: 100%;
+		overflow: hidden;
+
+		.row-name{
+			font: 14px Arial;
+			float: left;
+			text-align: left;
+			margin-right: 10px;
+			clear: both;
+		}
+
+		.row-bar{
+			float: left;
+			clear: left;
+			display: block;
+			margin-top: 6px;
+			height: 8px;
+			background-color: #86c3c3;
+			border-bottom: 1px solid #e3f3f3;
+		}
+
+		.row-value{
+			font: 14px Arial;
+			float: left;
+			margin-left: 10px;
+		}
+
+		.row-name__selected{
+			font-weight: bold;
+		}
+		.row-bar__selected{
+			background-color: #007d7d;
+		}
+		.row-value__selected{
+			font-weight: bold;
+		}
+
+		@include respondMinMax(480px, false){
+			.row-name{
+				text-align: right;
+				clear: none;
+			}
+
+			.row-bar{
+				clear: none;
+			}
+		}
+
+	}
+}

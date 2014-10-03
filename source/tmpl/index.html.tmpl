@@ -1,6 +1,13 @@
 <%= include('includes/top.tmpl') %>
 
     <div class="main">
+    	<h2>SEASON TICKET PRICE</h2>
+   		<div class="bar-chart" id="barChartOne"></div>
+
+   		<h2>COST PER GOAL</h2>
+   		<div class="bar-chart" id="barChartTwo"></div>
+
+    	<div style="display:none;">
     	<h2>Price of Football calculator: How much do you spend on a match day?</h2>
 
     	<p>How much do you spend following your team. Try our calculator to work out your costs, then share your results with your friends.</p>
@@ -256,10 +263,8 @@ out? </label>
     			<label class="q-page--label" for="programmes-price">
     				How much do you spend on programmes?
     			</label>
-    			<p>
-    				You pay <span class="programmes-price--text">more/less</span> than the average price for your league.
-    			</p>
     			£<input id="programmes-price" type="text" class="q-page--input" />
+    			<p class="programmes-price--text"></p>
 
     		</div>
 
@@ -268,11 +273,8 @@ out? </label>
     			<label class="q-page--label" for="kit-price">
     				How much do you spend on kit and merchandise?
     			</label>
-    			<p>
-    				Some fact about the club to go here.
-    			</p>
     			£<input id="kit-price" type="text" class="q-page--input" />
-
+    			<p class="kit-price--text"></p>
     		</div>
 
     		<div class="results-page">
@@ -328,6 +330,7 @@ out? </label>
     			<input class="pagination--next" type="button" value="Next" />
     		</div>
     	</form>
+    	</div>
     </div>
 
 <%= include('includes/bottom.tmpl') %>

@@ -1,0 +1,13 @@
+@include respondMinMax(748px, false){
+	.results-page .results-breakdown .breakdown-row{
+		float: left;
+		width: 47%;
+		margin-right: 3%;
+	}
+}
+
+@include respondMinMax(930px, false){
+	.results-page .results-page--branding{
+		display: block;
+	}
+}

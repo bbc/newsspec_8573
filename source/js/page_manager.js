@@ -22,10 +22,11 @@ define([
 
 				var nextPage = getNextPage();
 				previousStack.push(currentPage); /* Push old page to stack */
-
-				contentManager.update(nextPage);
 				
 				switchToPage(nextPage);
+
+				contentManager.update(nextPage);
+
 
 				$('.pagination--previous').show();
 
@@ -69,7 +70,7 @@ define([
 			switch (currentPage) {
 				/* Season ticket/indivudal ticket flow */
 				case 'select-team':
-					return 'select-ticket';
+					return 'results-page'; //'select-ticket';
 				case 'select-ticket':
 					return getNextPageAfterTicket();
 				case 'ticket-price-page':

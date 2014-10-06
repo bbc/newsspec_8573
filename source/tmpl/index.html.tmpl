@@ -1,14 +1,7 @@
 <%= include('includes/top.tmpl') %>
 
     <div class="main">
-    	<h2>SEASON TICKET PRICE</h2>
-   		<div class="bar-chart" id="barChartOne"></div>
-
-   		<h2>COST PER GOAL</h2>
-   		<div class="bar-chart" id="barChartTwo"></div>
-
-    	<div style="display:none;">
-    	<h2>Price of Football calculator: How much do you spend on a match day?</h2>
+    	<h2>Football Calculator</h2>
 
     	<p>How much do you spend following your team. Try our calculator to work out your costs, then share your results with your friends.</p>
     	<p>It found average ticket prices across English football's top four divisions have fallen by up to 2.4%</p>
@@ -193,7 +186,7 @@
 					<option value="watford">Watford</option>
 					<option value="watford-ladies">Watford Ladies</option>
 					<option value="welling-united">Welling United</option>
-					<option value="west-brom">West Brom</option>
+					<option selected="selected" value="west-brom">West Bromwich Albion</option>
 					<option value="west-ham">West Ham</option>
 					<option value="wigan-athletic">Wigan Athletic</option>
 					<option value="woking-fc">Woking FC</option>
@@ -224,7 +217,7 @@
 
 
     		<div class="kit-select-page q-page">
-    			<label class="q-page--label q-page--label__nl" for="user-team"> Do you get kitted 
+    			<label class="q-page--label q-page--label__nl"> Do you get kitted 
 out? </label>
     			<span class="q-page--radio-button">
     				<input type="radio" id="kit_yes" name="buys-kit" value="yes" />
@@ -278,10 +271,87 @@ out? </label>
     		</div>
 
     		<div class="results-page">
-	    		<h2 id="results-page--summary">
+				<img class="results-page--branding" src="img/branding-image.png" alt="Branding image" />
+    		    <img class="results-page--crest" src="img/west-brom.png" alt="West Bromich Albion crest" />
+    		    <h1 class="results-page--header team-name--text">Team name</h1>
+    		    <p class="results-page--total">Each year I spend <strong>£1400</strong> following <span class="team-name--text">Team name</span></p>
+
+	    		<div class="results-breakdown">
+	    			<div class="breakdown-row">
+	    				<span class="breakdown-row__desc">Tickets</span>
+	    				<span id="result-text-tickets" class="breakdown-row__price">£100</span>
+	    			</div>
+	    			<div class="breakdown-row">
+	    				<span class="breakdown-row__desc">Food and drink</span>
+	    				<span id="result-text-food" class="breakdown-row__price">£100</span>
+	    			</div>
+	    			<div class="breakdown-row">
+	    				<span class="breakdown-row__desc">Programmes</span>
+	    				<span id="result-text-programme" class="breakdown-row__price">£50</span>
+	    			</div>
+	    			<div class="breakdown-row">
+	    				<span class="breakdown-row__desc">Kit</span>
+	    				<span id="result-text-kit" class="breakdown-row__price">£50</span>
+	    			</div>
+	    		</div>
+
+	    		<div class="shareToolsHolder"></div>
+
+	    		<h1 class="results-page--compare-header">
+	    			How do at <span class="team-name--text">your team</span> compare to other teams in their league?
+	    		</h1>
+
+	    		<p class="compare--text">
+	    			This year <span class="team-name--text">your team</span> tickets are <strong>6%</strong> cheaper than other clubs in the premier league
+	    		</p>
+	    		<h2 class="compare--chart-header">Comparative ticket costs</h2>
+	    		<div class="bar-chart" id="barChartOne"></div>
+
+
+
+	    		<p class="compare--text">
+	    			Based on last seasons results, I pay <strong>£15 per home goal</strong>, which is <strong>10% less</strong> than the league average
+	    		</p>
+	    		<h2 class="compare--chart-header">Cost of goals</h2>
+	    		<div class="bar-chart" id="barChartTwo"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    			<div style="display:none;">
+
+	    		<h1 class="team-name--text">
 	    			Each year I spend £<span id="result-text-total">400</span> on supporting 
-	    			<span class="team-name--text">your team</span>.
-	    		</h2>
+	    			<span >your team</span>.
+	    		</h1>
 	    		<div class="results-breakdown">
 	    			<div class="results-breakdown--info">
 	    				<span id="result-text-tickets" class="results-breakdown--info__price">£100</span>
@@ -323,6 +393,7 @@ out? </label>
 	    				Based on last season's results, I pay <strong>£30 per home goal</strong> which is <strong>24% more</strong> than the league average.
 	    			</div>
 	    		</div>
+	    		</div>
     		</div>
 
     		<div class="pagination">
@@ -330,7 +401,6 @@ out? </label>
     			<input class="pagination--next" type="button" value="Next" />
     		</div>
     	</form>
-    	</div>
     </div>
 
 <%= include('includes/bottom.tmpl') %>

@@ -2,7 +2,7 @@
 	This module updates the content on the page when the user navigates through the app
 */
 
-define(['jquery', 'calculator'], function ($, calculator) {
+define(['jquery', 'calculator', 'bar_chart'], function ($, calculator, BarChart) {
 
 	var genericText = 'The average {TEAM_NAME} fan spends £{AMOUNT} supporting them.';
 
@@ -210,6 +210,30 @@ define(['jquery', 'calculator'], function ($, calculator) {
 				$('.pagination').hide();
 				$('.tickets-nav').hide();
 				$('.team-header').hide();
+
+				updateTeamName();
+
+	            var testArray = [];
+	            testArray.push({label: 'Man United', value: '1200', selected: true});
+	            testArray.push({label: 'Man City', value: '1100'});
+	            testArray.push({label: 'Chelsea', value: '800'});
+	            testArray.push({label: 'Arsenal', value: '1600'});
+	            testArray.push({label: 'Liverpool', value: '10'});
+
+	            var testArray2 = [];
+	            testArray2.push({label: 'Man United', value: '32.20', selected: true});
+	            testArray2.push({label: 'Man City', value: '6.40'});
+	            testArray2.push({label: 'Chelsea', value: '16.10'});
+	            testArray2.push({label: 'Arsenal', value: '5.40'});
+	            testArray2.push({label: 'Liverpool', value: '4.20'});
+
+	            var barChart = new BarChart(testArray, false);
+	            barChart.draw($('#barChartOne'));
+
+	            var barChart2 = new BarChart(testArray2, true);
+	            barChart2.draw($('#barChartTwo'));
+
+				return true;
 
 				if(calculator.shouldShowBreakDown()){
 					showBreakDownResults(calculator.getResultsBreakDown());

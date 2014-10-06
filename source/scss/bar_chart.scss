@@ -1,12 +1,14 @@
 .bar-chart{
+	position: relative;
 	width: 100%;
 
 	.bar-chart--row{
 		width: 100%;
+		position: relative;
 		overflow: hidden;
 
 		.row-name{
-			font: 14px Arial;
+			font: normal 16px Arial;
 			float: left;
 			text-align: left;
 			margin-right: 10px;
@@ -19,12 +21,13 @@
 			display: block;
 			margin-top: 6px;
 			height: 8px;
-			background-color: #86c3c3;
+			background-color: #87C2C2;
 			border-bottom: 1px solid #e3f3f3;
 		}
 
 		.row-value{
-			font: 14px Arial;
+			font: normal 16px Arial;
+			padding-top: 1px;
 			float: left;
 			margin-left: 10px;
 		}

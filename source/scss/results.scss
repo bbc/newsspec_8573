@@ -2,51 +2,90 @@ $no-result-items: 4;
 
 .results-page{
 	display: none;
-}
 
-.results-breakdown{
-	overflow: hidden;
-
-	.results-breakdown--info{
-		width: 100%/$no-result-items;
-		float: left;
+	.results-page--branding{
+		display: none;
+		float: right;
+		padding-left: 10px;
+		background-color: #FFF;
 	}
 
-	.results-breakdown--info__price{
+	.results-page--crest{
+		float: right;
+		padding-left: 8px;
+		background-color: #FFF;
+	}
+
+	.results-page--header{
 		display: block;
 		width: 100%;
-		text-align: center;
-		font-weight: bold;
-		font-size: 2em;
+		padding: 10px;
+		background-color: #ebebeb;
+		font: bold 18px Arial;
+		line-height: 22px;
+		color: #555;
 	}
 
-	.results-breakdown--info__desc{
-		display: block;
-		width: 100%;
-		text-align: center;
-		font-size: 1.2em;
-	}
-}
+	.results-page--total{
+		padding-left: 5px;
+		font: normal 18px Arial;
+		line-height: 22px;
+		color: #404040;
 
-.chart-section{
-	width: 100%;
-	overflow: hidden;
-
-	.chart-section--chart{
-		overflow: hidden;
-		float: left;
-		width: 50%;
-
-		.chart-header{
-			text-transform: uppercase;
+		strong{
+			color: #006767;
 		}
 	}
 
-	.chart-section--desc{
-		padding: 60px 30px 0 30px;
+
+	.results-breakdown{
 		overflow: hidden;
-		float: left;
-		width: 50%;
-		font-size: 1.1em;
+		
+		.breakdown-row{
+			overflow: hidden;
+			width: 100%;
+			border-bottom: 2px solid #EAEAEA;
+			padding: 10px 0 6px 2px;
+
+			.breakdown-row__desc{
+				float: left;
+				font: normal 16px Arial;
+				color: #404040;
+			}
+			.breakdown-row__price{
+				float: right;
+				font: bold 16px Arial;
+				color: #006767;
+			}
+
+		}
+
+	}
+
+	.shareToolsHolder{
+		margin-top: 16px;
+	}
+
+	.results-page--compare-header{
+		font: bold 16px Arial;
+		line-height: 18px;
+		color: #404040;
+		width: 100%;
+	}
+
+	.compare--text{
+		padding-top: 15px;
+		border-top: 1px solid #e5e5e5;
+		font: normal 16px Arial;
+		line-height: 20px;
+		color: #404040;
+		strong{
+			color: #006767;
+		}
+	}
+
+	.compare--chart-header{
+		font: bold 18px Arial;
+		color: #404040;
 	}
 }

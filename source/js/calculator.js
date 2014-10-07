@@ -15,6 +15,7 @@ define([
 			if((noTickets && noKit) || resultsBreakdown.total <= 0){
 				return false;
 			}
+			console.log('Will show breakdown');
 			return true;
 		},
 

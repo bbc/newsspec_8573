@@ -4,10 +4,18 @@
 		width: 47%;
 		margin-right: 3%;
 	}
+
+	.nav .nav-item .nav-item--text{
+		display: block;
+	}
 }
 
 @include respondMinMax(930px, false){
 	.results-page .results-page--branding{
 		display: block;
+	}
+
+	.results-page .results-wrapper{
+		margin-right: 324px;
 	}
 }

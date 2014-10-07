@@ -1,30 +1,3 @@
-.tickets-nav{
-	display: none;
-	overflow: hidden;
-	padding: 0;
-	margin: 0;
-	border: 0;
-
-	.tickets-nav--item{
-		margin-right: 6px;
-		float: left;
-		list-style-type: none;
-	}
-
-	.tickets-nav--item__active{
-		font-weight: bold;
-	}
-
-	.tickets-nav--item::after { 
-	    content: " >";
-	}
-
-	.tickets-nav--item__last::after { 
-	    content: "";
-	}
-
-}
-
 .team-header{
 	display: none;
 }

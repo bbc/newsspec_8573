@@ -5,197 +5,245 @@
 
     	<p>How much do you spend following your team. Try our calculator to work out your costs, then share your results with your friends.</p>
     	<p>It found average ticket prices across English football's top four divisions have fallen by up to 2.4%</p>
+		<ul class="nav">
+			<li class="nav-item nav-item__team">
+				<div class="nav-item--icon"></div>
+				<div class="nav-item--text">Your team</div>
+			</li>
+			<li class="nav-item nav-item__tickets">
+				<div class="nav-item--icon"></div>
+				<div class="nav-item--text">Tickets</div>
+			</li>
+			<li class="nav-item nav-item__food">
+				<div class="nav-item--icon"></div>
+				<div class="nav-item--text">Food and Drink</div>
+			</li>
+			<li class="nav-item nav-item__programmes">
+				<div class="nav-item--icon"></div>
+				<div class="nav-item--text">Programmes</div>
+			</li>
+			<li class="nav-item nav-item__kit">
+				<div class="nav-item--icon"></div>
+				<div class="nav-item--text">Kit and merchandise</div>
+			</li>
+			<li class="nav-item nav-item__results">
+				<div class="nav-item--icon"></div>
+				<div class="nav-item--text">Results</div>
+			</li>
+		</ul>
 
 		<h3 class="team-header team-name--text">Your team</h3>
-		<ul class="tickets-nav">
-			<li class="tickets-nav--item" id="tickets-nav--item__tickets">Tickets</li>
-			<li class="tickets-nav--item" id="tickets-nav--item__food">Food and drink</li>
-			<li class="tickets-nav--item" id="tickets-nav--item__programmes">Programmes</li>
-			<li class="tickets-nav--item" id="tickets-nav--item__kit">Kit</li>
-			<li class="tickets-nav--item tickets-nav--item__last" id="tickets-nav--item__results">Results</li>
-		</ul>
 
     	<form>
     		<div class="select-team q-page">
     			<label class="q-page--label" for="user-team"> Select your team: </label>
     			<select class="q-page--dropdown" id="user-team">
-					<option value="0">Choose your club</option>
-					<option value="aberdeen">Aberdeen</option>
-					<option value="accrington-stanley">Accrington Stanley</option>
-					<option value="afc-wimbledon">AFC Wimbledon</option>
-					<option value="airdrieonians">Airdrieonians</option>
-					<option value="albion-rovers">Albion Rovers</option>
-					<option value="aldershot-town">Aldershot Town</option>
-					<option value="alfreton-town">Alfreton Town</option>
-					<option value="alloa">Alloa</option>
-					<option value="altrincham">Altrincham</option>
-					<option value="annan">Annan</option>
-					<option value="arbroath">Arbroath</option>
-					<option value="arsenal">Arsenal</option>
-					<option value="arsenal-ladies">Arsenal Ladies</option>
-					<option value="aston-villa">Aston Villa</option>
-					<option value="aston-villa-ladies">Aston Villa Ladies</option>
-					<option value="ayr-utd">Ayr Utd</option>
-					<option value="barnet">Barnet</option>
-					<option value="barnsley">Barnsley</option>
-					<option value="berwick">Berwick</option>
-					<option value="birmingham">Birmingham</option>
-					<option value="birmingham-city">Birmingham City</option>
-					<option value="blackburn-rovers">Blackburn Rovers</option>
-					<option value="blackpool">Blackpool</option>
-					<option value="bolton-wanderers">Bolton Wanderers</option>
-					<option value="bournemouth">Bournemouth</option>
-					<option value="bradford">Bradford</option>
-					<option value="braintree">Braintree</option>
-					<option value="brechin">Brechin</option>
-					<option value="brentford">Brentford</option>
-					<option value="brighton-and-hove-albion">Brighton and Hove Albion</option>
-					<option value="bristol-academy">Bristol Academy</option>
-					<option value="bristol-city">Bristol City</option>
-					<option value="bristol-rovers">Bristol Rovers</option>
-					<option value="burnley">Burnley</option>
-					<option value="burton-albion">Burton Albion</option>
-					<option value="bury">Bury</option>
-					<option value="cambridge-united">Cambridge United</option>
-					<option value="cardiff-city">Cardiff City</option>
-					<option value="carlisle-united">Carlisle United</option>
-					<option value="celtic">Celtic</option>
-					<option value="charlton-athletic">Charlton Athletic</option>
-					<option value="chelsea">Chelsea</option>
-					<option value="chelsea-ladies">Chelsea Ladies</option>
-					<option value="cheltenham-town">Cheltenham Town</option>
-					<option value="chester">Chester</option>
-					<option value="chesterfield">Chesterfield</option>
-					<option value="clyde">Clyde</option>
-					<option value="colchester-united">Colchester United</option>
-					<option value="coventry-city">Coventry City</option>
-					<option value="cowdenbeath">Cowdenbeath</option>
-					<option value="crawley-town">Crawley Town</option>
-					<option value="crewe-alexandra">Crewe Alexandra</option>
-					<option value="crystal-palace">Crystal Palace</option>
-					<option value="dagenham-and-redbridge">Dagenham and Redbridge</option>
-					<option value="dartford">Dartford</option>
-					<option value="derby-county">Derby County</option>
-					<option value="doncaster">Doncaster</option>
-					<option value="doncaster-rovers-belles">Doncaster Rovers Belles</option>
-					<option value="dover">Dover</option>
-					<option value="dumbarton">Dumbarton</option>
-					<option value="dundee">Dundee</option>
-					<option value="dundee-utd">Dundee Utd</option>
-					<option value="dunfermline">Dunfermline</option>
-					<option value="durham-ladies">Durham Ladies</option>
-					<option value="east-fife">East Fife</option>
-					<option value="east-stirling">East Stirling</option>
-					<option value="eastleigh">Eastleigh</option>
-					<option value="elgin-city">Elgin City</option>
-					<option value="everton">Everton</option>
-					<option value="everton-ladies">Everton Ladies</option>
-					<option value="exeter-city">Exeter City</option>
-					<option value="falkirk">Falkirk</option>
-					<option value="fleetwood">Fleetwood</option>
-					<option value="forest-green-rovers">Forest Green Rovers</option>
-					<option value="forfar">Forfar</option>
-					<option value="fulham">Fulham</option>
-					<option value="gateshead">Gateshead</option>
-					<option value="gillingham">Gillingham</option>
-					<option value="grimsby-town">Grimsby Town</option>
-					<option value="halifax-town">Halifax Town</option>
-					<option value="hamilton">Hamilton</option>
-					<option value="hartlepool-united">Hartlepool United</option>
-					<option value="hearts">Hearts</option>
-					<option value="hibernian">Hibernian</option>
-					<option value="huddersfield-town">Huddersfield Town</option>
-					<option value="hull">Hull</option>
-					<option value="inverness">Inverness</option>
-					<option value="ipswich-town">Ipswich Town</option>
-					<option value="kidderminster">Kidderminster</option>
-					<option value="kilmarnock">Kilmarnock</option>
-					<option value="leeds-united">Leeds United</option>
-					<option value="leicester">Leicester</option>
-					<option value="leyton-orient">Leyton Orient</option>
-					<option value="lincoln-city">Lincoln City</option>
-					<option value="liverpool">Liverpool</option>
-					<option value="liverpool-ladies">Liverpool Ladies</option>
-					<option value="livingston">Livingston</option>
-					<option value="london-bees-ladies">London Bees Ladies</option>
-					<option value="luton-town">Luton Town</option>
-					<option value="macclesfield-town">Macclesfield Town</option>
-					<option value="man-city">Man City</option>
-					<option value="man-city-women">Man City Women</option>
-					<option value="man-united">Man United</option>
-					<option value="mansfield-town">Mansfield Town</option>
-					<option value="middlesbrough">Middlesbrough</option>
-					<option value="millwall">Millwall</option>
-					<option value="millwall-ladies">Millwall Ladies</option>
-					<option value="mk-dons">MK Dons</option>
-					<option value="montrose">Montrose</option>
-					<option value="morecambe-">Morecambe </option>
-					<option value="morton">Morton</option>
-					<option value="motherwell">Motherwell</option>
-					<option value="newcastle">Newcastle</option>
-					<option value="newport-county">Newport County</option>
-					<option value="northampton-town">Northampton Town</option>
-					<option value="norwich">Norwich</option>
-					<option value="nottingham-forest">Nottingham Forest</option>
-					<option value="notts-county">Notts County</option>
-					<option value="notts-county-ladies">Notts County ladies</option>
-					<option value="nuneaton-town">Nuneaton Town</option>
-					<option value="oldham">Oldham</option>
-					<option value="oxford-united">Oxford United</option>
-					<option value="oxford-united-ladies">Oxford United Ladies</option>
-					<option value="patrick-th">Patrick Th</option>
-					<option value="peterborough">Peterborough</option>
-					<option value="peterhead">Peterhead</option>
-					<option value="plymouth-argyle">Plymouth Argyle</option>
-					<option value="port-vale">Port Vale</option>
-					<option value="portsmouth">Portsmouth</option>
-					<option value="preston">Preston</option>
-					<option value="qpr">QPR</option>
-					<option value="queen-of-the-south">Queen of the South</option>
-					<option value="queens-park">Queen's Park</option>
-					<option value="raith-rovers">Raith Rovers</option>
-					<option value="rangers">Rangers</option>
-					<option value="reading">Reading</option>
-					<option value="reading-ladies">Reading Ladies</option>
-					<option value="rochdale">Rochdale</option>
-					<option value="ross-county">Ross County</option>
-					<option value="rotherham-united">Rotherham United</option>
-					<option value="scunthorpe">Scunthorpe</option>
-					<option value="sheffield-united">Sheffield United</option>
-					<option value="sheffield-wednesday">Sheffield Wednesday</option>
-					<option value="shrewsbury-town">Shrewsbury Town</option>
-					<option value="southampton">Southampton</option>
-					<option value="southend">Southend</option>
-					<option value="southport">Southport</option>
-					<option value="st-johnstone">St Johnstone</option>
-					<option value="st-mirren">St Mirren</option>
-					<option value="stenhousemuir-">Stenhousemuir </option>
-					<option value="stevenage">Stevenage</option>
-					<option value="stirling">Stirling</option>
-					<option value="stoke">Stoke</option>
-					<option value="stranraer">Stranraer</option>
-					<option value="sunderland">Sunderland</option>
-					<option value="sunderland-ladies">Sunderland Ladies</option>
-					<option value="swansea">Swansea</option>
-					<option value="swindon-town">Swindon Town</option>
-					<option value="telford-united">Telford United</option>
-					<option value="torquay-united">Torquay United</option>
-					<option value="tottenham">Tottenham</option>
-					<option value="tranmere-rovers">Tranmere Rovers</option>
-					<option value="walsall">Walsall</option>
-					<option value="watford">Watford</option>
-					<option value="watford-ladies">Watford Ladies</option>
-					<option value="welling-united">Welling United</option>
-					<option selected="selected" value="west-brom">West Bromwich Albion</option>
-					<option value="west-ham">West Ham</option>
-					<option value="wigan-athletic">Wigan Athletic</option>
-					<option value="woking-fc">Woking FC</option>
-					<option value="wolverhampton-wanderers">Wolverhampton Wanderers</option>
-					<option value="wrexham">Wrexham</option>
-					<option value="wycombe-wanderers">Wycombe Wanderers</option>
-					<option value="yeovil">Yeovil</option>
-					<option value="yeovil-town-ladies">Yeovil Town Ladies</option>
-					<option value="york-city">York City</option>
+				<option value="0"></option>
+				<option value="aalborg">Aalborg</option>
+				<option value="aberdeen">Aberdeen</option>
+				<option value="ac-milan">AC Milan</option>
+				<option value="accrington-stanley">Accrington Stanley</option>
+				<option value="afc-wimbledon">AFC Wimbledon</option>
+				<option value="airdrieonians">Airdrieonians</option>
+				<option value="ajax">Ajax</option>
+				<option value="albion-rovers">Albion Rovers</option>
+				<option value="aldershot-town">Aldershot Town</option>
+				<option value="alfreton-town">Alfreton Town</option>
+				<option value="alloa">Alloa</option>
+				<option value="altrincham">Altrincham</option>
+				<option value="anderlecht">Anderlecht</option>
+				<option value="annan">Annan</option>
+				<option value="arbroath">Arbroath</option>
+				<option value="arsenal">Arsenal</option>
+				<option value="arsenal-ladies">Arsenal Ladies</option>
+				<option value="aston-villa">Aston Villa</option>
+				<option value="aston-villa-ladies">Aston Villa Ladies</option>
+				<option value="athletic-bilbao">Athletic Bilbao</option>
+				<option value="atletico-madrid">Atletico Madrid</option>
+				<option value="ayr-utd">Ayr Utd</option>
+				<option value="barcelona">Barcelona</option>
+				<option value="barnet">Barnet</option>
+				<option value="barnsley">Barnsley</option>
+				<option value="bayer-leverkusen">Bayer Leverkusen</option>
+				<option value="bayern-munich">Bayern Munich</option>
+				<option value="benfica">Benfica</option>
+				<option value="berwick">Berwick</option>
+				<option value="birmingham-city">Birmingham City</option>
+				<option value="birmingham-ladies">Birmingham Ladies</option>
+				<option value="blackburn-rovers">Blackburn Rovers</option>
+				<option value="blackpool">Blackpool</option>
+				<option value="bolton-wanderers">Bolton Wanderers</option>
+				<option value="borussia-dortmund">Borussia Dortmund</option>
+				<option value="bournemouth">Bournemouth</option>
+				<option value="bradford">Bradford</option>
+				<option value="braintree">Braintree</option>
+				<option value="brechin-city">Brechin City</option>
+				<option value="brentford">Brentford</option>
+				<option value="brighton-and-hove-albion">Brighton and Hove Albion</option>
+				<option value="bristol-academy">Bristol Academy</option>
+				<option value="bristol-city">Bristol City</option>
+				<option value="bristol-rovers">Bristol Rovers</option>
+				<option value="burnley">Burnley</option>
+				<option value="burton-albion">Burton Albion</option>
+				<option value="bury">Bury</option>
+				<option value="cambridge-united">Cambridge United</option>
+				<option value="cardiff-city">Cardiff City</option>
+				<option value="carlisle-united">Carlisle United</option>
+				<option value="celtic">Celtic</option>
+				<option value="charlton-athletic">Charlton Athletic</option>
+				<option value="chelsea">Chelsea</option>
+				<option value="chelsea-ladies">Chelsea Ladies</option>
+				<option value="cheltenham-town">Cheltenham Town</option>
+				<option value="chester">Chester</option>
+				<option value="chesterfield">Chesterfield</option>
+				<option value="clyde">Clyde</option>
+				<option value="colchester-united">Colchester United</option>
+				<option value="copenhagen">Copenhagen</option>
+				<option value="coventry-city">Coventry City</option>
+				<option value="cowdenbeath">Cowdenbeath</option>
+				<option value="crawley-town">Crawley Town</option>
+				<option value="crewe-alexandra">Crewe Alexandra</option>
+				<option value="crystal-palace">Crystal Palace</option>
+				<option value="dagenham-and-redbridge">Dagenham and Redbridge</option>
+				<option value="dartford">Dartford</option>
+				<option value="derby-county">Derby County</option>
+				<option value="doncaster">Doncaster</option>
+				<option value="dover">Dover</option>
+				<option value="dumbarton">Dumbarton</option>
+				<option value="dundee">Dundee</option>
+				<option value="dundee-utd">Dundee Utd</option>
+				<option value="dunfermline">Dunfermline</option>
+				<option value="durham-ladies">Durham Ladies</option>
+				<option value="east-fife">East Fife</option>
+				<option value="east-stirling">East Stirling</option>
+				<option value="eastleigh">Eastleigh</option>
+				<option value="elgin-city">Elgin City</option>
+				<option value="everton">Everton</option>
+				<option value="everton-ladies">Everton Ladies</option>
+				<option value="exeter-city">Exeter City</option>
+				<option value="falkirk">Falkirk</option>
+				<option value="fleetwood">Fleetwood</option>
+				<option value="forest-green-rovers">Forest Green Rovers</option>
+				<option value="forfar-athletic">Forfar Athletic</option>
+				<option value="fulham">Fulham</option>
+				<option value="gateshead">Gateshead</option>
+				<option value="gillingham">Gillingham</option>
+				<option value="grimsby-town">Grimsby Town</option>
+				<option value="halifax-town">Halifax Town</option>
+				<option value="hamilton-academicals">Hamilton Academicals</option>
+				<option value="hartlepool-united">Hartlepool United</option>
+				<option value="heart-of-midlothian">Heart of Midlothian</option>
+				<option value="hibernian">Hibernian</option>
+				<option value="huddersfield-town">Huddersfield Town</option>
+				<option value="hull-city">Hull City</option>
+				<option value="ifk-goteburg">IFK Goteburg</option>
+				<option value="inter-milan">Inter Milan</option>
+				<option value="inverness-caledonian-thistle">Inverness Caledonian Thistle</option>
+				<option value="ipswich-town">Ipswich Town</option>
+				<option value="juventus">Juventus</option>
+				<option value="kidderminster">Kidderminster</option>
+				<option value="kilmarnock">Kilmarnock</option>
+				<option value="leeds-united">Leeds United</option>
+				<option value="leicester-city">Leicester City</option>
+				<option value="leyton-orient">Leyton Orient</option>
+				<option value="lille">Lille</option>
+				<option value="lincoln-city">Lincoln City</option>
+				<option value="liverpool">Liverpool</option>
+				<option value="liverpool-ladies">Liverpool Ladies</option>
+				<option value="livingston">Livingston</option>
+				<option value="london-bees-ladies">London Bees Ladies</option>
+				<option value="luton-town">Luton Town</option>
+				<option value="macclesfield-town">Macclesfield Town</option>
+				<option value="malmo">Malmo</option>
+				<option value="man-city-women">Man City Women</option>
+				<option value="manchester-city">Manchester City</option>
+				<option value="manchester-united">Manchester United</option>
+				<option value="mansfield-town">Mansfield Town</option>
+				<option value="marseille">Marseille</option>
+				<option value="middlesbrough">Middlesbrough</option>
+				<option value="millwall">Millwall</option>
+				<option value="millwall-ladies">Millwall Ladies</option>
+				<option value="mk-dons">MK Dons</option>
+				<option value="molde">Molde</option>
+				<option value="monaco">Monaco</option>
+				<option value="montrose">Montrose</option>
+				<option value="morecambe-">Morecambe </option>
+				<option value="morton">Morton</option>
+				<option value="motherwell">Motherwell</option>
+				<option value="napoli">Napoli</option>
+				<option value="newcastle">Newcastle</option>
+				<option value="newport-county">Newport County</option>
+				<option value="northampton-town">Northampton Town</option>
+				<option value="norwich">Norwich</option>
+				<option value="nottingham-forest">Nottingham Forest</option>
+				<option value="notts-county">Notts County</option>
+				<option value="notts-county-ladies">Notts County ladies</option>
+				<option value="nuneaton-town">Nuneaton Town</option>
+				<option value="oldham">Oldham</option>
+				<option value="oxford-united">Oxford United</option>
+				<option value="oxford-united-ladies">Oxford United Ladies</option>
+				<option value="paris-st-germain">Paris St-Germain</option>
+				<option value="partick-thistle">Partick Thistle</option>
+				<option value="peterborough">Peterborough</option>
+				<option value="peterhead">Peterhead</option>
+				<option value="plymouth-argyle">Plymouth Argyle</option>
+				<option value="port-vale">Port Vale</option>
+				<option value="porto">Porto</option>
+				<option value="portsmouth">Portsmouth</option>
+				<option value="preston-north-end">Preston North End</option>
+				<option value="psv-eindhoven">PSV Eindhoven</option>
+				<option value="queen-of-the-south">Queen of the South</option>
+				<option value="queens-park">Queen's Park</option>
+				<option value="queens-park-rangers">Queens Park Rangers</option>
+				<option value="raith-rovers">Raith Rovers</option>
+				<option value="reading">Reading</option>
+				<option value="reading-ladies">Reading Ladies</option>
+				<option value="real-madrid">Real Madrid</option>
+				<option value="rochdale">Rochdale</option>
+				<option value="roma">Roma</option>
+				<option value="ross-county">Ross County</option>
+				<option value="rotherham-united">Rotherham United</option>
+				<option value="schalke-04">Schalke 04</option>
+				<option value="scunthorpe">Scunthorpe</option>
+				<option value="sheffield-united">Sheffield United</option>
+				<option value="sheffield-wednesday">Sheffield Wednesday</option>
+				<option value="shrewsbury-town">Shrewsbury Town</option>
+				<option value="southampton">Southampton</option>
+				<option value="southend">Southend</option>
+				<option value="southport">Southport</option>
+				<option value="sporting-lisbon">Sporting Lisbon</option>
+				<option value="st-johnstone">St Johnstone</option>
+				<option value="st-mirren">St Mirren</option>
+				<option value="standard-liege">Standard Liege</option>
+				<option value="stenhousemuir-">Stenhousemuir </option>
+				<option value="stevenage">Stevenage</option>
+				<option value="stirling-albion">Stirling Albion</option>
+				<option value="stoke-city">Stoke City</option>
+				<option value="stranraer">Stranraer</option>
+				<option value="stromsgodset">Stromsgodset</option>
+				<option value="sunderland">Sunderland</option>
+				<option value="sunderland-ladies">Sunderland Ladies</option>
+				<option value="swansea-city">Swansea City</option>
+				<option value="swindon-town">Swindon Town</option>
+				<option value="telford-united">Telford United</option>
+				<option value="torquay-united">Torquay United</option>
+				<option value="tottenham-hotspur">Tottenham Hotspur</option>
+				<option value="tranmere-rovers">Tranmere Rovers</option>
+				<option value="valencia">Valencia</option>
+				<option value="walsall">Walsall</option>
+				<option value="watford">Watford</option>
+				<option value="watford-ladies">Watford Ladies</option>
+				<option value="welling-united">Welling United</option>
+				<option value="west-bromwich-albion">West Bromwich Albion</option>
+				<option value="west-ham-united">West Ham United</option>
+				<option value="wigan-athletic">Wigan Athletic</option>
+				<option value="woking-fc">Woking FC</option>
+				<option value="wolverhampton-wanderers">Wolverhampton Wanderers</option>
+				<option value="wrexham">Wrexham</option>
+				<option value="wycombe-wanderers">Wycombe Wanderers</option>
+				<option value="yeovil">Yeovil</option>
+				<option value="yeovil-town-ladies">Yeovil Town Ladies</option>
+				<option value="york-city">York City</option>
     			</select>
     		</div>
 
@@ -272,127 +320,54 @@ out? </label>
 
     		<div class="results-page">
 				<img class="results-page--branding" src="img/branding-image.png" alt="Branding image" />
-    		    <img class="results-page--crest" src="img/west-brom.png" alt="West Bromich Albion crest" />
-    		    <h1 class="results-page--header team-name--text">Team name</h1>
-    		    <p class="results-page--total">Each year I spend <strong>£1400</strong> following <span class="team-name--text">Team name</span></p>
+					<div class="results-wrapper">
+	    		    <img class="results-page--crest" src="img/west-brom.png" alt="West Bromich Albion crest" />
+	    		    <h1 class="results-page--header team-name--text__long">Team name</h1>
+	    		    <p class="results-page--total">Each year I spend <strong id="result-text-total">£</strong> following <span class="team-name--text">Team name</span></p>
 
-	    		<div class="results-breakdown">
-	    			<div class="breakdown-row">
-	    				<span class="breakdown-row__desc">Tickets</span>
-	    				<span id="result-text-tickets" class="breakdown-row__price">£100</span>
-	    			</div>
-	    			<div class="breakdown-row">
-	    				<span class="breakdown-row__desc">Food and drink</span>
-	    				<span id="result-text-food" class="breakdown-row__price">£100</span>
-	    			</div>
-	    			<div class="breakdown-row">
-	    				<span class="breakdown-row__desc">Programmes</span>
-	    				<span id="result-text-programme" class="breakdown-row__price">£50</span>
-	    			</div>
-	    			<div class="breakdown-row">
-	    				<span class="breakdown-row__desc">Kit</span>
-	    				<span id="result-text-kit" class="breakdown-row__price">£50</span>
-	    			</div>
-	    		</div>
+		    		<div class="shareToolsHolder" id="breakDownShare"></div>
 
-	    		<div class="shareToolsHolder"></div>
+		    		<p class="results-page--total">
+		    			My costs in 2014-15 break down like this
+		    		</p>
 
-	    		<h1 class="results-page--compare-header">
-	    			How do at <span class="team-name--text">your team</span> compare to other teams in their league?
-	    		</h1>
-
-	    		<p class="compare--text">
-	    			This year <span class="team-name--text">your team</span> tickets are <strong>6%</strong> cheaper than other clubs in the premier league
-	    		</p>
-	    		<h2 class="compare--chart-header">Comparative ticket costs</h2>
-	    		<div class="bar-chart" id="barChartOne"></div>
+		    		<div class="results-breakdown">
+		    			<div class="breakdown-row">
+		    				<span class="breakdown-row__desc">Tickets</span>
+		    				<span id="result-text-tickets" class="breakdown-row__price">£100</span>
+		    			</div>
+		    			<div class="breakdown-row">
+		    				<span class="breakdown-row__desc">Food and drink</span>
+		    				<span id="result-text-food" class="breakdown-row__price">£100</span>
+		    			</div>
+		    			<div class="breakdown-row">
+		    				<span class="breakdown-row__desc">Programmes</span>
+		    				<span id="result-text-programme" class="breakdown-row__price">£50</span>
+		    			</div>
+		    			<div class="breakdown-row">
+		    				<span class="breakdown-row__desc">Kit</span>
+		    				<span id="result-text-kit" class="breakdown-row__price">£50</span>
+		    			</div>
+		    		</div>
 
 
+		    		<h1 class="results-page--compare-header">
+		    			How do at <span class="team-name--text">your team</span> compare to other teams in their league?
+		    		</h1>
 
-	    		<p class="compare--text">
-	    			Based on last seasons results, I pay <strong>£15 per home goal</strong>, which is <strong>10% less</strong> than the league average
-	    		</p>
-	    		<h2 class="compare--chart-header">Cost of goals</h2>
-	    		<div class="bar-chart" id="barChartTwo"></div>
+		    		<p class="compare--text">
+		    			This year <span class="team-name--text__long">your team</span> tickets are <strong>6%</strong> cheaper than other clubs in the premier league
+		    		</p>
+		    		<h2 class="compare--chart-header">Comparative ticket costs</h2>
+		    		<div class="bar-chart" id="ticket-price-graph"></div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    			<div style="display:none;">
-
-	    		<h1 class="team-name--text">
-	    			Each year I spend £<span id="result-text-total">400</span> on supporting 
-	    			<span >your team</span>.
-	    		</h1>
-	    		<div class="results-breakdown">
-	    			<div class="results-breakdown--info">
-	    				<span id="result-text-tickets" class="results-breakdown--info__price">£100</span>
-	    				<span class="results-breakdown--info__desc">tickets</span>
-	    			</div>
-	    			<div class="results-breakdown--info">
-	    				<span id="result-text-food" class="results-breakdown--info__price">£100</span>
-	    				<span class="results-breakdown--info__desc">food and drink</span>
-	    			</div>
-	    			<div class="results-breakdown--info">
-	    				<span id="result-text-programme" class="results-breakdown--info__price">£50</span>
-	    				<span class="results-breakdown--info__desc">programmes</span>
-	    			</div>
-	    			<div class="results-breakdown--info">
-	    				<span id="result-text-kit" class="results-breakdown--info__price">£50</span>
-	    				<span class="results-breakdown--info__desc">kit</span>
-	    			</div>
-	    		</div>
-	    		<div class="shareToolsHolder"></div>
-
-	    		<h3>How do costs at <span class="team-name--text">your team</span> compare to the rest of teams in their league?</h3>
-
-	    		<div class="chart-section">
-	    			<div class="chart-section--chart">
-	    				<h3 class="chart-header">Ticket costs</h3>
-	    				<img src="img/dummy-chart.png" alt="Chart dummy" style="width: 100%" />
-	    			</div>
-	    			<div class="chart-section--desc">
-	    				This year <span class="team-name--text">your team</span> tickets are £5 cheaper than other clubs in the league.
-	    			</div>
-	    		</div>
-
-	    		<div class="chart-section">
-	    			<div class="chart-section--chart">
-	    				<h3 class="chart-header">Goals per game</h3>
-	    				<img src="img/dummy-chart.png" alt="Chart dummy" style="width: 100%" />
-	    			</div>
-	    			<div class="chart-section--desc">
-	    				Based on last season's results, I pay <strong>£30 per home goal</strong> which is <strong>24% more</strong> than the league average.
-	    			</div>
-	    		</div>
+		    		<p class="compare--text">
+		    			Based on last season’s performance and prices, I paid around <strong>£15 per home goal</strong>.
+		    		</p>
+		    		<h2 class="compare--chart-header">Cost of goals</h2>
+		    		<div class="bar-chart" id="cost-of-goals-graph"></div>
 	    		</div>
     		</div>
 

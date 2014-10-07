@@ -10,6 +10,7 @@ define([
 		var previousStack = []; // A stack for the previous button, contains previous pages
 
 		switchToPage(currentPage); //Show the first page.
+		contentManager.update(currentPage);
 
 		/*
 			Called when the next button is pressed.
@@ -70,7 +71,7 @@ define([
 			switch (currentPage) {
 				/* Season ticket/indivudal ticket flow */
 				case 'select-team':
-					return 'results-page'; //'select-ticket';
+					return 'select-ticket';
 				case 'select-ticket':
 					return getNextPageAfterTicket();
 				case 'ticket-price-page':

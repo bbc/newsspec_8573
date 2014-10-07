@@ -1,8 +1,14 @@
 body{
 	padding: 10px;
+	font: normal 16px Arial;
+	color: #404040;
 }
 
+$tealColor: #006767;
+$greyColor: #404040;
+
 @import "news_special/defaults";
+@import "nav";
 @import "questions";
 @import "results";
 @import "bar_chart";

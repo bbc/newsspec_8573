@@ -6,6 +6,7 @@
 class Team{
 
     public $name;
+    public $shortName;
     public $league;
     public $prettyLeague;
     public $cheapSeason;
@@ -276,5 +277,13 @@ class Team{
         $this->tea2011 = $tea2011;
 
         return $this;
+    }
+
+    public function getShortName(){
+        return $this->shortName;
+    }
+
+    public function setShortName($shortName){
+        $this->shortName = $shortName;
     }
 } 

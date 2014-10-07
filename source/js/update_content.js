@@ -2,9 +2,7 @@
 	This module updates the content on the page when the user navigates through the app
 */
 
-define(['jquery', 'calculator', 'bar_chart'], function ($, calculator, BarChart) {
-
-	var genericText = 'The average {TEAM_NAME} fan spends £{AMOUNT} supporting them.';
+define(['jquery', 'calculator', 'bar_chart', 'process_chart_data'], function ($, calculator, BarChart, processChartData) {
 
 	var statsTexts = [];
 	statsTexts['seasonTicket'] = 'The cost of the cheapest season ticket at your club has gone {UP_DOWN} £{AMOUNT} since 2013';
@@ -33,36 +31,43 @@ define(['jquery', 'calculator', 'bar_chart'], function ($, calculator, BarChart)
 					return updateResultsPageContent();
 			}
 
-			/* 
-				Returns wether to hide the breadcrums, 
-				determined by if the user doesn't buy tickets 
-			*/
-			function shouldShowBreadcrums() {
-				switch ($('input[name="user-ticket"]:checked').val()){
-					case 'season':
-					case 'individual':
-						return true;
-					case 'none':
-						return false;
-				}
+			function getSelectedTeamName(){
+				var team = calculator.getTeam();
+				return team.shortName;
 			}
 
-			function getSelectedTeamName(){
-				var userTeamSelect = $('#user-team').get(0);
-				return userTeamSelect.options[userTeamSelect.selectedIndex].text;
+			function hideProcedingBreadcrums(newSelection){
+				switch (newSelection){
+					case 'nav-item__team':
+						$('.nav-item__team').hide();
+					/* falls through */
+					case 'nav-item__tickets':
+						$('.nav-item__tickets').hide();
+					/* falls through */
+					case 'nav-item__food':
+						$('.nav-item__food').hide();
+					/* falls through */
+					case 'nav-item__programmes':
+						$('.nav-item__programmes').hide();
+					/* falls through */
+					case 'nav-item__kit':
+						$('.nav-item__kit').hide();
+						break;
+				}
 			}
 
 			function updateBreadcrums(newSelection) {
-				if(shouldShowBreadcrums()){
-					$('.tickets-nav').show();
 
-					$('.tickets-nav .tickets-nav--item').each(function (index){
-						$(this).removeClass('tickets-nav--item__active');
-					});
-					$('#' + newSelection).addClass('tickets-nav--item__active');
-				} else {
-					$('.tickets-nav').hide();
-				}
+				hideProcedingBreadcrums(newSelection);
+
+				$('.nav .nav-item').each(function (index){
+					$(this).removeClass('nav-item--active');
+				});
+				var $newSelection = $('.' + newSelection);
+
+				$newSelection.addClass('nav-item--active');
+				$newSelection.show();
+				
 			}
 
 			/*
@@ -96,29 +101,33 @@ define(['jquery', 'calculator', 'bar_chart'], function ($, calculator, BarChart)
 
 			function updateTeamName(){
 				
-				var teamText = getSelectedTeamName();
+				var team = calculator.getTeam();
 
 				$('.team-name--text').each(function(){
-					$(this).text(teamText);
+					$(this).text(team.shortName);
+				});
+				$('.team-name--text__long').each(function(){
+					$(this).text(team.name);
 				});
 			}
 
 			function updateSelectTeamContent() {
+				updateBreadcrums('nav-item__team');
 				$('.team-header').hide();
-				$('.tickets-nav').hide();
 			}
 
 			function updateSelectTicketContent() {
+
+				updateBreadcrums('nav-item__tickets');
 				updateTeamName();
 					
 				$('.team-header').show();
 
-				$('.tickets-nav').hide();
 			}
 
 			function updateTicketPriceContent(){
 
-				updateBreadcrums('tickets-nav--item__tickets');
+				updateBreadcrums('nav-item__tickets');
 
 				var userTeam = calculator.getTeam();
 
@@ -147,7 +156,7 @@ define(['jquery', 'calculator', 'bar_chart'], function ($, calculator, BarChart)
 
 			function updateFoodPriceContent(){
 				var userTeam = calculator.getTeam();
-				updateBreadcrums('tickets-nav--item__food');
+				updateBreadcrums('nav-item__food');
 
 
 				var currentFood = (userTeam['pie']==null||userTeam['tea']==null) ? null : (parseFloat(userTeam['pie']) + parseFloat(userTeam['tea']));
@@ -165,7 +174,7 @@ define(['jquery', 'calculator', 'bar_chart'], function ($, calculator, BarChart)
 
 			function updateProgrammesPriceContent(){
 				var userTeam = calculator.getTeam();
-				updateBreadcrums('tickets-nav--item__programmes');
+				updateBreadcrums('nav-item__programmes');
 
 				var updateText = makeStatText(statsTexts['programme'], userTeam['programme'], userTeam['programme2011'], true);
 
@@ -182,7 +191,7 @@ define(['jquery', 'calculator', 'bar_chart'], function ($, calculator, BarChart)
 				var userTeam = calculator.getTeam();
 				var userLeague = calculator.getLeague();
 
-				updateBreadcrums('tickets-nav--item__kit');
+				updateBreadcrums('nav-item__kit');
 
 				if(userTeam['adultShirt'] !== null && userLeague['avgKitCost'] !== null){
 					var diff = userTeam['adultShirt'] - userLeague['avgKitCost'];
@@ -207,49 +216,50 @@ define(['jquery', 'calculator', 'bar_chart'], function ($, calculator, BarChart)
 			}
 
 			function updateResultsPageContent(){
+				updateBreadcrums('nav-item__results');
 				$('.pagination').hide();
-				$('.tickets-nav').hide();
 				$('.team-header').hide();
 
 				updateTeamName();
 
-	            var testArray = [];
-	            testArray.push({label: 'Man United', value: '1200', selected: true});
-	            testArray.push({label: 'Man City', value: '1100'});
-	            testArray.push({label: 'Chelsea', value: '800'});
-	            testArray.push({label: 'Arsenal', value: '1600'});
-	            testArray.push({label: 'Liverpool', value: '10'});
+				/* Display ticket price chart */
 
-	            var testArray2 = [];
-	            testArray2.push({label: 'Man United', value: '32.20', selected: true});
-	            testArray2.push({label: 'Man City', value: '6.40'});
-	            testArray2.push({label: 'Chelsea', value: '16.10'});
-	            testArray2.push({label: 'Arsenal', value: '5.40'});
-	            testArray2.push({label: 'Liverpool', value: '4.20'});
+	            var ticketPriceData = processChartData.getTicketPriceData();
+	            var ppgChartData = processChartData.getPPGChartData();
 
-	            var barChart = new BarChart(testArray, false);
-	            barChart.draw($('#barChartOne'));
+	            if(ticketPriceData.length > 0){
+		            var barChart = new BarChart(ticketPriceData, false);
+		            barChart.draw($('#ticket-price-graph'));	            	
+	            }else{
+	            	/* Hide chart because we have no data */
+	            	$('#ticket-price-graph').hide();
+	            }
 
-	            var barChart2 = new BarChart(testArray2, true);
-	            barChart2.draw($('#barChartTwo'));
 
-				return true;
+	            if(ppgChartData.length > 0){
+		            var barChart = new BarChart(ppgChartData, true);
+		            barChart.draw($('#cost-of-goals-graph'));
+		        }else{
+	            	/* Hide chart because we have no data */
+	            	$('#cost-of-goals-graph').hide();
+		        }
 
 				if(calculator.shouldShowBreakDown()){
 					showBreakDownResults(calculator.getResultsBreakDown());
 				}else{
 					/* Show generic results */
 					$('.results-breakdown').hide();
-
-					var parsedText = genericText.replace('{TEAM_NAME}', getSelectedTeamName());
-					parsedText = parsedText.replace('{AMOUNT}', 500);
-
-					$('#results-page--summary').text(parsedText);
+					$('.results-page--total').hide();
+					$('#breakDownShare').hide();
 				}
 			}
 
+			function getTicketCostsData(){
+				
+			}
+
 			function showBreakDownResults(resultsBreakdown){
-				$('#result-text-total').text(resultsBreakdown.total.toFixed(2));
+				$('#result-text-total').text('£' + resultsBreakdown.total.toFixed(2));
 				$('#result-text-tickets').text('£' + resultsBreakdown.tickets.toFixed(2));
 				$('#result-text-food').text('£' + resultsBreakdown.food.toFixed(2));
 				$('#result-text-programme').text('£' + resultsBreakdown.programmes.toFixed(2));

@@ -171,26 +171,27 @@ class ProcessSpreadsheets{
         $team = new Team();
 
         $team->setName($row[0]);
+        $team->setShortName($row[1]);
         $team->setPrettyName($this->prettyUrl($row[0]));
-        $team->setLeague($row[1]);
-        $team->setPrettyLeague($this->prettyUrl($row[1]));
-        $team->setCheapSeason($row[2]);
-        $team->setDearSeason($row[3]);
-        $team->setCheapTicket($row[4]);
-        $team->setDearTicket($row[5]);
-        $team->setAdultShirt($row[6]);
-        $team->setJuniorShirt($row[7]);
-        $team->setDayOut($row[8]);
-        $team->setProgramme($row[9]);
-        $team->setPie($row[10]);
-        $team->setTea($row[11]);
-        $team->setHomeGoals2013($row[12]);
-        $team->setCheapSeason2013($row[13]);
-        $team->setGoalCost($row[14]);
-        $team->setCheapestMatchdayTicket2011($row[15]);
-        $team->setPie2011($row[16]);
-        $team->setTea2011($row[17]);
-        $team->setProgramme2011($row[18]);
+        $team->setLeague($row[2]);
+        $team->setPrettyLeague($this->prettyUrl($row[2]));
+        $team->setCheapSeason($row[3]);
+        $team->setDearSeason($row[4]);
+        $team->setCheapTicket($row[5]);
+        $team->setDearTicket($row[6]);
+        $team->setAdultShirt($row[7]);
+        $team->setJuniorShirt($row[8]);
+        $team->setDayOut($row[9]);
+        $team->setProgramme($row[10]);
+        $team->setPie($row[11]);
+        $team->setTea($row[12]);
+        $team->setHomeGoals2013($row[13]);
+        $team->setCheapSeason2013($row[14]);
+        $team->setGoalCost($row[15]);
+        $team->setCheapestMatchdayTicket2011($row[16]);
+        $team->setPie2011($row[17]);
+        $team->setTea2011($row[18]);
+        $team->setProgramme2011($row[19]);
 
         return $team;
     }

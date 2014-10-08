@@ -28,8 +28,8 @@ define(['lib/news_special/bootstrap'], function (news) {
 
 
 			function validateSelectTeam() {
-				if ($('#user-team').val() === '0') {
-					latestError = 'Select a team!';
+				if ((!$('#user-team').data('team')) || ($('#user-team').val() !== $('#user-team').data('team').name)) {
+					latestError = 'You haven\'t selected a valid club';
 					return false;
 				}
 				return true;

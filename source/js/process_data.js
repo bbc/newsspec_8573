@@ -21,9 +21,9 @@ define([
 	/* http://stackoverflow.com/a/9716488 */
 	var isNumeric = function (n) {
   		return !isNaN(parseFloat(n)) && isFinite(n);
-	}
+	};
 
-	var getTicketPriceData = function () {
+	var getTicketPriceChartData = function () {
 		var dataArray = [];
 		var teamsInLeague = getTeamsInLeague();
 		var userTeam = calculator.getTeam();
@@ -73,8 +73,23 @@ define([
 
 	};
 
+	var getTeamSearchData = function () {
+		var teamsObject = [];
+		$.each(teams, function (index, team) {
+			teamsObject.push({
+				value: team.name,
+				data: { 
+					league: team.league,
+					team: team 
+				}
+			});
+		});
+		return teamsObject;
+	};
+
 	return {
 		getPPGChartData: getPPGChartData,
-		getTicketPriceData: getTicketPriceData
+		getTicketPriceChartData: getTicketPriceChartData,
+		getTeamSearchData: getTeamSearchData
 	};
 });

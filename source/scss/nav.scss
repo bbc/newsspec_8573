@@ -30,52 +30,57 @@
 
 	}
 
+	.nav-item .nav-item--icon{
+		background: url('../img/icon_sprite.png') no-repeat;
+		@include image-2x("../img/icon_sprite@2x.png", 74px, 242px);
+	}
+
 	/* TEAM */
 	.nav-item__team .nav-item--icon{
-		background: url('../img/icon_sprite.png') no-repeat 0 0;
+		background-position: 0 0;
 	}
 	.nav-item__team.nav-item--active .nav-item--icon{
-		background: url('../img/icon_sprite.png') no-repeat -42px 0;
+		background-position: -42px 0;
 	}
 
 	/* TICKET */
 	.nav-item__tickets .nav-item--icon{
-		background: url('../img/icon_sprite.png') no-repeat 0 -42px;
+		background-position: 0 -42px;
 	}
 	.nav-item__tickets.nav-item--active .nav-item--icon{
-		background: url('../img/icon_sprite.png') no-repeat -42px -42px;
+		background-position: -42px -42px;
 	}
 
 	/* FOOD */
 	.nav-item__food .nav-item--icon{
-		background: url('../img/icon_sprite.png') no-repeat 0 -84px;
+		background-position: 0 -84px;
 	}
 	.nav-item__food.nav-item--active .nav-item--icon{
-		background: url('../img/icon_sprite.png') no-repeat -42px -84px;
+		background-position: -42px -84px;
 	}
 
 	/* PROGRAMMES */
 	.nav-item__programmes .nav-item--icon{
-		background: url('../img/icon_sprite.png') no-repeat 0 -126px;
+		background-position: 0 -126px;
 	}
 	.nav-item__programmes.nav-item--active .nav-item--icon{
-		background: url('../img/icon_sprite.png') no-repeat -42px -126px;
+		background-position: -42px -126px;
 	}
 
 	/* KIT */
 	.nav-item__kit .nav-item--icon{
-		background: url('../img/icon_sprite.png') no-repeat 0 -168px;
+		background-position: 0 -168px;
 	}
 	.nav-item__kit.nav-item--active .nav-item--icon{
-		background: url('../img/icon_sprite.png') no-repeat -42px -168px;
+		background-position: -42px -168px;
 	}
 
 	/* RESULTS */
 	.nav-item__results .nav-item--icon{
-		background: url('../img/icon_sprite.png') no-repeat 0 -210px;
+		background-position: 0 -210px;
 	}
 	.nav-item__results.nav-item--active .nav-item--icon{
-		background: url('../img/icon_sprite.png') no-repeat -42px -210px;
+		background-position: -42px -210px;
 	}
 
 	.nav-item.nav-item--active{

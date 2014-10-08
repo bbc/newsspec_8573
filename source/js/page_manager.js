@@ -1,8 +1,10 @@
 define([
 	'lib/news_special/bootstrap', 
 	'validation', 
-	'update_content'
-], function (news, validator, contentManager) {
+	'update_content',
+	'process_data',
+	'lib/vendors/autocomplete'
+], function (news, validator, contentManager, processData, autocompleteLib) {
 
 	return function () {
 		var $ = news.$;
@@ -11,14 +13,14 @@ define([
 
 		switchToPage(currentPage); //Show the first page.
 		contentManager.update(currentPage);
-
+		initClubSearch();
 		/*
 			Called when the next button is pressed.
 
 			Will validate the page, then show the next page, adding the old page to 
 			the previous page stack
 		*/
-		$('.pagination--next').on('click', function () {
+		$('.pagination--button__next').on('click', function () {
 			if (validator.validate(currentPage) === true) {
 
 				var nextPage = getNextPage();
@@ -29,7 +31,7 @@ define([
 				contentManager.update(nextPage);
 
 
-				$('.pagination--previous').show();
+				$('.pagination--button__previous').show();
 
 			} else {
 				alert(validator.getError());
@@ -41,7 +43,7 @@ define([
 			
 			Sends the user back and removes the old page from the stack.
 		*/
-		$('.pagination--previous').on('click', function () {
+		$('.pagination--button__previous').on('click', function () {
 			var previousPage = previousStack.pop();
 
 			contentManager.update(previousPage);
@@ -49,7 +51,7 @@ define([
 			switchToPage(previousPage);
 
 			if (previousStack.length <= 0) {
-				$('.pagination--previous').hide();
+				$('.pagination--button__previous').hide();
 			}
 		});
 
@@ -105,6 +107,24 @@ define([
 				case 'no':
 					return 'results-page';
 			}
+		}
+
+		function initClubSearch() {
+			$('#user-team').autocomplete({
+				lookup: processData.getTeamSearchData(),
+				lookupLimit: 5,
+				autoSelectFirst: true,
+				groupBy: 'league',
+				onSelect: function (suggestion) {
+					$('#user-team').data('team', suggestion.data.team);
+				},
+				lookupFilter: function (suggestion, originalQuery, queryLowerCase) {
+                    if(suggestion.value.toLowerCase().indexOf(queryLowerCase) !== -1){
+                    	return true;
+                    }
+                    return suggestion.data.team.shortName.toLowerCase().indexOf(queryLowerCase) !== -1;
+                }
+			});
 		}
 
 	};

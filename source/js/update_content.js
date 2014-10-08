@@ -2,7 +2,8 @@
 	This module updates the content on the page when the user navigates through the app
 */
 
-define(['jquery', 'calculator', 'bar_chart', 'process_chart_data'], function ($, calculator, BarChart, processChartData) {
+define(['jquery', 'calculator', 'bar_chart', 'process_data'], 
+function ($, calculator, BarChart, processData) {
 
 	var statsTexts = [];
 	statsTexts['seasonTicket'] = 'The cost of the cheapest season ticket at your club has gone {UP_DOWN} £{AMOUNT} since 2013';
@@ -224,8 +225,8 @@ define(['jquery', 'calculator', 'bar_chart', 'process_chart_data'], function ($,
 
 				/* Display ticket price chart */
 
-	            var ticketPriceData = processChartData.getTicketPriceData();
-	            var ppgChartData = processChartData.getPPGChartData();
+	            var ticketPriceData = processData.getTicketPriceChartData();
+	            var ppgChartData = processData.getPPGChartData();
 
 	            if(ticketPriceData.length > 0){
 		            var barChart = new BarChart(ticketPriceData, false);
@@ -237,8 +238,8 @@ define(['jquery', 'calculator', 'bar_chart', 'process_chart_data'], function ($,
 
 
 	            if(ppgChartData.length > 0){
-		            var barChart = new BarChart(ppgChartData, true);
-		            barChart.draw($('#cost-of-goals-graph'));
+		            var barChart2 = new BarChart(ppgChartData, true);
+		            barChart2.draw($('#cost-of-goals-graph'));
 		        }else{
 	            	/* Hide chart because we have no data */
 	            	$('#cost-of-goals-graph').hide();

@@ -88,9 +88,17 @@ class ContentGenerator{
             unlink($savePath);
         }
 
-        $dropDownHtml = "<option value=\"0\">Choose your club</option>\n";
-        foreach($this->teamArray as $team){
-            $dropDownHtml .= "<option value=\"" . $team->getPrettyName() . "\">" . $team->getName() . "</option>\n";
+        foreach($this->leagueList as $league){
+            $dropDownHtml .= "<optgroup label=\"" . $league->getName() . "\">\n";
+
+            foreach($this->teamArray as $team){
+                if($team->getPrettyLeague() == $league->getPrettyName()){
+                    $dropDownHtml .= "\t<option value=\"" . $team->getPrettyName() . "\">" . $team->getName() . "</option>\n";
+                }
+            }
+
+            $dropDownHtml .= "</optgroup>\n";
+
         }
 
 

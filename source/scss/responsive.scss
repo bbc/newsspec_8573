@@ -1,3 +1,16 @@
+@include respondMinMax(475px, false){
+	.q-page{
+		.q-page--label{
+			clear: none;
+		}
+
+		.q-page--input{
+			clear: none;
+			max-width: 310px;
+		}
+	}
+}
+
 @include respondMinMax(748px, false){
 	.results-page .results-breakdown .breakdown-row{
 		float: left;
@@ -11,11 +24,11 @@
 }
 
 @include respondMinMax(930px, false){
-	.results-page .results-page--branding{
+	.main--branding{
 		display: block;
 	}
 
-	.results-page .results-wrapper{
+	.wrapper{
 		margin-right: 324px;
 	}
 }

@@ -82,8 +82,7 @@ define([
 		},
 
 		getTeam: function() {
-			var selectTeam = $('#user-team').val();
-			return teams[selectTeam];
+			return $('#user-team').data('team');
 		},
 
 		getLeague: function() {

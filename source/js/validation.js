@@ -66,10 +66,6 @@ define(['lib/news_special/bootstrap'], function (news) {
 				return true;				
 			}
 
-			function validateSelectKit() {
-
-			}
-
 			function validateFoodPrice() {
 				var foodPrice = $('#food-price').val();
 				if (!$.isNumeric(foodPrice) || foodPrice<0) {

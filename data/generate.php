@@ -27,6 +27,22 @@
 	echo "=============== PARSING DATA TO ARRAYS: ================\n";
 
 	$teamsObject = $xlsProcessor->getTeamsObject();
+	/*
+	function cmp($a, $b)
+	{
+	    return strcmp($a->getPrettyName(), $b->getPrettyName());
+	}
+
+	$teamArray = (array) $teamsObject;
+
+	usort($teamArray, "cmp");
+
+	foreach($teamArray as $team){
+
+		echo $team->getPrettyName() . ".png\n";
+
+	}
+*/
 	$leaguesObject = $xlsProcessor->getLeaguesObject();
 
 	echo "=============== SAVING ARRAY TO JSON: ================\n";

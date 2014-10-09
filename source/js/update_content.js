@@ -33,6 +33,9 @@ function ($, calculator, BarChart, processData) {
 			/* falls through */
 			case 'nav-item__kit':
 				$('.nav-item__kit').hide();
+			/* falls through */
+			case 'nav-item__results':
+				$('.nav-item__results').hide();
 				break;
 		}
 	}
@@ -201,9 +204,7 @@ function ($, calculator, BarChart, processData) {
 
 	function updateResultsPageContent(){
 		/* HIDE UNNEEDED THINGS */
-		$('.pagination--button').each(function () {
-			$(this).hide();
-		});
+		$('.pagination--button').hide();
 		$('.stats-fact--text').hide();
 
 		$('.pagination--button__restart').show();
@@ -229,9 +230,10 @@ function ($, calculator, BarChart, processData) {
         if(ppgChartData.length > 0){
             var barChart2 = new BarChart(ppgChartData, true);
             barChart2.draw($('#cost-of-goals-graph'));
+            $('.goal-price-graph').show();
         }else{
         	/* Hide chart because we have no data */
-        	$('#cost-of-goals-graph').hide();
+        	$('.goal-price-graph').hide();
         }
 
 		if(calculator.shouldShowBreakDown()){
@@ -254,7 +256,6 @@ function ($, calculator, BarChart, processData) {
 
 	function updateTicketInputs(){
 		var checked = $('input[name=user-ticket]:checked', '.select-ticket').val();
-		console.log(checked);
 
 		$('.ticket-option').hide();
 		$('.ticket-option-' + checked).show();
@@ -264,10 +265,28 @@ function ($, calculator, BarChart, processData) {
 
 	$('input[name=user-ticket]').change(
 	    function(){
-	    	console.log('Changed');
 			updateTicketInputs();  
 	    }
-	);    
+	);  
+
+	function resetAllElms(){
+		$('#user-team').val('');
+		$('#user-team').data('team', null);
+
+		$('#ticket_season').prop('checked', true);
+		updateTicketInputs();
+
+		$('#season-ticket-cost').val('');
+		$('#individual-ticket-cost').val('');
+		$('#user-game-count').val('');
+		$('#food-price').val('');
+		$('#programmes-count').val('');
+		$('#adult-shirt-count').val('');
+
+		$('.pagination--button').show();
+		$('.pagination--button__restart').hide();
+
+	}
 
 
 	return {
@@ -290,7 +309,8 @@ function ($, calculator, BarChart, processData) {
 					return updateResultsPageContent();
 			}
 
-		}
+		},
+		resetAllElms: resetAllElms
 	};
 
 });

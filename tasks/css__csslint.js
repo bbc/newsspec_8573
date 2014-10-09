@@ -22,6 +22,7 @@ module.exports = function (grunt) {
             'text-indent'                   : false,
             'unique-headings'               : false,
             'unqualified-attributes'        : false,
+            'overqualified-elements'        : false,
             'vendor-prefix'                 : false,
             'universal-selector'            : false,
             'adjoining-classes'             : false,

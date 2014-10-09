@@ -3,15 +3,21 @@ define(['lib/news_special/bootstrap', 'lib/news_special/share_tools/model', 'lib
     var model,
         view;
 
-    var _callFaceBook = function () {
+    var _callFaceBook = function (e) {
+        var shareToolsHolder = $(e.target).closest('.shareToolsHolder');
+        _updateMessage(shareToolsHolder.data('shareText'));
         news.pubsub.emit('ns:request:launchshare', [model.fbShareTarget()]);
     };
 
-    var _callTwitter = function () {
+    var _callTwitter = function (e) {
+        var shareToolsHolder = $(e.target).closest('.shareToolsHolder');
+        _updateMessage(shareToolsHolder.data('shareText'));
         news.pubsub.emit('ns:request:launchshare', [model.twitterShareTarget()]);
     };
 
-    var _callEmail = function () {
+    var _callEmail = function (e) {
+        var shareToolsHolder = $(e.target).closest('.shareToolsHolder');
+        _updateMessage(shareToolsHolder.data('shareText'));
         news.pubsub.emit('ns:request:launchshare:samewindow', [model.emailShareTarget()]);
     };
 

@@ -22,11 +22,11 @@ define(['lib/news_special/bootstrap', 'lib/news_special/template_engine', 'lib/n
         ev.stopPropagation();
         news.pubsub.emit('ns:share:call');
         if (news.$(ev.currentTarget).hasClass('share__tool--email')) {
-            news.pubsub.emit('ns:share:call:email');
+            news.pubsub.emit('ns:share:call:email', ev);
         } else if (news.$(ev.currentTarget).hasClass('share__tool--facebook')) {
-            news.pubsub.emit('ns:share:call:facebook');
+            news.pubsub.emit('ns:share:call:facebook', ev);
         } else if (news.$(ev.currentTarget).hasClass('share__tool--twitter')) {
-            news.pubsub.emit('ns:share:call:twitter');
+            news.pubsub.emit('ns:share:call:twitter', ev);
         } else { throw new Error('ValueError: Share application not of know type i.e facebook'); }
     };
     /**
@@ -52,13 +52,13 @@ define(['lib/news_special/bootstrap', 'lib/news_special/template_engine', 'lib/n
             }, this)
         );
         news.pubsub.on('ns:overlay:toggle',
-            news.$.proxy(function () {
-                this.toggleOverlay();
+            news.$.proxy(function (event) {
+                this.toggleOverlay(event.target);
             }, this)
         );
         news.pubsub.on('ns:overlay:close',
-            news.$.proxy(function () {
-                this.closeOverlay();
+            news.$.proxy(function (event) {
+                this.closeOverlay(event.target);
             }, this)
         );
     };
@@ -158,16 +158,16 @@ define(['lib/news_special/bootstrap', 'lib/news_special/template_engine', 'lib/n
     * @public
     * @method
     */
-    NSShareView.prototype.toggleOverlay = function () {
-		this.elm.find('.share__overlay').toggle();
+    NSShareView.prototype.toggleOverlay = function (element) {
+		$(element).closest('.shareToolsHolder').find('.share__overlay').toggle();
     };
     /**
     * Closes the overlay from the dropdown template
     * @public
     * @method
     */
-    NSShareView.prototype.closeOverlay = function () {
-		this.elm.find('.share__overlay').toggle();
+    NSShareView.prototype.closeOverlay = function (element) {
+		$(element).closest('.shareToolsHolder').find('.share__overlay').toggle();
     };
 
     return NSShareView;

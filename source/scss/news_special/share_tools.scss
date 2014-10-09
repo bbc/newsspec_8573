@@ -131,28 +131,12 @@ $newsspec__spriteUrl:     'f/share_tools.png';
 }
 
 .share__button {
-    max-width: 185px;
-    height: 40px;
+    width: 98px;
+    height: 32px;
+    margin-bottom: 10px;
     cursor: pointer;
-
-	.share__png_icon {
-		width: 20px;
-		height:20px;
-		background: transparent url($newsspec__spriteUrl) -42px -196px no-repeat;
-		margin: 5px;
-        background-color: #41850d;
-        float: right;
-	}
-
-	p {
-		padding:0 5px;
-		margin: 0;
-		display: inline-block;
-		font-size: 1em;
-		line-height: 30px;
-		color: #404040;
-		vertical-align: top;
-	}
+	background: transparent url(../img/share.png) no-repeat;
+    @include image-2x("../img/share@2x.png", 98px, 32px);
 }
 
 .share__overlay {

@@ -101,53 +101,50 @@
     		</div>
 
     		<div class="results-page">
+                <div class="results-page--breakdown-wrapper">
+        		    <p class="results-page--total">
+                        Every season I spend <strong id="result-text-total">£</strong> following <span class="team-name--text">Team name</span>
+                    </p>
 
-    		    <p class="results-page--total">Each year I spend <strong id="result-text-total">£</strong> following <span class="team-name--text">Team name</span></p>
+    	    		<div class="shareToolsHolder" data-share-text="This is share text one" id="totalShare"></div>
 
-	    		<div class="shareToolsHolder" id="breakDownShare"></div>
+                    <div class="results-breakdown">
+                        <div class="breakdown-row">
+                            <span class="breakdown-row__desc">Tickets</span>
+                            <span id="result-text-tickets" class="breakdown-row__price">£100</span>
+                        </div>
+                        <div class="breakdown-row">
+                            <span class="breakdown-row__desc">Food and drink</span>
+                            <span id="result-text-food" class="breakdown-row__price">£100</span>
+                        </div>
+                        <div class="breakdown-row">
+                            <span class="breakdown-row__desc">Programmes</span>
+                            <span id="result-text-programme" class="breakdown-row__price">£50</span>
+                        </div>
+                        <div class="breakdown-row">
+                            <span class="breakdown-row__desc">Adult shirts</span>
+                            <span id="result-text-kit" class="breakdown-row__price">£50</span>
+                        </div>
+                    </div>
 
-	    		<p class="results-page--total">
-	    			My costs in 2014-15 break down like this
-	    		</p>
+    	    		<p class="results-page--total">
+    	    			Based on last season's results, I paid <strong>£16 per home goal</strong>
+    	    		</p>
 
-	    		<div class="q-page results-breakdown">
-	    			<div class="breakdown-row">
-	    				<span class="breakdown-row__desc">Tickets</span>
-	    				<span id="result-text-tickets" class="breakdown-row__price">£100</span>
-	    			</div>
-	    			<div class="breakdown-row">
-	    				<span class="breakdown-row__desc">Food and drink</span>
-	    				<span id="result-text-food" class="breakdown-row__price">£100</span>
-	    			</div>
-	    			<div class="breakdown-row">
-	    				<span class="breakdown-row__desc">Programmes</span>
-	    				<span id="result-text-programme" class="breakdown-row__price">£50</span>
-	    			</div>
-	    			<div class="breakdown-row">
-	    				<span class="breakdown-row__desc">Adult shirts</span>
-	    				<span id="result-text-kit" class="breakdown-row__price">£50</span>
-	    			</div>
-	    		</div>
+                    <div class="shareToolsHolder" data-share-text="This is the second share text" id="myHomeGoalsShare"></div>
 
+                </div>
 
-	    		<h1 class="results-page--compare-header">
-	    			How do at <span class="team-name--text">your team</span> compare to other teams in their league?
-	    		</h1>
+                <h2 class="compare--chart-header goal-price-graph">Price of a home goal</h2>
+                <div class="bar-chart goal-price-graph" id="cost-of-goals-graph"></div>
+                <p class="compare--text goal-price-graph">Based on cheapest season ticket price for 2013-14</p>
+                <hr class="goal-price-graph"/>
 
-	    		<p class="compare--text">
-	    			This year <span class="team-name--text__long">your team</span> tickets are <strong>6%</strong> cheaper than other clubs in the premier league
-	    		</p>
 	    		<h2 class="compare--chart-header">Comparative ticket costs</h2>
+                <p class="compare--text">
+                    The cheapest season ticket at are <span class="team-name--text__long"></span> <strong>10%</strong> cheaper than the average price for the premier league.
+                </p>
 	    		<div class="bar-chart" id="ticket-price-graph"></div>
-
-
-
-	    		<p class="compare--text">
-	    			Based on last season’s performance and prices, I paid around <strong>£15 per home goal</strong>.
-	    		</p>
-	    		<h2 class="compare--chart-header">Cost of goals</h2>
-	    		<div class="bar-chart" id="cost-of-goals-graph"></div>
-   
     		</div>
 
             <p class="stats-fact--text"></p>
@@ -158,6 +155,7 @@
     			<a class="pagination--button pagination--button__previous"/>Previous</a>
     		</div>
 	    </div>
+        <hr/>
     </div>
 
 <%= include('includes/bottom.tmpl') %>

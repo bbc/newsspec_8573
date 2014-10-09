@@ -56,12 +56,26 @@ define([
 			}
 		});
 
+		/*
+			When the restart button is pressed
+		*/
+		$('.pagination--button__restart').on('click', function () {
+			previousStack = [];
+			currentPage = 'select-team';
+
+			contentManager.resetAllElms();
+
+			switchToPage(currentPage); //Show the first page.
+			contentManager.update(currentPage);
+		});
+
 
 		/*
 			Switch from the current page, to the page given.
 		*/
 		function switchToPage(page) {
 			$('.' + currentPage).hide();
+			$('.results-page').hide();
 
 			currentPage = page;
 			$('.' + page).show();

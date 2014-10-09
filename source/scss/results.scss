@@ -20,8 +20,7 @@ $no-result-items: 4;
 	}
 
 	.results-page--total{
-		padding-left: 5px;
-		font: normal 18px Arial;
+		font: bold 18px Arial;
 		line-height: 22px;
 		color: #404040;
 
@@ -67,8 +66,7 @@ $no-result-items: 4;
 	}
 
 	.compare--text{
-		padding-top: 15px;
-		border-top: 1px solid #e5e5e5;
+		margin: 5px 0 10px 0;
 		font: normal 16px Arial;
 		line-height: 20px;
 		color: #404040;
@@ -77,7 +75,12 @@ $no-result-items: 4;
 		}
 	}
 
+	hr.goal-price-graph{
+		margin-top: 20px;
+	}
+
 	.compare--chart-header{
+		margin: 30px 0 5px 0;
 		font: bold 18px Arial;
 		color: #404040;
 	}

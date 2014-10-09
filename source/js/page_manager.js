@@ -30,8 +30,9 @@ define([
 
 				contentManager.update(nextPage);
 
-
-				$('.pagination--button__previous').show();
+				if(nextPage!=='results-page'){
+					$('.pagination--button__previous').show();
+				}
 
 			} else {
 				alert(validator.getError());
@@ -76,17 +77,12 @@ define([
 					return 'select-ticket';
 				case 'select-ticket':
 					return getNextPageAfterTicket();
-				case 'ticket-price-page':
-					return 'food-price-page';
 				case 'food-price-page':
 					return 'programmes-price-page';
 				case 'programmes-price-page':
 					return 'kit-price-page';
 				case 'kit-price-page':
 					return 'results-page';
-				/* No season ticket */
-				case 'kit-select-page':
-					return getNextPageAfterKit();
 			}
 		}
 
@@ -94,18 +90,9 @@ define([
 			switch ($('input[name="user-ticket"]:checked').val()){
 				case 'season':
 				case 'individual':
-					return 'ticket-price-page';
+					return 'food-price-page';
 				case 'none':
-					return 'kit-select-page';
-			}
-		}
-
-		function getNextPageAfterKit() {
-			switch ($('input[name="buys-kit"]:checked').val()){
-				case 'yes':
 					return 'kit-price-page';
-				case 'no':
-					return 'results-page';
 			}
 		}
 

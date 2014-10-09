@@ -4,34 +4,50 @@
 
 .q-page{
 	display: none; /* All questions are hidden by default */
-
 	margin-top: 20px;
+	margin-right: 116px;
+
 
 	.q-page--label{
-		clear: both;
-		display: inline-block;
+		display: inline;
 		font: normal 16px Arial;
-		margin: 0 8px 10px 0;
 	}
 
 	.q-page--input{
 		clear: both;
-		width: 100%;
-		border: 1px solid #414141;
-		height: 30px;
-		padding: 0 6px;
-		line-height: 30px;
+		max-width: 150px;
+		width: 70%;
+		border: 1px solid #cccccc;
+		height: 34px;
+		padding: 3px 6px;
+		line-height: 18px;
+		font: normal 18px Arial;
 		color: #414141;
 	}
 
-	/* Label with selection on a new line */
-	.q-page--label__nl{
-		display: block;
+	.q-page--input__100{
+		display: inline-block;
+		margin-top: 8px;
+		width: 100%;
+	}
+
+	.q-page--label__header{
+		display: inline-block;
+		clear: both;
+		font: bold 18px Arial;
+		margin-bottom: 10px;
+	}
+
+	.q-page--label__sub-header{
+		display: inline-block;
+		clear: both;
+		margin-top: 10px;
+		font: bold 16px Arial;
 		margin-bottom: 10px;
 	}
 
 	.q-page--radio-button{
-		display: block;
+		display: inline-block;
 		margin: 5px;
 	}
 
@@ -41,6 +57,11 @@
 	}
 }
 
+.q-page.select-team{
+	margin-right: 0;
+}
+
+
 .autocomplete-suggestions { border: 1px solid #999; color: #333; background: #FFF; overflow: auto; }
 .autocomplete-suggestion { padding: 8px 10px; white-space: nowrap; overflow: hidden; }
 .autocomplete-selected { background: #333; color: white}
@@ -49,6 +70,7 @@
 
 .pagination{
 	overflow: hidden;
+	clear: both;
 
 	.pagination--button{
 		padding: 9px 10px 0 10px;
@@ -66,6 +88,10 @@
 	}
 
 	.pagination--button__previous{
+		display: none;
+	}
+
+	.pagination--button__restart{
 		display: none;
 	}
 

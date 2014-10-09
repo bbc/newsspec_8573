@@ -6,171 +6,157 @@
 	    	<p>How much do you spend following your team. Try our calculator to work out your costs, then share your results with your friends.</p>
 	    	<p>It found average ticket prices across English football's top four divisions have fallen by up to 2.4%</p>
     	</div>
-
+		<ul class="nav">
+			<li class="nav-item nav-item__team">
+				<div class="nav-item--icon"></div>
+				<div class="nav-item--text">Your club</div>
+			</li>
+			<li class="nav-item nav-item__tickets">
+				<div class="nav-item--icon"></div>
+				<div class="nav-item--text">Tickets</div>
+			</li>
+			<li class="nav-item nav-item__food">
+				<div class="nav-item--icon"></div>
+				<div class="nav-item--text">Food and Drink</div>
+			</li>
+			<li class="nav-item nav-item__programmes">
+				<div class="nav-item--icon"></div>
+				<div class="nav-item--text">Programmes</div>
+			</li>
+			<li class="nav-item nav-item__kit">
+				<div class="nav-item--icon"></div>
+				<div class="nav-item--text">Club shirt</div>
+			</li>
+			<li class="nav-item nav-item__results">
+				<div class="nav-item--icon"></div>
+				<div class="nav-item--text">Results</div>
+			</li>
+		</ul>
     	<img class="main--branding" src="img/branding-image.png" alt="Branding image" />
     	<div class="wrapper">
-			<ul class="nav">
-				<li class="nav-item nav-item__team">
-					<div class="nav-item--icon"></div>
-					<div class="nav-item--text">Your club</div>
-				</li>
-				<li class="nav-item nav-item__tickets">
-					<div class="nav-item--icon"></div>
-					<div class="nav-item--text">Tickets</div>
-				</li>
-				<li class="nav-item nav-item__food">
-					<div class="nav-item--icon"></div>
-					<div class="nav-item--text">Food and Drink</div>
-				</li>
-				<li class="nav-item nav-item__programmes">
-					<div class="nav-item--icon"></div>
-					<div class="nav-item--text">Programmes</div>
-				</li>
-				<li class="nav-item nav-item__kit">
-					<div class="nav-item--icon"></div>
-					<div class="nav-item--text">Kit and merchandise</div>
-				</li>
-				<li class="nav-item nav-item__results">
-					<div class="nav-item--icon"></div>
-					<div class="nav-item--text">Results</div>
-				</li>
-			</ul>
+    		<img class="team-crest" src="img/west-brom.png" alt="West Bromich Albion crest" />
+	    	<h2 class="team-header team-name--text__long">Team name</h2>
 
-			<h3 class="team-header team-name--text">Your team</h3>
+    		<div class="select-team q-page">
+    			<label class="q-page--label" for="user-team"> Choose your club: </label>
+    			<input id="user-team" placeholder="Start typing club name" type="text" class="q-page--input q-page--input__100" />
+    		</div>
 
-	    	<form>
-	    		<div class="select-team q-page">
-	    			<label class="q-page--label" for="user-team"> Choose your club: </label>
-	    			<input id="user-team" placeholder="Start typing club name" type="text" class="q-page--input" />
+    		<div class="select-ticket q-page">
+    			<label class="q-page--label q-page--label__header">What kind of ticket do you buy?</label>
+    			<br/>
+    			<span class="q-page--radio-button">
+    				<input type="radio" checked="checked" id="ticket_season" name="user-ticket" value="season" />
+    				<label class="q-page--label" for="ticket_season">Season ticket</label>
+    			</span>
+    			<span class="q-page--radio-button">
+    				<input type="radio" id="ticket_individual" name="user-ticket" value="individual" />
+    				<label class="q-page--label" for="ticket_individual">Individual tickets</label>
+				</span>
+				<span class="q-page--radio-button">
+    				<input type="radio" id="ticket_none" name="user-ticket" value="none" />
+    				<label class="q-page--label" for="ticket_none">I don't go to games</label>
+    			</span>
+                <div class="ticket-option ticket-option-season">
+                    <label class="q-page--label q-page--label__sub-header" for="season-ticket-cost">
+                        Cost of season ticket
+                    </label><br/>
+                    £ <input id="season-ticket-cost" type="text" class="q-page--input" />
+                </div>
+
+                <div class="ticket-option ticket-option-individual" style="display:none;">
+                    <label class="q-page--label q-page--label__sub-header" for="individual-ticket-cost">
+                        Cost of tickets
+                    </label><br/>
+                    £ <input id="individual-ticket-cost" type="text" class="q-page--input" /> <br/>
+
+                    <label class="q-page--label q-page--label__sub-header" for="user-game-count">
+                        How many games do you go to?
+                    </label><br/>
+                    <input id="user-game-count" type="text" class="q-page--input" />
+                </div>
+    		</div>
+
+            <div class="food-price-page q-page">
+                <label class="q-page--label q-page--label__header" for="food-price">
+                    Cost of food and drink per home game?
+                </label><br/>
+                £ <input id="food-price" type="text" class="q-page--input" />
+            </div>            
+
+
+    		<div class="programmes-price-page q-page">
+    			<label class="q-page--label q-page--label__header" for="programmes-price">
+    				How many many programmes do you buy per season?
+    			</label><br/>
+    			<input id="programmes-count" type="text" class="q-page--input" />
+    		</div>
+
+    		<div class="kit-price-page q-page">
+    			
+    			<label class="q-page--label q-page--label__header" for="kit-price">
+    				How many adults shirts do you buy?
+    			</label><br/>
+    			<input id="adult-shirt-count" type="text" class="q-page--input" />
+    		</div>
+
+    		<div class="results-page">
+
+    		    <p class="results-page--total">Each year I spend <strong id="result-text-total">£</strong> following <span class="team-name--text">Team name</span></p>
+
+	    		<div class="shareToolsHolder" id="breakDownShare"></div>
+
+	    		<p class="results-page--total">
+	    			My costs in 2014-15 break down like this
+	    		</p>
+
+	    		<div class="q-page results-breakdown">
+	    			<div class="breakdown-row">
+	    				<span class="breakdown-row__desc">Tickets</span>
+	    				<span id="result-text-tickets" class="breakdown-row__price">£100</span>
+	    			</div>
+	    			<div class="breakdown-row">
+	    				<span class="breakdown-row__desc">Food and drink</span>
+	    				<span id="result-text-food" class="breakdown-row__price">£100</span>
+	    			</div>
+	    			<div class="breakdown-row">
+	    				<span class="breakdown-row__desc">Programmes</span>
+	    				<span id="result-text-programme" class="breakdown-row__price">£50</span>
+	    			</div>
+	    			<div class="breakdown-row">
+	    				<span class="breakdown-row__desc">Adult shirts</span>
+	    				<span id="result-text-kit" class="breakdown-row__price">£50</span>
+	    			</div>
 	    		</div>
 
-	    		<div class="select-ticket q-page">
-	    			<label class="q-page--label q-page--label__nl"> Which type of ticket do you buy? </label>
-	    			<span class="q-page--radio-button">
-	    				<input type="radio" id="ticket_season" name="user-ticket" value="season" />
-	    				<label class="q-page--label" for="ticket_season"> Season ticket </label>
-	    			</span>
-	    			<span class="q-page--radio-button">
-	    				<input type="radio" id="ticket_individual" name="user-ticket" value="individual" />
-	    				<label class="q-page--label" for="ticket_individual"> Individual tickets </label>
-					</span>
-					<span class="q-page--radio-button">
-	    				<input type="radio" id="ticket_none" name="user-ticket" value="none" />
-	    				<label class="q-page--label" for="ticket_none"> I don't go to home games </label>
-	    			</span>
-	    		</div>
 
+	    		<h1 class="results-page--compare-header">
+	    			How do at <span class="team-name--text">your team</span> compare to other teams in their league?
+	    		</h1>
 
-	    		<div class="kit-select-page q-page">
-	    			<label class="q-page--label q-page--label__nl"> Do you get kitted 
-	out? </label>
-	    			<span class="q-page--radio-button">
-	    				<input type="radio" id="kit_yes" name="buys-kit" value="yes" />
-	    				<label class="q-page--label" for="kit_yes"> Yes </label>
-	    			</span>
-	    			<span class="q-page--radio-button">
-	    				<input type="radio" id="kit_no" name="buys-kit" value="no" />
-	    				<label class="q-page--label" for="kit_no"> No </label>
-					</span>
-	    		</div>
-
-	    		<div class="ticket-price-page q-page">
-	    			
-	    			<label class="q-page--label" for="ticket-price">
-	    				How much do you spend on <span class="ticket-type--text">tickets</span>?
-	    			</label>
-
-	    			£<input id="ticket-price" type="text" class="q-page--input" />
-
-	    			<p class="ticket-price--text"></p>
-
-	    		</div>
-
-	    		<div class="food-price-page q-page">
-	    			
-	    			<label class="q-page--label" for="food-price">
-	    				How much do you spend on food/drink?
-	    			</label>
-	    			£<input id="food-price" type="text" class="q-page--input" />
-	    			<p class="food-price--text"></p>
-
-	    		</div>
-
-	    		<div class="programmes-price-page q-page">
-	    			
-	    			<label class="q-page--label" for="programmes-price">
-	    				How much do you spend on programmes?
-	    			</label>
-	    			£<input id="programmes-price" type="text" class="q-page--input" />
-	    			<p class="programmes-price--text"></p>
-
-	    		</div>
-
-	    		<div class="kit-price-page q-page">
-	    			
-	    			<label class="q-page--label" for="kit-price">
-	    				How much do you spend on kit and merchandise?
-	    			</label>
-	    			£<input id="kit-price" type="text" class="q-page--input" />
-	    			<p class="kit-price--text"></p>
-	    		</div>
-
-	    		<div class="results-page">
-	    		    <img class="results-page--crest" src="img/west-brom.png" alt="West Bromich Albion crest" />
-	    		    <h1 class="results-page--header team-name--text__long">Team name</h1>
-	    		    <p class="results-page--total">Each year I spend <strong id="result-text-total">£</strong> following <span class="team-name--text">Team name</span></p>
-
-		    		<div class="shareToolsHolder" id="breakDownShare"></div>
-
-		    		<p class="results-page--total">
-		    			My costs in 2014-15 break down like this
-		    		</p>
-
-		    		<div class="results-breakdown">
-		    			<div class="breakdown-row">
-		    				<span class="breakdown-row__desc">Tickets</span>
-		    				<span id="result-text-tickets" class="breakdown-row__price">£100</span>
-		    			</div>
-		    			<div class="breakdown-row">
-		    				<span class="breakdown-row__desc">Food and drink</span>
-		    				<span id="result-text-food" class="breakdown-row__price">£100</span>
-		    			</div>
-		    			<div class="breakdown-row">
-		    				<span class="breakdown-row__desc">Programmes</span>
-		    				<span id="result-text-programme" class="breakdown-row__price">£50</span>
-		    			</div>
-		    			<div class="breakdown-row">
-		    				<span class="breakdown-row__desc">Kit</span>
-		    				<span id="result-text-kit" class="breakdown-row__price">£50</span>
-		    			</div>
-		    		</div>
-
-
-		    		<h1 class="results-page--compare-header">
-		    			How do at <span class="team-name--text">your team</span> compare to other teams in their league?
-		    		</h1>
-
-		    		<p class="compare--text">
-		    			This year <span class="team-name--text__long">your team</span> tickets are <strong>6%</strong> cheaper than other clubs in the premier league
-		    		</p>
-		    		<h2 class="compare--chart-header">Comparative ticket costs</h2>
-		    		<div class="bar-chart" id="ticket-price-graph"></div>
+	    		<p class="compare--text">
+	    			This year <span class="team-name--text__long">your team</span> tickets are <strong>6%</strong> cheaper than other clubs in the premier league
+	    		</p>
+	    		<h2 class="compare--chart-header">Comparative ticket costs</h2>
+	    		<div class="bar-chart" id="ticket-price-graph"></div>
 
 
 
-		    		<p class="compare--text">
-		    			Based on last season’s performance and prices, I paid around <strong>£15 per home goal</strong>.
-		    		</p>
-		    		<h2 class="compare--chart-header">Cost of goals</h2>
-		    		<div class="bar-chart" id="cost-of-goals-graph"></div>
-	   
-	    		</div>
+	    		<p class="compare--text">
+	    			Based on last season’s performance and prices, I paid around <strong>£15 per home goal</strong>.
+	    		</p>
+	    		<h2 class="compare--chart-header">Cost of goals</h2>
+	    		<div class="bar-chart" id="cost-of-goals-graph"></div>
+   
+    		</div>
 
-	    		<div class="pagination">
-	    			<a class="pagination--button pagination--button__next">Next</a>
-	    			<a class="pagination--button pagination--button__previous"/>Previous</a>
-	    		</div>
-	    	</form>
+            <p class="stats-fact--text"></p>
+
+    		<div class="pagination">
+                <a class="pagination--button pagination--button__restart">Start Again</a>
+    			<a class="pagination--button pagination--button__next">Next</a>
+    			<a class="pagination--button pagination--button__previous"/>Previous</a>
+    		</div>
 	    </div>
     </div>
 

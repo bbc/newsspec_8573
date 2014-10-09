@@ -4,14 +4,25 @@
 			clear: none;
 		}
 
-		.q-page--input{
+		.q-page--input__100{
 			clear: none;
+			margin-top: 0;
 			max-width: 310px;
 		}
 	}
 }
 
 @include respondMinMax(748px, false){
+
+	.q-page{
+		margin-right: 148px;
+	}
+
+	.team-crest{
+		width: 140px;
+		height: 140px;
+	}
+
 	.results-page .results-breakdown .breakdown-row{
 		float: left;
 		width: 47%;

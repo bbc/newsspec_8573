@@ -23,6 +23,7 @@ define([
 			
 			var justKit = isJustKit();
 			var league = this.getLeague();
+			var team = this.getTeam();
 
 			var resultsBreakDown = {};
 
@@ -34,13 +35,30 @@ define([
 
 			/* Returns true or false if the user only buys kit and nothing else */
 			function isJustKit() {
-				return ($('input[name="user-ticket"]:checked').val()==='none');
+				return (getTicketType()==='none');
 			}
 
+			function getTicketType(){
+				return $('input[name="user-ticket"]:checked').val();
+			}
+
+			function getGamesAttended() {
+				switch(getTicketType()) {
+					case 'season':
+						return league.homeGames;
+					case 'individual':
+						return parseInt($('#user-game-count').val(), 10);
+					default:
+						return 0;
+				}
+			}
 
 			function getTicketCosts() {
-				if(!justKit){
-					return $('#ticket-price').val()*1;
+				var ticketType = getTicketType();
+				if(ticketType==='season'){
+					return parseFloat($('#season-ticket-cost').val());
+				}else if (ticketType==='individual'){
+					return parseFloat($('#individual-ticket-cost').val()) * getGamesAttended();
 				}else{
 					return 0;
 				}
@@ -48,7 +66,7 @@ define([
 
 			function getFoodCost() {
 				if(!justKit){
-					return ($('#food-price').val() * league.homeGames);
+					return ($('#food-price').val() * getGamesAttended());
 				}else{
 					return 0;
 				}
@@ -56,14 +74,16 @@ define([
 
 			function getProgrammeCost() {
 				if(!justKit){
-					return ($('#programmes-price').val() * league.homeGames);
+					var programmeCost = (team.programme) ? parseFloat(team.programme) : 0;
+					return (programmeCost * parseInt($('#programmes-count').val(), 10));
 				}else{
 					return 0;
 				}
 			}
 
 			function getKitCost() {
-				return $('#kit-price').val()*1;
+				var shirtCost = (team.adultShirt) ? parseFloat(team.adultShirt) : 0;
+				return (shirtCost * parseInt($('#adult-shirt-count').val(), 10));
 			}
 
 			function getTotal() {

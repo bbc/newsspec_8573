@@ -15,3 +15,23 @@ body{
 	padding-left: 18px;
 	background-color: #FFF;
 }
+
+.team-crest{
+	float: right;
+	display: none;
+	padding-left: 8px;
+	background-color: #FFF;
+	width: 108px;
+	height: 108px;
+}
+
+.team-header{
+	display: block;
+	display: none;
+	width: 100%;
+	padding: 10px;
+	background-color: #ebebeb;
+	font: bold 18px Arial;
+	line-height: 22px;
+	color: #555;
+}

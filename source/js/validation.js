@@ -14,8 +14,6 @@ define(['lib/news_special/bootstrap'], function (news) {
 					return validateSelectTicket();
 				case 'kit-select-page':
 					return validateSelectKit();
-				case 'ticket-price-page':
-					return validateTicketPrice();
 				case 'food-price-page':
 					return validateFoodPrice();
 				case 'programmes-price-page':
@@ -36,28 +34,40 @@ define(['lib/news_special/bootstrap'], function (news) {
 			}
 
 			function validateSelectTicket() {
-				if (!$('input[name="user-ticket"]:checked').val()) {
-					latestError = 'Select a ticket type!';
-					return false;
-				}
-				return true;
-			}
+				var checkedBox = $('input[name="user-ticket"]:checked').val();
 
-			function validateSelectKit() {
-				if (!$('input[name="buys-kit"]:checked').val()) {
+				if (!checkedBox) {
 					latestError = 'Choose an option!';
 					return false;
 				}
-				return true;
+
+				else if(checkedBox === 'season') {
+					var seasonTicketPrice = $('#season-ticket-cost').val();
+					if (!$.isNumeric(seasonTicketPrice) || seasonTicketPrice<0) {
+						latestError = 'Enter a ticket price of £0 or higher!';
+						return false;
+					}
+				}
+
+				else if(checkedBox === 'individual') {
+					var ticketPrice = $('#individual-ticket-cost').val();
+					if (!$.isNumeric(ticketPrice) || ticketPrice<0) {
+						latestError = 'Enter a ticket price of £0 or higher!';
+						return false;
+					}
+
+					var noGames = $('#user-game-count').val();
+					if (!$.isNumeric(noGames) || noGames<=0 || (noGames % 1 !== 0)) {
+						latestError = 'Number of games visited must be a whole number higher than 0.';
+						return false;
+					}
+				}
+
+				return true;				
 			}
 
-			function validateTicketPrice() {
-				var ticketPrice = $('#ticket-price').val();
-				if (!$.isNumeric(ticketPrice) || ticketPrice<0) {
-					latestError = 'Enter a ticket price of £0 or higher!';
-					return false;
-				}
-				return true;
+			function validateSelectKit() {
+
 			}
 
 			function validateFoodPrice() {
@@ -70,18 +80,18 @@ define(['lib/news_special/bootstrap'], function (news) {
 			}
 
 			function validateProgrammesPrice() {
-				var programmePrice = $('#programmes-price').val();
-				if (!$.isNumeric(programmePrice) || programmePrice<0) {
-					latestError = 'Enter a programme price of £0 or higher!';
+				var programmePrice = $('#programmes-count').val();
+				if (!$.isNumeric(programmePrice) || programmePrice<0 || (programmePrice % 1 !== 0)) {
+					latestError = 'Programme amount must be a whole number of 0 or more.';
 					return false;
 				}
 				return true;
 			}
 
 			function validateKitPrice() {
-				var kirPrice = $('#kit-price').val();
-				if (!$.isNumeric(kirPrice) || kirPrice<0) {
-					latestError = 'Enter a kit price of £0 or higher!';
+				var kitPrice = $('#adult-shirt-count').val();
+				if (!$.isNumeric(kitPrice) || kitPrice<0 || (kitPrice % 1 !== 0)) {
+					latestError = 'Shirt amount must be a whole number of 0 or more.';
 					return false;
 				}
 				return true;

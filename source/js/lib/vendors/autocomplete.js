@@ -320,8 +320,6 @@
                     
                         window.top.scrollIframeTo($('#user-team').get(0).offsetTop-40);
        
-                }else{
-                    console.log($(window.top).height());
                 }
             }catch(err){
                 //Probably access-orign error

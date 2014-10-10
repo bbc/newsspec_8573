@@ -5,6 +5,9 @@ define([
 	'data/leagues'
 ], function ($, calculator, teams, leagues) {
 
+	/* 
+		Returns an array of all the teams in the same league as the users selected team
+	*/
 	var getTeamsInLeague = function () {
 		var userTeam = calculator.getTeam();
 		var returnArray = [];
@@ -19,7 +22,9 @@ define([
 		return returnArray;
 	};
 
-
+	/*
+		Returns an array of all the European teams
+	*/
 	var getTeamsInEurope = function () {
 		var userTeam = calculator.getTeam();
 		var returnArray = [];
@@ -40,6 +45,9 @@ define([
   		return !isNaN(parseFloat(n)) && isFinite(n);
 	};
 
+	/* 
+		Returns the chart data for the European teams
+	*/
 	var getEuropeanTicketChartData = function () {
 		var dataArray = [];
 		var userTeam = calculator.getTeam();
@@ -60,6 +68,9 @@ define([
 		return dataArray;
 	};
 
+	/*
+		Returns the chart data for the team season ticket comparison chart
+	*/
 	var getTicketPriceChartData = function () {
 		var dataArray = [];
 		var userTeam = calculator.getTeam();
@@ -84,6 +95,11 @@ define([
 		return dataArray;
 	};
 
+	/*
+		Returns the data for the price per goal chart. If any team within the league do not
+		have all the data needed to calcualte the price for goal, an empty array is returned, and no
+		chart will be dispalyed.
+	*/
 	var getPPGChartData = function () {
 
 		var dataArray = [];
@@ -115,6 +131,9 @@ define([
 
 	};
 
+	/*
+		Gets the data for the team auto suggestive search on the initial page
+	*/
 	var getTeamSearchData = function () {
 		var teamsObject = [];
 		$.each(teams, function (index, team) {

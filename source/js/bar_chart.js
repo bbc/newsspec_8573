@@ -14,16 +14,25 @@ define([
 		this.isAscending = isAscending;
 	};
 
+	/*
+		Draws the BarChart from the data provided
+	*/
 	BarChart.prototype.draw = function($element){
 		var that = this;
 		that.$element = $element;
 
+		/*
+			Sorts the array according to the isAscending value
+		*/
 		var sortDataArray = function () {
 			that.dataArray.sort(function(a,b) {
 			    return (that.isAscending) ? (parseFloat(a.value) - parseFloat(b.value)) : (parseFloat(b.value) - parseFloat(a.value));
 			});
 		};
 
+		/*
+			Adds all the row elements to the container
+		*/
 		var appendHtmlToElm = function () {
 
 			/* Gets the largest piece of data from the array */
@@ -83,6 +92,10 @@ define([
 			});
 		};
 
+		/*	
+			Set the width of the bars to the correct calcualted size. 
+			(100% for highest value and everything else is propotional to its value)
+		*/
 		var setBarWidths = function () {
 			var oneLineWidths = parseInt($('.row-name').css('margin-right'), 10) + that.rowNameWidth;
 
@@ -98,6 +111,7 @@ define([
 				$(this).width(parseFloat($(this).data('percentage') / 100 * maxBarWidth));
 			});
 		};
+
 
 		/* Lets build this graph! */
 

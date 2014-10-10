@@ -65,13 +65,11 @@ define([
 		    var currentInputElement = $(e.target);
 		    var keyCode = (e.keyCode ? e.keyCode : e.which);
 
-		    if(keyCode == 13 || keyCode == 10){
-		        console.log("handleFormKeypress - Go pressed")
-
+		    if(keyCode === 13 || keyCode === 10){
 		        //this needs to be checks as passing in the 'submitButton' is optional
-		        if (e.data != undefined) 
+		        if (e.data !== undefined) 
 		        {
-		            if (e.data.handler != undefined) 
+		            if (e.data.handler !== undefined) 
 		            {
 		                e.data.handler();
 		            }

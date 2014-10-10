@@ -9,7 +9,7 @@ define(['lib/news_special/bootstrap', 'lib/news_special/share_tools/controller',
             shareTools.init('.shareToolsHolder', {
                 storyPageUrl:  storyPageUrl,
                 header:       'Share this page',
-                message:      'Custom message',
+                message:      'Calculate the price you pay supporting your team',
                 hashtag:      'BBCFootballCalculator',
                 template:     'dropdown'
             });

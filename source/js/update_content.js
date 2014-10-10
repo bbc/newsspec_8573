@@ -5,6 +5,7 @@
 define(['jquery', 'calculator', 'bar_chart', 'process_data'], 
 function ($, calculator, BarChart, processData) {
 
+	/* The stats text, displayed on each page, as a fact under the inputs */
 	var statsTexts = [];
 	statsTexts['seasonTicket'] = 'The cost of the cheapest season ticket at your club has gone {UP_DOWN} £{AMOUNT} since 2013';
 	statsTexts['individualTicket'] = 'The cost of the cheapest matchday ticket at your club has gone {UP_DOWN} £{AMOUNT} since 2011';
@@ -13,15 +14,23 @@ function ($, calculator, BarChart, processData) {
 	statsTexts['kit'] = '{TEAM_NAME} kit costs £{AMOUNT} {UP_DOWN} than the average cost for {THE}{LEAGUE_NAME}.';
 	statsTexts['ticketCosts'] = 'The cheapest season ticket at {TEAM_NAME} are <strong>{AMOUNT}%</strong> {UP_DOWN} than the average price for {THE}{LEAGUE_NAME}.';
 
+	/* The text used on the share buttons */
 	var shareText = [];
 	shareText['myTotal'] = 'Every season I spend £{AMOUNT} following {TEAM_NAME}';
 	shareText['myGoalCost'] = 'Based on last season\'s results I paid £{AMOUNT} per home goal following {TEAM_NAME}';
 
+	/*	
+		Returns the short name of the users team
+	*/
 	function getSelectedTeamName(){
 		var team = calculator.getTeam();
 		return team.shortName;
 	}
 
+	/*
+		Hides the navigation buttons after the selected item. This is called when
+		the previous button is pressed to hide the last page
+	*/
 	function hideProcedingBreadcrums(newSelection){
 		switch (newSelection){
 			case 'nav-item__team':
@@ -45,6 +54,9 @@ function ($, calculator, BarChart, processData) {
 		}
 	}
 
+	/*
+		Update the navigation when the user clicks next or previous
+	*/
 	function updateBreadcrums(newSelection) {
 
 		hideProcedingBreadcrums(newSelection);
@@ -88,6 +100,12 @@ function ($, calculator, BarChart, processData) {
 
 	}
 
+	/*
+		Updates .team-name--text with the teams short name
+		Updates .team-name--text__long with the teams short name
+
+		All elements with the class name will have its text set correctly.
+	*/
 	function updateTeamName(){
 		
 		var team = calculator.getTeam();
@@ -100,10 +118,14 @@ function ($, calculator, BarChart, processData) {
 		});
 	}
 
+	/*
+		Updates the content of the select team page.
+	*/
 	function updateSelectTeamContent() {
-		/* Hides crest and header */
+		/* Padding to allow room for the auto suggest options */
 		$('.main').css('padding-bottom', '300px');
 
+		/* Hides crest and header */
 		$('.team-crest').hide();
 		$('.team-header').hide();
 		$('.stats-fact--text').hide();
@@ -111,6 +133,9 @@ function ($, calculator, BarChart, processData) {
 		updateBreadcrums('nav-item__team');
 	}
 
+	/*
+		Updates the content of the select ticket page.
+	*/
 	function updateSelectTicketContent() {
 		$('.main').css('padding-bottom', '18px');
 		/* Show team crest and header */
@@ -122,32 +147,13 @@ function ($, calculator, BarChart, processData) {
 			
 		$('.team-header').show();
 
-		var userTeam = calculator.getTeam();
-
-		var updateText;
-
-		var upOrDown = (priceDifference>0) ? 'up' : 'down';
-
-		switch ($('input[name="user-ticket"]:checked').val()){
-			case 'season':
-				$('.ticket-type--text').text('season ticket');
-				updateText = makeStatText(statsTexts['seasonTicket'], userTeam['cheapSeason'], userTeam['cheapSeason2013'], false);
-				break;
-			case 'individual':
-				$('.ticket-type--text').text('indivudal tickets');
-				updateText = makeStatText(statsTexts['individualTicket'], userTeam['cheapTicket'], userTeam['cheapestMatchdayTicket2011'], false);
-				break;
-		}
-
-		if(updateText!=null){
-			$('.stats-fact--text').text(updateText);
-			$('.stats-fact--text').show();
-		}else{
-			$('.stats-fact--text').hide();
-		}
+		updateTicketInputs();
 
 	}
 
+	/*
+		Updates the content of the food page.
+	*/
 	function updateFoodPriceContent(){
 		var userTeam = calculator.getTeam();
 		updateBreadcrums('nav-item__food');
@@ -166,6 +172,9 @@ function ($, calculator, BarChart, processData) {
 		}
 	}
 
+	/*
+		Updates the content of the programmes page.
+	*/
 	function updateProgrammesPriceContent(){
 		var userTeam = calculator.getTeam();
 		updateBreadcrums('nav-item__programmes');
@@ -181,6 +190,10 @@ function ($, calculator, BarChart, processData) {
 
 	}
 
+
+	/*
+		Updates the content of the kit page.
+	*/
 	function updateKitPriceContent(){
 		var userTeam = calculator.getTeam();
 		var userLeague = calculator.getLeague();
@@ -209,6 +222,12 @@ function ($, calculator, BarChart, processData) {
 
 	}
 
+	/*
+		Updates the content of the results page.
+
+		This function gets the results from the calculator module,
+		dislays the results in the breakdown element and displays the graphs
+	*/
 	function updateResultsPageContent(){
 		/* HIDE UNNEEDED THINGS */
 		$('.pagination--button').hide();
@@ -257,6 +276,10 @@ function ($, calculator, BarChart, processData) {
 		}
 	}
 
+	/*
+		Updates the text shown above the compartive tickets bar chart.
+	*/
+
 	function updateTicketPriceText() {
 		var userTeam = calculator.getTeam();
 		var userLeague = calculator.getLeague();
@@ -281,6 +304,9 @@ function ($, calculator, BarChart, processData) {
 		$('#compare-text--tickets').html(updateText);
 	}
 
+	/*
+		Shows the breakdown of results.
+	*/
 	function showBreakDownResults(resultsBreakdown){
 		$('#result-text-total').text('£' + resultsBreakdown.total.toFixed(2));
 		$('#result-text-tickets').text('£' + resultsBreakdown.tickets.toFixed(2));
@@ -290,6 +316,9 @@ function ($, calculator, BarChart, processData) {
 		$('#result-text-home-goal').text('£' + resultsBreakdown.homeGoal.toFixed(2));
 	}
 
+	/*
+		Sets the share text of both of the buttons to the users text
+	*/
 	function updateShareText(resultsBreakdown){
 		var teamName = calculator.getTeam().shortName;
 		var totalText = shareText['myTotal'].replace('{AMOUNT}', resultsBreakdown.total.toFixed(2)).replace('{TEAM_NAME}', teamName);
@@ -299,7 +328,33 @@ function ($, calculator, BarChart, processData) {
 		$('#myHomeGoalsShare').data('shareText', homeGoalText);
 	}
 
+	/*
+		Updates the inputs shown on the select ticket page, when the user selects a different ticket type
+		a different set of inputs will be shown
+	*/
 	function updateTicketInputs(){
+
+		var userTeam = calculator.getTeam();
+		var updateText = '';
+
+		switch ($('input[name="user-ticket"]:checked').val()){
+			case 'season':
+				$('.ticket-type--text').text('season ticket');
+				updateText = makeStatText(statsTexts['seasonTicket'], userTeam['cheapSeason'], userTeam['cheapSeason2013'], false);
+				break;
+			case 'individual':
+				$('.ticket-type--text').text('indivudal tickets');
+				updateText = makeStatText(statsTexts['individualTicket'], userTeam['cheapTicket'], userTeam['cheapestMatchdayTicket2011'], false);
+				break;
+		}
+
+		if(updateText!==''){
+			$('.stats-fact--text').text(updateText);
+			$('.stats-fact--text').show();
+		}else{
+			$('.stats-fact--text').hide();
+		}
+
 		var checked = $('input[name=user-ticket]:checked', '.select-ticket').val();
 
 		$('.ticket-option').hide();
@@ -314,6 +369,13 @@ function ($, calculator, BarChart, processData) {
 	    }
 	);  
 
+
+	/*
+		Results all elements when the user clicks start agian.
+
+		This stops the user from seeing the text that they entered the last time
+		they ran the calcualtor.
+	*/
 	function resetAllElms(){
 		$('#user-team').val('');
 		$('#user-team').data('team', null);
@@ -336,21 +398,21 @@ function ($, calculator, BarChart, processData) {
 		try {
 	    	window.top.scrollIframeTo(0);
 	    }catch(err){
-	    	// 	console.log(err);
+	    	// Probably a XSS error
 	    }
 	}
 
 
 	return {
 		update: function (nextPage) {
-
+			/*
+				Determine which page is being shown next and update the content accordingly
+			*/
 			switch (nextPage) {
 				case 'select-team':
 					return updateSelectTeamContent();
 				case 'select-ticket':
 					return updateSelectTicketContent();
-				case 'ticket-price-page':
-					return ;//updateTicketPriceContent();
 				case 'food-price-page':
 					return updateFoodPriceContent();
 				case 'programmes-price-page':

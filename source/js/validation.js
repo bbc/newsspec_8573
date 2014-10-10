@@ -1,3 +1,8 @@
+/*
+	This module is responible for validating the users inputted values.
+
+	The validate method should be fired every time the user attempts to change page.
+*/
 define(['lib/news_special/bootstrap'], function (news) {
 
 	var latestError;
@@ -6,7 +11,9 @@ define(['lib/news_special/bootstrap'], function (news) {
 		validate: function (currentPage) {
 
 			latestError = '';
-
+			/*
+				Determine which page we're validating
+			*/
 			switch (currentPage) {
 				case 'select-team':
 					return validateSelectTeam();
@@ -24,7 +31,12 @@ define(['lib/news_special/bootstrap'], function (news) {
 					return true;
 			}
 
+			/*
+				Validate the select team page
+				@returns {boolean} true if pass, false otherwise
 
+				The error message can be retrieved using getLatestError();
+			*/
 			function validateSelectTeam() {
 				if ((!$('#user-team').data('team')) || ($('#user-team').val() !== $('#user-team').data('team').name)) {
 					latestError = 'You haven\'t selected a valid club';
@@ -33,6 +45,12 @@ define(['lib/news_special/bootstrap'], function (news) {
 				return true;
 			}
 
+			/*
+				Validate the select ticket page
+				@returns {boolean} true if pass, false otherwise
+
+				The error message can be retrieved using getLatestError();
+			*/
 			function validateSelectTicket() {
 				var checkedBox = $('input[name="user-ticket"]:checked').val();
 
@@ -66,6 +84,12 @@ define(['lib/news_special/bootstrap'], function (news) {
 				return true;				
 			}
 
+			/*
+				Validate the food page
+				@returns {boolean} true if pass, false otherwise
+
+				The error message can be retrieved using getLatestError();
+			*/
 			function validateFoodPrice() {
 				var foodPrice = $('#food-price').val();
 				if (!$.isNumeric(foodPrice) || foodPrice<0) {
@@ -75,6 +99,12 @@ define(['lib/news_special/bootstrap'], function (news) {
 				return true;
 			}
 
+			/*
+				Validate the programmes page
+				@returns {boolean} true if pass, false otherwise
+
+				The error message can be retrieved using getLatestError();
+			*/
 			function validateProgrammesPrice() {
 				var programmePrice = $('#programmes-count').val();
 				if (!$.isNumeric(programmePrice) || programmePrice<0 || (programmePrice % 1 !== 0)) {
@@ -84,6 +114,12 @@ define(['lib/news_special/bootstrap'], function (news) {
 				return true;
 			}
 
+			/*
+				Validate the kit page
+				@returns {boolean} true if pass, false otherwise
+
+				The error message can be retrieved using getLatestError();
+			*/
 			function validateKitPrice() {
 				var kitPrice = $('#adult-shirt-count').val();
 				if (!$.isNumeric(kitPrice) || kitPrice<0 || (kitPrice % 1 !== 0)) {
@@ -94,6 +130,12 @@ define(['lib/news_special/bootstrap'], function (news) {
 			}
 
 		},
+
+		/*
+			Get the error message that was last set.
+
+			The error message will be set when we find a problem.
+		*/
 		getError: function () {
 			return latestError;
 		}

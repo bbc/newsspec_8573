@@ -1,5 +1,5 @@
 <%= include('includes/top.tmpl') %>
-
+    <!-- LETS BREAK THE CACHE PLEASE -->
     <div class="main">
     	<div style="width: 100%; clear: both;">
     		<h2>Football Calculator</h2>
@@ -61,19 +61,19 @@
                     <label class="q-page--label q-page--label__sub-header" for="season-ticket-cost">
                         Cost of season ticket
                     </label><br/>
-                    £ <input id="season-ticket-cost" type="text" class="q-page--input" />
+                    £ <input id="season-ticket-cost" type="number" class="q-page--input" />
                 </div>
 
                 <div class="ticket-option ticket-option-individual" style="display:none;">
                     <label class="q-page--label q-page--label__sub-header" for="individual-ticket-cost">
                         Cost of tickets
                     </label><br/>
-                    £ <input id="individual-ticket-cost" type="text" class="q-page--input" /> <br/>
+                    £ <input id="individual-ticket-cost" type="number" class="q-page--input" /> <br/>
 
                     <label class="q-page--label q-page--label__sub-header" for="user-game-count">
                         How many games do you go to?
                     </label><br/>
-                    <input id="user-game-count" type="text" class="q-page--input" />
+                    <input id="user-game-count" type="number" class="q-page--input" />
                 </div>
     		</div>
 
@@ -81,7 +81,7 @@
                 <label class="q-page--label q-page--label__header" for="food-price">
                     Cost of food and drink per home game?
                 </label><br/>
-                £ <input id="food-price" type="text" class="q-page--input" />
+                £ <input id="food-price" type="number" class="q-page--input" />
             </div>            
 
 
@@ -89,7 +89,7 @@
     			<label class="q-page--label q-page--label__header" for="programmes-price">
     				How many many programmes do you buy per season?
     			</label><br/>
-    			<input id="programmes-count" type="text" class="q-page--input" />
+    			<input id="programmes-count" type="number" class="q-page--input" />
     		</div>
 
     		<div class="kit-price-page q-page">
@@ -97,7 +97,7 @@
     			<label class="q-page--label q-page--label__header" for="kit-price">
     				How many adults shirts do you buy?
     			</label><br/>
-    			<input id="adult-shirt-count" type="text" class="q-page--input" />
+    			<input id="adult-shirt-count" type="number" class="q-page--input" />
     		</div>
 
     		<div class="results-page">
@@ -106,7 +106,7 @@
                         Every season I spend <strong id="result-text-total">£</strong> following <span class="team-name--text">Team name</span>
                     </p>
 
-    	    		<div class="shareToolsHolder" data-share-text="This is share text one" id="totalShare"></div>
+    	    		<div class="shareToolsHolder" data-share-text="" id="totalShare"></div>
 
                     <div class="results-breakdown">
                         <div class="breakdown-row">
@@ -128,10 +128,10 @@
                     </div>
 
     	    		<p class="results-page--total">
-    	    			Based on last season's results, I paid <strong>£16 per home goal</strong>
+    	    			Based on last season's results, I paid <strong><span id="result-text-home-goal">X</span> per home goal</strong>
     	    		</p>
 
-                    <div class="shareToolsHolder" data-share-text="This is the second share text" id="myHomeGoalsShare"></div>
+                    <div class="shareToolsHolder" data-share-text="" id="myHomeGoalsShare"></div>
 
                 </div>
 
@@ -141,9 +141,7 @@
                 <hr class="goal-price-graph"/>
 
 	    		<h2 class="compare--chart-header">Comparative ticket costs</h2>
-                <p class="compare--text">
-                    The cheapest season ticket at are <span class="team-name--text__long"></span> <strong>10%</strong> cheaper than the average price for the premier league.
-                </p>
+                <p class="compare--text" id="compare-text--tickets"></p>
 	    		<div class="bar-chart" id="ticket-price-graph"></div>
     		</div>
 

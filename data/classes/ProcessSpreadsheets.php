@@ -153,7 +153,8 @@ class ProcessSpreadsheets{
     }
 
     function prettyUrl($url) {
-        $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $url);
+        $clean = trim($url);
+        $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
         $clean = strtolower(trim($clean, '-'));
         $clean = preg_replace("/[\/_|+ -]+/", '-', $clean);
         return $clean;
@@ -205,10 +206,14 @@ class ProcessSpreadsheets{
         $league->setPrettyName($this->prettyUrl($row[0]));
         $league->setHomeGames($row[1]);
         $league->setNeedThe($row[2]);
+        $league->setIsEuropean($row[3]);
 
         /* Calculate the averages */
         $averageKitCost = $this->calcAvgKitCostFor($league);
         $league->setAvgKitCost($averageKitCost);
+
+        $averageTicketCost = $this->calcAvgTicketCostFor($league);
+        $league->setAvgTicketCost($averageTicketCost);
 
         return $league;
     }
@@ -234,6 +239,28 @@ class ProcessSpreadsheets{
         return ($noTeamsWithKitPrice>0) ? ((double)$kitTotal/$noTeamsWithKitPrice) : null;
 
     }
+
+    /* Returns the average kit cost for a given league */
+    private function calcAvgTicketCostFor($league){
+        if($this->teamsObject==null){
+            throw new Exception("Team data needs to be parsed before calcualting avg ticket cost");
+        }
+
+        $leagueName = $league->getPrettyName();
+
+        $ticketTotal = 0;
+        $noTeams = 0; // Holds the number of teams that have kit data.
+
+        foreach($this->teamsObject as $team){
+            if( ($team->getPrettyLeague() == $leagueName) && ($team->getCheapSeason()) ){
+                $noTeams++;
+                $ticketTotal += $team->getCheapSeason();
+            }
+        }
+
+        return ($noTeams>0) ? ((double)$ticketTotal/$noTeams) : null;
+
+    }    
 
 
     /*

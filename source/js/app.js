@@ -10,7 +10,7 @@ define(['lib/news_special/bootstrap', 'lib/news_special/share_tools/controller',
                 storyPageUrl:  storyPageUrl,
                 header:       'Share this page',
                 message:      'Custom message',
-                hashtag:      'BBCNewsGraphics',
+                hashtag:      'BBCFootballCalculator',
                 template:     'dropdown'
             });
 

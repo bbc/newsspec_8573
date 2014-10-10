@@ -11,6 +11,11 @@ function ($, calculator, BarChart, processData) {
 	statsTexts['food'] = 'The cost of a tea and a pies at your club has gone {UP_DOWN} £{AMOUNT} since 2011';
 	statsTexts['programme'] = 'The cost of a programme at your club has gone {UP_DOWN} £{AMOUNT} since 2011';
 	statsTexts['kit'] = '{TEAM_NAME} kit costs £{AMOUNT} {UP_DOWN} than the average cost for {THE}{LEAGUE_NAME}.';
+	statsTexts['ticketCosts'] = 'The cheapest season ticket at {TEAM_NAME} are <strong>{AMOUNT}%</strong> {UP_DOWN} than the average price for {THE}{LEAGUE_NAME}.';
+
+	var shareText = [];
+	shareText['myTotal'] = 'Every season I spend £{AMOUNT} following {TEAM_NAME}';
+	shareText['myGoalCost'] = 'Based on last season\'s results I paid £{AMOUNT} per home goal following {TEAM_NAME}';
 
 	function getSelectedTeamName(){
 		var team = calculator.getTeam();
@@ -97,6 +102,8 @@ function ($, calculator, BarChart, processData) {
 
 	function updateSelectTeamContent() {
 		/* Hides crest and header */
+		$('.main').css('padding-bottom', '300px');
+
 		$('.team-crest').hide();
 		$('.team-header').hide();
 		$('.stats-fact--text').hide();
@@ -105,7 +112,7 @@ function ($, calculator, BarChart, processData) {
 	}
 
 	function updateSelectTicketContent() {
-
+		$('.main').css('padding-bottom', '18px');
 		/* Show team crest and header */
 		$('.team-crest').show();
 		$('.team-header').show();
@@ -228,16 +235,20 @@ function ($, calculator, BarChart, processData) {
 
 
         if(ppgChartData.length > 0){
-            var barChart2 = new BarChart(ppgChartData, true);
-            barChart2.draw($('#cost-of-goals-graph'));
+            var barChartTwo = new BarChart(ppgChartData, true);
+            barChartTwo.draw($('#cost-of-goals-graph'));
             $('.goal-price-graph').show();
         }else{
         	/* Hide chart because we have no data */
         	$('.goal-price-graph').hide();
         }
 
+        updateTicketPriceText();
+
 		if(calculator.shouldShowBreakDown()){
-			showBreakDownResults(calculator.getResultsBreakDown());
+			var breakdown = calculator.getResultsBreakDown();
+			showBreakDownResults(breakdown);
+			updateShareText(breakdown);
 		}else{
 			/* Show generic results */
 			$('.results-breakdown').hide();
@@ -246,12 +257,46 @@ function ($, calculator, BarChart, processData) {
 		}
 	}
 
+	function updateTicketPriceText() {
+		var userTeam = calculator.getTeam();
+		var userLeague = calculator.getLeague();
+
+		var diff = (userTeam['cheapSeason'] / userLeague['avgTicketCost'] * 100) - 100;
+		var upDownValue = (diff>=0) ? 'more' : 'less';
+		var amount = Math.abs(Math.round(diff));
+		var theText = (userLeague.needThe) ? 'the ' : '';
+
+		updateText = statsTexts['ticketCosts'];
+		updateText = updateText.replace('{AMOUNT}', Math.round(amount));
+		updateText = updateText.replace('{UP_DOWN}', upDownValue);
+		updateText = updateText.replace('{TEAM_NAME}', userTeam['name']);
+
+		if(userLeague.isEuropean){
+			updateText = updateText.replace('{THE}{LEAGUE_NAME}', 'the other teams in Europe');
+		}else{
+			updateText = updateText.replace('{THE}', theText);
+			updateText = updateText.replace('{LEAGUE_NAME}', userLeague['name']);
+		}
+
+		$('#compare-text--tickets').html(updateText);
+	}
+
 	function showBreakDownResults(resultsBreakdown){
 		$('#result-text-total').text('£' + resultsBreakdown.total.toFixed(2));
 		$('#result-text-tickets').text('£' + resultsBreakdown.tickets.toFixed(2));
 		$('#result-text-food').text('£' + resultsBreakdown.food.toFixed(2));
 		$('#result-text-programme').text('£' + resultsBreakdown.programmes.toFixed(2));
 		$('#result-text-kit').text('£' + resultsBreakdown.kit.toFixed(2));
+		$('#result-text-home-goal').text('£' + resultsBreakdown.homeGoal.toFixed(2));
+	}
+
+	function updateShareText(resultsBreakdown){
+		var teamName = calculator.getTeam().shortName;
+		var totalText = shareText['myTotal'].replace('{AMOUNT}', resultsBreakdown.total.toFixed(2)).replace('{TEAM_NAME}', teamName);
+		var homeGoalText = shareText['myGoalCost'].replace('{AMOUNT}', resultsBreakdown.homeGoal.toFixed(2)).replace('{TEAM_NAME}', teamName);
+		
+		$('#totalShare').data('shareText', totalText);
+		$('#myHomeGoalsShare').data('shareText', homeGoalText);
 	}
 
 	function updateTicketInputs(){
@@ -283,9 +328,16 @@ function ($, calculator, BarChart, processData) {
 		$('#programmes-count').val('');
 		$('#adult-shirt-count').val('');
 
+		$('.bar-chart').html('');
+
 		$('.pagination--button').show();
 		$('.pagination--button__restart').hide();
-
+		$('.pagination--button__previous').hide();
+		try {
+	    	window.top.scrollIframeTo(0);
+	    }catch(err){
+	    	// 	console.log(err);
+	    }
 	}
 
 

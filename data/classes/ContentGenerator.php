@@ -39,7 +39,7 @@ class ContentGenerator{
     public function generateAll(){
         $this->generateTeamJson();
         $this->generateLeagueJson();
-        $this->generateDropDownHtml();
+        //$this->generateDropDownHtml();
     }
 
     /*
@@ -78,6 +78,8 @@ class ContentGenerator{
 
 
     /*
+        NO LONGER USED AS WE REMOVED THE DROP DOWN FOR AN AUTO SUGGEST FORM
+
         Generates the HTML for the team drop down list
     */
     public function generateDropDownHtml(){

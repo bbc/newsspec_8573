@@ -7,17 +7,7 @@ define([
 
 		/* Wether to show a breakdown of results or just a generic result */
 		shouldShowBreakDown: function () {
-			return true;/*
-			var noTickets = ($('input[name="user-ticket"]:checked').val()==='none');
-			var noKit = ($('input[name="buys-kit"]:checked').val()==='no');
-
-			var resultsBreakdown = this.getResultsBreakDown();
-
-			if((noTickets && noKit) || resultsBreakdown.total <= 0){
-				return false;
-			}
-			console.log('Will show breakdown');
-			return true;*/
+			return true;
 		},
 
 		getResultsBreakDown: function () {
@@ -33,6 +23,7 @@ define([
 			resultsBreakDown.programmes = getProgrammeCost();
 			resultsBreakDown.kit = getKitCost();
 			resultsBreakDown.total = getTotal();
+			resultsBreakDown.homeGoal = (league.homeGames > 0) ? (getTotal() / league.homeGames) : 0 ;
 
 			/* Returns true or false if the user only buys kit and nothing else */
 			function isJustKit() {

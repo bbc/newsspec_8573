@@ -7,7 +7,9 @@ class League{
     public $name;
     public $homeGames;
     public $needThe;
+    public $isEuropean;
     public $avgKitCost;
+    public $avgTicketCost;
 
     /* Hidden values */
     private $prettyName;
@@ -51,5 +53,21 @@ class League{
 
     public function setAvgKitCost($avgKitCost){
         $this->avgKitCost = $avgKitCost;
+    }
+
+    public function getAvgTicketCost(){
+        return $this->avgTicketCost;
+    }
+
+    public function setAvgTicketCost($avgTicketCost){
+        $this->avgTicketCost = $avgTicketCost;
+    }
+
+    public function getIsEuropean(){
+        return $this->isEuropean;
+    }
+
+    public function setIsEuropean($isEuropean){
+        $this->isEuropean = ($isEuropean=="1");
     }
 } 

@@ -315,8 +315,16 @@
             if (that.options.width === 'auto') {
                 styles.width = (that.el.outerWidth() - 2) + 'px';
             }
-
-            $('.main').css('padding-bottom', ($container.height()+18) + 'px');
+            if($(window.top).height()<580){
+                try {
+                    window.top.scrollIframeTo($('#user-team').get(0).offsetTop-40);
+                }catch(err){
+                    console.log(err);
+                }
+            }else{
+                console.log($(window.top).height());
+            }
+            //$('.main').css('padding-bottom', ($container.height()+18) + 'px');
 
             $container.css(styles);
         },
@@ -604,7 +612,7 @@
             that.selectedIndex = -1;
             clearInterval(that.onChangeInterval);
             $(that.suggestionsContainer).hide();
-            $('.main').css('padding-bottom', '18px');
+            //$('.main').css('padding-bottom', '18px');
             that.signalHint(null);
         },
 

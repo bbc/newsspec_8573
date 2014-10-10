@@ -14,13 +14,14 @@ define([
 		switchToPage(currentPage); //Show the first page.
 		contentManager.update(currentPage);
 		initClubSearch();
+
 		/*
 			Called when the next button is pressed.
 
 			Will validate the page, then show the next page, adding the old page to 
 			the previous page stack
 		*/
-		$('.pagination--button__next').on('click', function () {
+		function goNext (){
 			if (validator.validate(currentPage) === true) {
 
 				var nextPage = getNextPage();
@@ -37,7 +38,11 @@ define([
 			} else {
 				alert(validator.getError());
 			}
-		});
+		}
+
+
+
+		$('.pagination--button__next').on('click', goNext);
 
 		/*
 			Returns user to the previous page
@@ -53,6 +58,29 @@ define([
 
 			if (previousStack.length <= 0) {
 				$('.pagination--button__previous').hide();
+			}
+		});
+
+		$('input').not('#user-team').on('keypress', function (e){
+		    var currentInputElement = $(e.target);
+		    var keyCode = (e.keyCode ? e.keyCode : e.which);
+
+		    if(keyCode == 13 || keyCode == 10){
+		        console.log("handleFormKeypress - Go pressed")
+
+		        //this needs to be checks as passing in the 'submitButton' is optional
+		        if (e.data != undefined) 
+		        {
+		            if (e.data.handler != undefined) 
+		            {
+		                e.data.handler();
+		            }
+		        }
+
+		        goNext();
+		    	currentInputElement.blur();
+		    	e.stopImmediatePropagation();
+		    	return false;
 			}
 		});
 

@@ -315,14 +315,16 @@
             if (that.options.width === 'auto') {
                 styles.width = (that.el.outerWidth() - 2) + 'px';
             }
-            if($(window.top).height()<580){
-                try {
-                    window.top.scrollIframeTo($('#user-team').get(0).offsetTop-40);
-                }catch(err){
-                    console.log(err);
+            try {
+                if($(window.top).height()<580){
+                    
+                        window.top.scrollIframeTo($('#user-team').get(0).offsetTop-40);
+       
+                }else{
+                    console.log($(window.top).height());
                 }
-            }else{
-                console.log($(window.top).height());
+            }catch(err){
+                //Probably access-orign error
             }
             //$('.main').css('padding-bottom', ($container.height()+18) + 'px');
 

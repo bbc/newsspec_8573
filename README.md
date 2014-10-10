@@ -2,6 +2,32 @@
 
 Calcualtor for the price of supporting your football club
 
+## Updating the data
+The data can easily be updated by following these steps.
+
+* Update the data files (**/data/teams.xls, /data/leagues.xls**) to contain the correct data.
+* Move into the data folder
+
+```
+cd data/
+```
+* Run the PHP generator
+
+```
+php generate.php
+```
+* Move back to the root of the project
+
+```
+cd ../
+```
+
+* Update the project data files using grunt
+
+```
+grunt updateData
+```
+
 ## Getting started
 
 Set up the project

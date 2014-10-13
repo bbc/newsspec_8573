@@ -154,5 +154,13 @@ define([
 			});
 		}
 
+		$('#myHomeGoalsShare').on('click', function (){
+			news.pubsub.emit('istats', ['share-clicked', 'newsspec-interaction', 'price-per-goal']);
+		});
+
+		$('#totalShare').on('click', function (){
+			news.pubsub.emit('istats', ['share-clicked', 'newsspec-interaction', 'total-spend']);
+		});
+
 	};
 });

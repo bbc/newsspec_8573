@@ -2,8 +2,11 @@
 	This module updates the content on the page when the user navigates through the app
 */
 
-define(['jquery', 'calculator', 'bar_chart', 'process_data'], 
-function ($, calculator, BarChart, processData) {
+define(['lib/news_special/bootstrap', 'calculator', 'bar_chart', 'process_data'], 
+function (news, calculator, BarChart, processData) {
+
+	/* Set $ to jQuery */
+	$ = news.$;
 
 	/* The stats text, displayed on each page, as a fact under the inputs */
 	var statsTexts = [];
@@ -137,6 +140,8 @@ function ($, calculator, BarChart, processData) {
 		Updates the content of the select ticket page.
 	*/
 	function updateSelectTicketContent() {
+		news.pubsub.emit('istats', ['page-opened', 'newsspec-interaction', 'tickets']);
+
 		$('.main').css('padding-bottom', '18px');
 
 		/* Update team crest. */
@@ -161,6 +166,8 @@ function ($, calculator, BarChart, processData) {
 		Updates the content of the food page.
 	*/
 	function updateFoodPriceContent(){
+		news.pubsub.emit('istats', ['page-opened', 'newsspec-interaction', 'food']);
+
 		var userTeam = calculator.getTeam();
 		updateBreadcrums('nav-item__food');
 
@@ -182,6 +189,8 @@ function ($, calculator, BarChart, processData) {
 		Updates the content of the programmes page.
 	*/
 	function updateProgrammesPriceContent(){
+		news.pubsub.emit('istats', ['page-opened', 'newsspec-interaction', 'programme']);
+
 		var userTeam = calculator.getTeam();
 		updateBreadcrums('nav-item__programmes');
 
@@ -201,6 +210,8 @@ function ($, calculator, BarChart, processData) {
 		Updates the content of the kit page.
 	*/
 	function updateKitPriceContent(){
+		news.pubsub.emit('istats', ['page-opened', 'newsspec-interaction', 'kit']);
+
 		var userTeam = calculator.getTeam();
 		var userLeague = calculator.getLeague();
 
@@ -235,6 +246,9 @@ function ($, calculator, BarChart, processData) {
 		dislays the results in the breakdown element and displays the graphs
 	*/
 	function updateResultsPageContent(){
+		news.pubsub.emit('istats', ['page-opened', 'newsspec-interaction', 'results-page']);
+
+
 		/* HIDE UNNEEDED THINGS */
 		$('.pagination--button').hide();
 		$('.stats-fact--text').hide();
@@ -383,11 +397,13 @@ function ($, calculator, BarChart, processData) {
 		they ran the calcualtor.
 	*/
 	function resetAllElms(){
-		$('#user-team').val('');
-		$('#user-team').data('team', null);
+		news.pubsub.emit('istats', ['start-again-clicked', 'newsspec-interaction', true]);
 
 		$('#ticket_season').prop('checked', true);
 		updateTicketInputs();
+
+		$('#user-team').val('');
+		$('#user-team').data('team', null);
 
 		$('#season-ticket-cost').val('');
 		$('#individual-ticket-cost').val('');

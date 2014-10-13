@@ -1,4 +1,7 @@
 <%= include('includes/top.tmpl') %>
+    <script>
+        var staticDomainPath = '<%= pathStatic %>/<%= vocab_dir %>';
+    </script>
     <!-- LETS BREAK THE CACHE PLEASE -->
     <div class="main">
     	<div style="width: 100%; clear: both;">
@@ -34,7 +37,7 @@
 		</ul>
     	<img class="main--branding" src="<%= pathStatic %>/<%= vocab_dir %>/img/branding-image.png" alt="Branding image" />
     	<div class="wrapper">
-    		<img class="team-crest" src="<%= pathStatic %>/<%= vocab_dir %>/img/west-brom.png" alt="West Bromich Albion crest" />
+    		<div class="team-crest" title="Team crest"></div>
 	    	<h2 class="team-header team-name--text__long">Team name</h2>
 
     		<div class="select-team q-page">

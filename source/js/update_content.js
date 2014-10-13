@@ -138,8 +138,14 @@ function ($, calculator, BarChart, processData) {
 	*/
 	function updateSelectTicketContent() {
 		$('.main').css('padding-bottom', '18px');
+
+		/* Update team crest. */
+		var teamName = calculator.getTeam().prettyName;
+		var imagePage = staticDomainPath + '/img/crests/' + teamName + '.png';
+		$('.team-crest').css('background-image','url(' + imagePage + ')');
+
 		/* Show team crest and header */
-		$('.team-crest').show();
+		$('.team-crest').css('display', 'inline');
 		$('.team-header').show();
 
 		updateBreadcrums('nav-item__tickets');

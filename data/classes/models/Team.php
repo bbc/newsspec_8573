@@ -6,6 +6,7 @@
 class Team{
 
     public $name;
+    public $prettyName;
     public $shortName;
     public $league;
     public $prettyLeague;
@@ -30,7 +31,6 @@ class Team{
     private $juniorShirt;
     private $dayOut;
     private $homeGoals2013;
-    private $prettyName;
 
 
     public function getName(){

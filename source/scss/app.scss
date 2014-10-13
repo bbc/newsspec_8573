@@ -21,7 +21,10 @@ body{
 	display: none;
 	padding-left: 8px;
 	background-color: #FFF;
-	width: 108px;
+	background-repeat:no-repeat;
+    background-size:108px 108px;
+    background-position: 8px 0;
+	width: 116px;
 	height: 108px;
 }
 

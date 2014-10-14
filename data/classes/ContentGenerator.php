@@ -17,8 +17,7 @@ class ContentGenerator{
 
     public function __construct($teamList, $leagueList) {
         $this->io = new IO();
-        $this->teamList = $teamList;
-        $this->teamArray = (array) $this->teamList;
+        $this->teamArray = (array) $teamList;
         /* Sort alphabetically */
         usort($this->teamArray, "ContentGenerator::compareTeams");
 
@@ -37,9 +36,21 @@ class ContentGenerator{
         directory
     */
     public function generateAll(){
+        $this->orderTeamsByLeague();
         $this->generateTeamJson();
         $this->generateLeagueJson();
         //$this->generateDropDownHtml();
+    }
+
+    private function orderTeamsByLeague() {
+        $this->teamList = new stdClass;
+        foreach($this->leagueList as $league){
+            foreach($this->teamArray as $team){
+                if($league->getPrettyName()===$team->getPrettyLeague()){
+                    $this->teamList->{$team->getPrettyName()} = $team;
+                }
+            }
+        }
     }
 
     /*
@@ -76,38 +87,6 @@ class ContentGenerator{
         
     }
 
-
-    /*
-        NO LONGER USED AS WE REMOVED THE DROP DOWN FOR AN AUTO SUGGEST FORM
-
-        Generates the HTML for the team drop down list
-    */
-    public function generateDropDownHtml(){
-        $savePath = ContentGenerator::$GENERATED_FOLDER.ContentGenerator::$DROP_DOWN_HTML;
-
-        /* Delete the old preview file if it exists */
-        if(file_exists($savePath)){
-            unlink($savePath);
-        }
-
-        foreach($this->leagueList as $league){
-            $dropDownHtml .= "<optgroup label=\"" . $league->getName() . "\">\n";
-
-            foreach($this->teamArray as $team){
-                if($team->getPrettyLeague() == $league->getPrettyName()){
-                    $dropDownHtml .= "\t<option value=\"" . $team->getPrettyName() . "\">" . $team->getName() . "</option>\n";
-                }
-            }
-
-            $dropDownHtml .= "</optgroup>\n";
-
-        }
-
-
-        /* Write the file */
-        $this->io->write($savePath, $dropDownHtml);
-        
-    }
 
         /* 
        This is a usort function to compate two teams (for sorting alphabetically) 

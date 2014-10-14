@@ -74,13 +74,11 @@
 	clear: both;
 
 	.pagination--error{
+		margin-top: 23px;
 		display: none;
-		background-color: #007F7F;
-		font: bold 16px Arial;
-		color: #FFF;
-		float: right;
-		margin: 15px 8px 0 0;
-		padding: 6px 10px;
+		font: 16px Arial;
+		color: red;
+		float: left;
 	}
 
 	.pagination--button{

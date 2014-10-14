@@ -369,6 +369,7 @@ function (news, calculator, BarChart, processData) {
 
 		var userTeam = calculator.getTeam();
 		var updateText = null;
+		$('.pagination--error').hide();
 
 		switch ($('input[name="user-ticket"]:checked').val()){
 			case 'season':

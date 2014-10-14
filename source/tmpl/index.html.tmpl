@@ -2,13 +2,7 @@
     <script>
         var staticDomainPath = '<%= pathStatic %>/<%= vocab_dir %>';
     </script>
-    <!-- LETS BREAK THE CACHE PLEASE -->
     <div class="main">
-    	<div style="width: 100%; clear: both;">
-    		<h2>Football Calculator</h2>
-	    	<p>How much do you spend following your team. Try our calculator to work out your costs, then share your results with your friends.</p>
-	    	<p>It found average ticket prices across English football's top four divisions have fallen by up to 2.4%</p>
-    	</div>
 		<ul class="nav">
 			<li class="nav-item nav-item__team">
 				<div class="nav-item--icon"></div>
@@ -131,23 +125,27 @@
                     </div>
                 </div>
 
-                <h2 class="compare--chart-header goal-price-graph">Based on last season's results and prices, a home goal cost about <strong><span id="result-text-home-goal">X</span></strong> at <span class="team-name--text"></span> in 2013-14.</h2>
-                <div class="bar-chart goal-price-graph" id="cost-of-goals-graph"></div>
-                <p class="compare--text goal-price-graph">Based on cheapest season ticket cost last season and home goals scored</p>
-                <hr class="goal-price-graph"/>
-
 	    		<h2 class="compare--chart-header">Comparative ticket costs</h2>
                 <p class="compare--text" id="compare-text--tickets"></p>
 	    		<div class="bar-chart" id="ticket-price-graph"></div>
+                
+                <hr class="goal-price-graph"/>
+                <h2 class="compare--chart-header goal-price-graph">&ldquo;Price of a goal&rdquo;</h2>
+                <p class="compare--text goal-price-graph">
+                    Based on last season's results and prices, a home goal cost about <strong><span id="result-text-home-goal">X</span></strong> at <span class="team-name--text"></span> in 2013-14.
+                </p>
+                <div class="bar-chart goal-price-graph" id="cost-of-goals-graph"></div>
+                <p class="compare--text goal-price-graph">Based on cheapest season ticket cost last season and home goals scored</p>
+
     		</div>
 
             <p class="stats-fact--text"></p>
 
     		<div class="pagination">
+                <div class="pagination--error">Please enter a club name</div>
                 <a class="pagination--button pagination--button__restart">Start Again</a>
     			<a class="pagination--button pagination--button__next">Next</a>
     			<a class="pagination--button pagination--button__previous"/>Previous</a>
-                <div class="pagination--error">Please enter a club name</div>
     		</div>
 	    </div>
         <hr/>

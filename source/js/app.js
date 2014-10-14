@@ -7,7 +7,7 @@ define(['lib/news_special/bootstrap', 'lib/news_special/share_tools/controller',
                 storyPageUrl:  storyPageUrl,
                 header:       'Share this page',
                 message:      'Calculate the price you pay supporting your team',
-                hashtag:      'BBCpriceoffootball',
+                hashtag:      'PriceofFootball',
                 template:     'dropdown'
             });
 

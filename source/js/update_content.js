@@ -10,10 +10,10 @@ function (news, calculator, BarChart, processData) {
 
 	/* The stats text, displayed on each page, as a fact under the inputs */
 	var statsTexts = [];
-	statsTexts['seasonTicket'] = 'At £{AMOUNT}, the cost of the cheapest season ticket at {TEAM_NAME} has {DIFF} since 2013';
-	statsTexts['individualTicket'] = 'At £{AMOUNT}, the cost of the cheapest match-day ticket at {TEAM_NAME} has {DIFF} since 2011';
-	statsTexts['food'] = 'At £{AMOUNT}, the cost of a pie at {TEAM_NAME} has {DIFF} since 2011';
-	statsTexts['programme'] = 'At £{AMOUNT}, the cost of a programme at {TEAM_NAME} has {DIFF} since 2011';
+	statsTexts['seasonTicket'] = 'At £{AMOUNT}, the cost of the cheapest season ticket at {TEAM_NAME} has {DIFF} since 2013.';
+	statsTexts['individualTicket'] = 'At £{AMOUNT}, the cost of the cheapest match-day ticket at {TEAM_NAME} has {DIFF} since 2011.';
+	statsTexts['food'] = 'At £{AMOUNT}, the cost of a pie at {TEAM_NAME} has {DIFF} since 2011.';
+	statsTexts['programme'] = 'At £{AMOUNT}, the cost of a programme at {TEAM_NAME} has {DIFF} since 2011.';
 	statsTexts['kit'] = 'At £{AMOUNT}, the cost of a {TEAM_NAME} shirt is {DIFF} the average cost of £{AVG_COST} in {THE}{LEAGUE_NAME}.';
 	statsTexts['ticketCosts'] = 'The cheapest season ticket at {TEAM_NAME} is <strong>{AMOUNT}%</strong> {UP_DOWN} than the average comparable cost for {THE}{LEAGUE_NAME} of £{AVG_AMOUNT}.';
 
@@ -343,12 +343,14 @@ function (news, calculator, BarChart, processData) {
 		Shows the breakdown of results.
 	*/
 	function showBreakDownResults(resultsBreakdown){
+		var userTeam = calculator.getTeam();
+
 		$('#result-text-total').text('£' + resultsBreakdown.total.toFixed(2));
 		$('#result-text-tickets').text('£' + resultsBreakdown.tickets.toFixed(2));
 		$('#result-text-food').text('£' + resultsBreakdown.food.toFixed(2));
 		$('#result-text-programme').text('£' + resultsBreakdown.programmes.toFixed(2));
 		$('#result-text-kit').text('£' + resultsBreakdown.kit.toFixed(2));
-		$('#result-text-home-goal').text('£' + resultsBreakdown.homeGoal.toFixed(2));
+		$('#result-text-home-goal').text('£' + parseFloat(userTeam.goalCost).toFixed(2));
 	}
 
 	/*

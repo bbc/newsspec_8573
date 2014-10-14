@@ -73,6 +73,16 @@
 	overflow: hidden;
 	clear: both;
 
+	.pagination--error{
+		display: none;
+		background-color: #007F7F;
+		font: bold 16px Arial;
+		color: #FFF;
+		float: right;
+		margin: 15px 8px 0 0;
+		padding: 6px 10px;
+	}
+
 	.pagination--button{
 		padding: 9px 10px 0 10px;
 		margin: 10px 0 0 8px;

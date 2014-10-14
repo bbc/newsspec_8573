@@ -2,15 +2,12 @@ define(['lib/news_special/bootstrap', 'lib/news_special/share_tools/controller',
 
     return {
         init: function (storyPageUrl) {
-
-            news.pubsub.emit('istats', ['app-initiated', 'newsspec-nonuser', true]);
-
             
             shareTools.init('.shareToolsHolder', {
                 storyPageUrl:  storyPageUrl,
                 header:       'Share this page',
                 message:      'Calculate the price you pay supporting your team',
-                hashtag:      'BBCFootballCalculator',
+                hashtag:      'BBCpriceoffootball',
                 template:     'dropdown'
             });
 

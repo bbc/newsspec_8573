@@ -22,11 +22,14 @@ define([
 			the previous page stack
 		*/
 		function goNext (){
+			var errorBox = $('.pagination--error');
 			if (validator.validate(currentPage) === true) {
 
 				var nextPage = getNextPage();
 				previousStack.push(currentPage); /* Push old page to stack */
 				
+				errorBox.hide();
+
 				switchToPage(nextPage);
 
 				contentManager.update(nextPage);
@@ -36,7 +39,11 @@ define([
 				}
 
 			} else {
-				alert(validator.getError());
+				
+				errorBox.fadeOut('100', function(){
+					errorBox.text(validator.getError());
+					errorBox.fadeIn('100');						
+				});
 			}
 		}
 

@@ -10,17 +10,16 @@ function (news, calculator, BarChart, processData) {
 
 	/* The stats text, displayed on each page, as a fact under the inputs */
 	var statsTexts = [];
-	statsTexts['seasonTicket'] = 'The cost of the cheapest season ticket at your club has gone {UP_DOWN} £{AMOUNT} since 2013';
-	statsTexts['individualTicket'] = 'The cost of the cheapest matchday ticket at your club has gone {UP_DOWN} £{AMOUNT} since 2011';
-	statsTexts['food'] = 'The cost of a tea and a pies at your club has gone {UP_DOWN} £{AMOUNT} since 2011';
-	statsTexts['programme'] = 'The cost of a programme at your club has gone {UP_DOWN} £{AMOUNT} since 2011';
-	statsTexts['kit'] = '{TEAM_NAME} kit costs £{AMOUNT} {UP_DOWN} than the average cost for {THE}{LEAGUE_NAME}.';
-	statsTexts['ticketCosts'] = 'The cheapest season ticket at {TEAM_NAME} are <strong>{AMOUNT}%</strong> {UP_DOWN} than the average price for {THE}{LEAGUE_NAME}.';
+	statsTexts['seasonTicket'] = 'At £{AMOUNT}, the cost of the cheapest season ticket at {TEAM_NAME} has {DIFF} since 2013';
+	statsTexts['individualTicket'] = 'At £{AMOUNT}, the cost of the cheapest match-day ticket at {TEAM_NAME} has {DIFF} since 2011';
+	statsTexts['food'] = 'At £{AMOUNT}, the cost of a pie at {TEAM_NAME} has {DIFF} since 2011';
+	statsTexts['programme'] = 'At £{AMOUNT}, the cost of a programme at {TEAM_NAME} has {DIFF} since 2011';
+	statsTexts['kit'] = 'At £{AMOUNT}, the cost of a {TEAM_NAME} shirt is {DIFF} the average cost of £{AVG_COST} in {THE}{LEAGUE_NAME}.';
+	statsTexts['ticketCosts'] = 'The cheapest season ticket at {TEAM_NAME} is <strong>{AMOUNT}%</strong> {UP_DOWN} than the average comparable cost for {THE}{LEAGUE_NAME} of £{AVG_AMOUNT}.';
 
 	/* The text used on the share buttons */
 	var shareText = [];
-	shareText['myTotal'] = 'Every season I spend £{AMOUNT} following {TEAM_NAME}';
-	shareText['myGoalCost'] = 'Based on last season\'s results I paid £{AMOUNT} per home goal following {TEAM_NAME}';
+	shareText['myTotal'] = 'This season I will spend £{AMOUNT} following {TEAM_NAME}';
 
 	/*	
 		Returns the short name of the users team
@@ -86,18 +85,27 @@ function (news, calculator, BarChart, processData) {
 	*/
 	function makeStatText(text, currentValue, oldValue, pence){
 
+		var userTeam = calculator.getTeam();
+
 		/* If data is missing return null */
 		if(currentValue==null || oldValue==null){
 			return null;
 		}
 
 		var diff = currentValue - oldValue;
+		var diffAamount = (pence) ? Math.abs(diff).toFixed(2) :  Math.round(Math.abs(diff));
 
-		var upDownValue = (diff>=0) ? 'up' : 'down';
-		var amount = (pence) ? Math.abs(diff).toFixed(2) :  Math.round(Math.abs(diff));
+		var amount = (pence) ? Math.abs(currentValue).toFixed(2) :  Math.round(Math.abs(currentValue));
+
+
+		var diffText = (diff>=0) ? 'gone up £{DIFF_AMOUNT}' : 'gone down £{DIFF_AMOUNT}';
+		diffText = (diff===0) ? 'not changed' : diffText;
+		diffText = diffText.replace('{DIFF_AMOUNT}', diffAamount);
+
 
 		text = text.replace('{AMOUNT}', amount);
-		text = text.replace('{UP_DOWN}', upDownValue);
+		text = text.replace('{DIFF}', diffText);
+		text = text.replace('{TEAM_NAME}', userTeam.shortName);
 
 		return text;
 
@@ -171,11 +179,7 @@ function (news, calculator, BarChart, processData) {
 		var userTeam = calculator.getTeam();
 		updateBreadcrums('nav-item__food');
 
-
-		var currentFood = (userTeam['pie']==null||userTeam['tea']==null) ? null : (parseFloat(userTeam['pie']) + parseFloat(userTeam['tea']));
-		var oldFood = (userTeam['pie2011']==null||userTeam['tea2011']==null) ? null : (parseFloat(userTeam['pie2011']) + parseFloat(userTeam['tea2011']));
-
-		var updateText = makeStatText(statsTexts['food'], currentFood, oldFood, true);
+		var updateText = makeStatText(statsTexts['food'], userTeam['pie'], userTeam['pie2011'], true);
 
 		if(updateText!=null){
 			$('.stats-fact--text').text(updateText);
@@ -219,16 +223,23 @@ function (news, calculator, BarChart, processData) {
 
 		if(userTeam['adultShirt'] !== null && userLeague['avgKitCost'] !== null){
 			var diff = userTeam['adultShirt'] - userLeague['avgKitCost'];
+			var diffAamount = Math.abs(diff).toFixed(2);
 
-			var upDownValue = (diff>=0) ? 'more' : 'less';
-			var amount = Math.abs(Math.round(diff));
+			var diffText = (diff>=0) ? '£{DIFF_AMOUNT} more than' : '£{DIFF_AMOUNT} less than';
+			diffText = (diff===0) ? 'the same as' : diffText;
+			diffText = diffText.replace('{DIFF_AMOUNT}', diffAamount);
+
+
+			var kitCost = Math.abs(userTeam['adultShirt']).toFixed(2);
+			var avgKitCost = Math.abs(userLeague['avgKitCost']).toFixed(2);
 			var theText = (userLeague.needThe) ? 'the ' : '';
 
 			updateText = statsTexts['kit'];
-			updateText = updateText.replace('{AMOUNT}', amount);
-			updateText = updateText.replace('{UP_DOWN}', upDownValue);
-			updateText = updateText.replace('{THE}', theText);
+			updateText = updateText.replace('{AMOUNT}', kitCost);
+			updateText = updateText.replace('{AVG_COST}', avgKitCost);
+			updateText = updateText.replace('{DIFF}', diffText);
 			updateText = updateText.replace('{TEAM_NAME}', userTeam['name']);
+			updateText = updateText.replace('{THE}', theText);
 			updateText = updateText.replace('{LEAGUE_NAME}', userLeague['name']);
 
 			$('.stats-fact--text').text(updateText);
@@ -304,7 +315,10 @@ function (news, calculator, BarChart, processData) {
 		var userTeam = calculator.getTeam();
 		var userLeague = calculator.getLeague();
 
-		var diff = (userTeam['cheapSeason'] / userLeague['avgTicketCost'] * 100) - 100;
+		var leagueAvg = (!userLeague.isEuropean) ? userLeague['avgTicketCost'] : processData.getEuopeanAvg();
+		var avgText = Math.round(leagueAvg);
+
+		var diff = (userTeam['cheapSeason'] / leagueAvg * 100) - 100;
 		var upDownValue = (diff>=0) ? 'more' : 'less';
 		var amount = Math.abs(Math.round(diff));
 		var theText = (userLeague.needThe) ? 'the ' : '';
@@ -313,6 +327,7 @@ function (news, calculator, BarChart, processData) {
 		updateText = updateText.replace('{AMOUNT}', Math.round(amount));
 		updateText = updateText.replace('{UP_DOWN}', upDownValue);
 		updateText = updateText.replace('{TEAM_NAME}', userTeam['name']);
+		updateText = updateText.replace('{AVG_AMOUNT}', avgText);
 
 		if(userLeague.isEuropean){
 			updateText = updateText.replace('{THE}{LEAGUE_NAME}', 'the other teams in Europe');
@@ -342,10 +357,8 @@ function (news, calculator, BarChart, processData) {
 	function updateShareText(resultsBreakdown){
 		var teamName = calculator.getTeam().shortName;
 		var totalText = shareText['myTotal'].replace('{AMOUNT}', resultsBreakdown.total.toFixed(2)).replace('{TEAM_NAME}', teamName);
-		var homeGoalText = shareText['myGoalCost'].replace('{AMOUNT}', resultsBreakdown.homeGoal.toFixed(2)).replace('{TEAM_NAME}', teamName);
 		
 		$('#totalShare').data('shareText', totalText);
-		$('#myHomeGoalsShare').data('shareText', homeGoalText);
 	}
 
 	/*
@@ -355,7 +368,7 @@ function (news, calculator, BarChart, processData) {
 	function updateTicketInputs(){
 
 		var userTeam = calculator.getTeam();
-		var updateText = '';
+		var updateText = null;
 
 		switch ($('input[name="user-ticket"]:checked').val()){
 			case 'season':
@@ -368,7 +381,7 @@ function (news, calculator, BarChart, processData) {
 				break;
 		}
 
-		if(updateText!==''){
+		if(updateText!==null){
 			$('.stats-fact--text').text(updateText);
 			$('.stats-fact--text').show();
 		}else{

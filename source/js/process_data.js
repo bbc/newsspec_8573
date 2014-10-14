@@ -22,6 +22,18 @@ define([
 		return returnArray;
 	};
 
+
+	var getEuopeanAvg = function () {
+		var count = 0;
+		var total = 0;
+		var teams = getTeamsInEurope();
+		$.each(teams, function(key, team){
+			count++;
+			total += team.cheapSeason;
+		});
+		return total/count;
+	};
+
 	/*
 		Returns an array of all the European teams
 	*/
@@ -151,6 +163,7 @@ define([
 	return {
 		getPPGChartData: getPPGChartData,
 		getTicketPriceChartData: getTicketPriceChartData,
-		getTeamSearchData: getTeamSearchData
+		getTeamSearchData: getTeamSearchData,
+		getEuopeanAvg: getEuopeanAvg
 	};
 });

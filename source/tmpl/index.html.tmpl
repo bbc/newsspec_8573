@@ -29,14 +29,21 @@
 				<div class="nav-item--text">Results</div>
 			</li>
 		</ul>
-    	<img class="main--branding" src="<%= pathStatic %>/<%= vocab_dir %>/img/branding-image.png" alt="Branding image" />
+    	<img class="main--branding" src="<%= pathStatic %>/<%= vocab_dir %>/img/branding.png" alt="Branding image" />
     	<div class="wrapper">
     		<div class="team-crest" title="Team crest"></div>
 	    	<h2 class="team-header team-name--text__long">Team name</h2>
 
     		<div class="select-team q-page">
-    			<label class="q-page--label" for="user-team"> Choose your club: </label>
+    			<label class="q-page--label q-page--label__header" for="user-team"> Choose your club: </label>
     			<input id="user-team" placeholder="Start typing club name" type="text" class="q-page--input q-page--input__100" />
+                
+                <p class="select-team--calc-info select-team--calc-info__top">
+                    The calculator works best if you enter realistic figures.
+                </p>
+                <p class="select-team--calc-info">
+                    You can also see who got best value for money last season, as we worked out who paid most and who paid least per home goal.
+                </p>
     		</div>
 
     		<div class="select-ticket q-page">
@@ -58,19 +65,19 @@
                     <label class="q-page--label q-page--label__sub-header" for="season-ticket-cost">
                         Cost of season ticket
                     </label><br/>
-                    £ <input id="season-ticket-cost" type="number" class="q-page--input" />
+                    £ <input id="season-ticket-cost" min="0" type="number" class="q-page--input" />
                 </div>
 
                 <div class="ticket-option ticket-option-individual" style="display:none;">
                     <label class="q-page--label q-page--label__sub-header" for="individual-ticket-cost">
                         Cost of tickets
                     </label><br/>
-                    £ <input id="individual-ticket-cost" type="number" class="q-page--input" /> <br/>
+                    £ <input id="individual-ticket-cost" min="0" type="number" class="q-page--input" /> <br/>
 
                     <label class="q-page--label q-page--label__sub-header" for="user-game-count">
                         How many games do you go to?
                     </label><br/>
-                    <input id="user-game-count" type="number" class="q-page--input" />
+                    <input id="user-game-count" min="1" type="number" class="q-page--input" />
                 </div>
     		</div>
 
@@ -78,7 +85,7 @@
                 <label class="q-page--label q-page--label__header" for="food-price">
                     How much do you spend on food and drink per home game?
                 </label><br/><br/>
-                £ <input id="food-price" value="0" type="number" class="q-page--input" />
+                £ <input id="food-price" value="0" min="0" type="number" class="q-page--input" />
             </div>            
 
 
@@ -86,7 +93,7 @@
     			<label class="q-page--label q-page--label__header" for="programmes-price">
     				How many programmes do you buy per season?
     			</label><br/><br/>
-    			<input id="programmes-count" value="0" type="number" class="q-page--input" />
+    			<input id="programmes-count" value="0" min="0" type="number" class="q-page--input" />
     		</div>
 
     		<div class="kit-price-page q-page">
@@ -94,16 +101,16 @@
     			<label class="q-page--label q-page--label__header" for="kit-price">
     				How many adults shirts do you buy?
     			</label><br/><br/>
-    			<input id="adult-shirt-count" value="0" type="number" class="q-page--input" />
+    			<input id="adult-shirt-count" value="0" min="0" type="number" class="q-page--input" />
     		</div>
 
     		<div class="results-page">
                 <div class="results-page--breakdown-wrapper">
         		    <p class="results-page--total">
-                        Every season I spend <strong id="result-text-total">£</strong> following <span class="team-name--text">Team name</span>
+                        This season I will spend  <strong id="result-text-total">£</strong> following <span class="team-name--text">Team name</span>.
                     </p>
 
-    	    		<div class="shareToolsHolder" data-share-text="" id="totalShare"></div>
+    	    		<div class="shareToolsHolder" id="totalShare"></div>
 
                     <div class="results-breakdown">
                         <div class="breakdown-row">
@@ -130,13 +137,13 @@
 	    		<div class="bar-chart" id="ticket-price-graph"></div>
                 
                 <hr class="goal-price-graph"/>
-                <h2 class="compare--chart-header goal-price-graph">&ldquo;Price of a goal&rdquo;</h2>
+                <h2 class="compare--chart-header goal-price-graph">&lsquo;Price of a goal&rsquo;</h2>
                 <p class="compare--text goal-price-graph">
                     Based on last season's results and prices, a home goal cost about <strong><span id="result-text-home-goal">X</span></strong> at <span class="team-name--text"></span> in 2013-14.
                 </p>
                 <div class="bar-chart goal-price-graph" id="cost-of-goals-graph"></div>
-                <p class="compare--text goal-price-graph">Based on cheapest season ticket cost last season and home goals scored</p>
-
+                <p class="compare--text goal-price-graph">Based on cheapest season ticket cost last season and home goals scored.</p>
+                <div class="shareToolsHolder goal-price-graph" id="homeGoalsShare"></div>
     		</div>
 
             <p class="stats-fact--text"></p>

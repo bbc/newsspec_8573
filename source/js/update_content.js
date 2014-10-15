@@ -16,10 +16,14 @@ function (news, calculator, BarChart, processData) {
 	statsTexts['programme'] = 'At £{AMOUNT}, the cost of a programme at {TEAM_NAME} has {DIFF} since 2011.';
 	statsTexts['kit'] = 'At £{AMOUNT}, the cost of a {TEAM_NAME} shirt is {DIFF} the average cost of £{AVG_COST} in {THE}{LEAGUE_NAME}.';
 	statsTexts['ticketCosts'] = 'The cheapest season ticket at {TEAM_NAME} is <strong>{AMOUNT}%</strong> {UP_DOWN} than the average comparable cost for {THE}{LEAGUE_NAME} of £{AVG_AMOUNT}.';
+	statsTexts['europeanTicketCosts'] = 'The cheapest season ticket at {TEAM_NAME} is <strong>{AMOUNT}%</strong> {UP_DOWN} than the average comparable cost of £{AVG_AMOUNT} for other major European teams.';
 
 	/* The text used on the share buttons */
 	var shareText = [];
 	shareText['myTotal'] = 'This season I will spend £{AMOUNT} following {TEAM_NAME}';
+	shareText['facebookTotal'] = 'This season I will spend £{AMOUNT} following {TEAM_NAME}. Try the BBC’s calculator and work out your costs';
+	shareText['homeGoal'] = 'Based on last season’s results and prices a home goal cost about £{AMOUNT} at {TEAM_NAME} in 2013-14';
+	shareText['facebookHomeGoal'] = 'Based on last season’s results and prices a home goal cost about £{AMOUNT} at {TEAM_NAME} in 2013-14';
 
 	/*	
 		Returns the short name of the users team
@@ -33,7 +37,7 @@ function (news, calculator, BarChart, processData) {
 		Hides the navigation buttons after the selected item. This is called when
 		the previous button is pressed to hide the last page
 	*/
-	function hideProcedingBreadcrums(newSelection){
+	function hideProcedingBreadcrumbs(newSelection){
 		switch (newSelection){
 			case 'nav-item__team':
 				$('.nav-item__team').hide();
@@ -59,9 +63,9 @@ function (news, calculator, BarChart, processData) {
 	/*
 		Update the navigation when the user clicks next or previous
 	*/
-	function updateBreadcrums(newSelection) {
+	function updateBreadcrumbs(newSelection) {
 
-		hideProcedingBreadcrums(newSelection);
+		hideProcedingBreadcrumbs(newSelection);
 
 		$('.nav .nav-item').each(function (index){
 			$(this).removeClass('nav-item--active');
@@ -98,7 +102,7 @@ function (news, calculator, BarChart, processData) {
 		var amount = (pence) ? Math.abs(currentValue).toFixed(2) :  Math.round(Math.abs(currentValue));
 
 
-		var diffText = (diff>=0) ? 'gone up £{DIFF_AMOUNT}' : 'gone down £{DIFF_AMOUNT}';
+		var diffText = (diff>=0) ? 'increased by £{DIFF_AMOUNT}' : 'decreased by £{DIFF_AMOUNT}';
 		diffText = (diff===0) ? 'not changed' : diffText;
 		diffText = diffText.replace('{DIFF_AMOUNT}', diffAamount);
 
@@ -134,14 +138,14 @@ function (news, calculator, BarChart, processData) {
 	*/
 	function updateSelectTeamContent() {
 		/* Padding to allow room for the auto suggest options */
-		$('.main').css('padding-bottom', '300px');
+		$('.main').css('padding-bottom', '18px');
 
 		/* Hides crest and header */
 		$('.team-crest').hide();
 		$('.team-header').hide();
 		$('.stats-fact--text').hide();
 
-		updateBreadcrums('nav-item__team');
+		updateBreadcrumbs('nav-item__team');
 	}
 
 	/*
@@ -161,7 +165,7 @@ function (news, calculator, BarChart, processData) {
 		$('.team-crest').css('display', 'inline');
 		$('.team-header').show();
 
-		updateBreadcrums('nav-item__tickets');
+		updateBreadcrumbs('nav-item__tickets');
 		updateTeamName();
 			
 		$('.team-header').show();
@@ -177,7 +181,7 @@ function (news, calculator, BarChart, processData) {
 		news.pubsub.emit('istats', ['page-opened', 'newsspec-interaction', 'food']);
 
 		var userTeam = calculator.getTeam();
-		updateBreadcrums('nav-item__food');
+		updateBreadcrumbs('nav-item__food');
 
 		var updateText = makeStatText(statsTexts['food'], userTeam['pie'], userTeam['pie2011'], true);
 
@@ -196,7 +200,7 @@ function (news, calculator, BarChart, processData) {
 		news.pubsub.emit('istats', ['page-opened', 'newsspec-interaction', 'programme']);
 
 		var userTeam = calculator.getTeam();
-		updateBreadcrums('nav-item__programmes');
+		updateBreadcrumbs('nav-item__programmes');
 
 		var updateText = makeStatText(statsTexts['programme'], userTeam['programme'], userTeam['programme2011'], true);
 
@@ -219,7 +223,7 @@ function (news, calculator, BarChart, processData) {
 		var userTeam = calculator.getTeam();
 		var userLeague = calculator.getLeague();
 
-		updateBreadcrums('nav-item__kit');
+		updateBreadcrumbs('nav-item__kit');
 
 		if(userTeam['adultShirt'] !== null && userLeague['avgKitCost'] !== null){
 			var diff = userTeam['adultShirt'] - userLeague['avgKitCost'];
@@ -265,8 +269,9 @@ function (news, calculator, BarChart, processData) {
 		$('.stats-fact--text').hide();
 
 		$('.pagination--button__restart').show();
+		$('.main').css('padding-bottom', '180px');
 
-		updateBreadcrums('nav-item__results');
+		updateBreadcrumbs('nav-item__results');
 
 		updateTeamName();
 
@@ -323,18 +328,13 @@ function (news, calculator, BarChart, processData) {
 		var amount = Math.abs(Math.round(diff));
 		var theText = (userLeague.needThe) ? 'the ' : '';
 
-		updateText = statsTexts['ticketCosts'];
+		updateText = (userLeague.isEuropean) ? statsTexts['europeanTicketCosts'] : statsTexts['ticketCosts'];
 		updateText = updateText.replace('{AMOUNT}', Math.round(amount));
 		updateText = updateText.replace('{UP_DOWN}', upDownValue);
 		updateText = updateText.replace('{TEAM_NAME}', userTeam['name']);
 		updateText = updateText.replace('{AVG_AMOUNT}', avgText);
-
-		if(userLeague.isEuropean){
-			updateText = updateText.replace('{THE}{LEAGUE_NAME}', 'the other teams in Europe');
-		}else{
-			updateText = updateText.replace('{THE}', theText);
-			updateText = updateText.replace('{LEAGUE_NAME}', userLeague['name']);
-		}
+		updateText = updateText.replace('{THE}', theText);
+		updateText = updateText.replace('{LEAGUE_NAME}', userLeague['name']);
 
 		$('#compare-text--tickets').html(updateText);
 	}
@@ -357,10 +357,17 @@ function (news, calculator, BarChart, processData) {
 		Sets the share text of both of the buttons to the users text
 	*/
 	function updateShareText(resultsBreakdown){
-		var teamName = calculator.getTeam().shortName;
-		var totalText = shareText['myTotal'].replace('{AMOUNT}', resultsBreakdown.total.toFixed(2)).replace('{TEAM_NAME}', teamName);
+		var userTeam = calculator.getTeam();
 		
+		var totalText = shareText['myTotal'].replace('{AMOUNT}', resultsBreakdown.total.toFixed(2)).replace('{TEAM_NAME}', userTeam.shortName);
+		var facebookText = shareText['facebookTotal'].replace('{AMOUNT}', resultsBreakdown.total.toFixed(2)).replace('{TEAM_NAME}', userTeam.shortName);
 		$('#totalShare').data('shareText', totalText);
+		$('#totalShare').data('facebookText', facebookText);
+
+		var homeGoalText = shareText['homeGoal'].replace('{AMOUNT}', parseFloat(userTeam.goalCost).toFixed(2)).replace('{TEAM_NAME}', userTeam.shortName);
+		var facebookHomeGoalText = shareText['facebookHomeGoal'].replace('{AMOUNT}', parseFloat(userTeam.goalCost).toFixed(2)).replace('{TEAM_NAME}', userTeam.shortName);
+		$('#homeGoalsShare').data('shareText', homeGoalText);
+		$('#homeGoalsShare').data('facebookText', facebookHomeGoalText);
 	}
 
 	/*
@@ -376,11 +383,11 @@ function (news, calculator, BarChart, processData) {
 		switch ($('input[name="user-ticket"]:checked').val()){
 			case 'season':
 				$('.ticket-type--text').text('season ticket');
-				updateText = makeStatText(statsTexts['seasonTicket'], userTeam['cheapSeason'], userTeam['cheapSeason2013'], false);
+				updateText = makeStatText(statsTexts['seasonTicket'], userTeam['cheapSeason'], userTeam['cheapSeason2013'], true);
 				break;
 			case 'individual':
 				$('.ticket-type--text').text('indivudal tickets');
-				updateText = makeStatText(statsTexts['individualTicket'], userTeam['cheapTicket'], userTeam['cheapestMatchdayTicket2011'], false);
+				updateText = makeStatText(statsTexts['individualTicket'], userTeam['cheapTicket'], userTeam['cheapestMatchdayTicket2011'], true);
 				break;
 		}
 
@@ -434,7 +441,12 @@ function (news, calculator, BarChart, processData) {
 		$('.pagination--button__restart').hide();
 		$('.pagination--button__previous').hide();
 		try {
-	    	window.top.scrollIframeTo(0);
+	    	var talker_uid = window.location.pathname,
+                message = {
+                    scrollPosition: -20,
+                    hostPageCallback: false
+                };
+                window.parent.postMessage(talker_uid + '::' + JSON.stringify(message), '*');
 	    }catch(err){
 	    	// Probably a XSS error
 	    }

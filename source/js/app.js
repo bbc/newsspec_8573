@@ -8,8 +8,11 @@ define(['lib/news_special/bootstrap', 'lib/news_special/share_tools/controller',
                 header:       'Share this page',
                 message:      'Calculate the price you pay supporting your team',
                 hashtag:      'PriceofFootball',
+                image:        staticDomainPath + '/img/branding.png',
                 template:     'dropdown'
             });
+
+            $('.main').show();
 
             news.sendMessageToremoveLoadingImage();
 

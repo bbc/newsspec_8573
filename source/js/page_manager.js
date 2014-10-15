@@ -151,6 +151,7 @@ define([
 				groupBy: 'league',
 				onSelect: function (suggestion) {
 					$('#user-team').data('team', suggestion.data.team);
+					$('.main').css('padding-bottom', '18px');
 				},
 				lookupFilter: function (suggestion, originalQuery, queryLowerCase) {
                     if(suggestion.value.toLowerCase().indexOf(queryLowerCase) !== -1){
@@ -161,8 +162,8 @@ define([
 			});
 		}
 
-		$('#myHomeGoalsShare').on('click', function (){
-			news.pubsub.emit('istats', ['share-clicked', 'newsspec-interaction', 'price-per-goal']);
+		$('#homeGoalsShare').on('click', function (){
+			news.pubsub.emit('istats', ['share-clicked', 'newsspec-interaction', 'price-per-home-goal']);
 		});
 
 		$('#totalShare').on('click', function (){

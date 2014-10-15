@@ -5,7 +5,9 @@ define(['lib/news_special/bootstrap', 'lib/news_special/share_tools/model', 'lib
 
     var _callFaceBook = function (e) {
         var shareToolsHolder = $(e.target).closest('.shareToolsHolder');
-        _updateMessage(shareToolsHolder.data('shareText'));
+        _updateFacebookMessage({
+            message: shareToolsHolder.data('facebookText')
+        });
         news.pubsub.emit('ns:request:launchshare', [model.fbShareTarget()]);
     };
 

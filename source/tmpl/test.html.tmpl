@@ -12,6 +12,11 @@
     <%= include("../js/lib/vendors/istats/istats.js") %>
     </script>
     <script>
+        window.onmessage = function(e){
+            if (e.data == 'hello') {
+                alert('It works!');
+            }
+        };
         window.istats = {
             enabled: true
         }

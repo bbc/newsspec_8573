@@ -38,7 +38,8 @@ define(['lib/news_special/bootstrap'], function (news) {
 				The error message can be retrieved using getLatestError();
 			*/
 			function validateSelectTeam() {
-				if ((!$('#user-team').data('team')) || ($('#user-team').val() !== $('#user-team').data('team').name)) {
+				var userTeamVal = $('#user-team');
+				if ((!userTeamVal.data('team')) || (userTeamVal.val() !== userTeamVal.data('team').name)) {
 					latestError = 'Please select a valid club name';
 					return false;
 				}

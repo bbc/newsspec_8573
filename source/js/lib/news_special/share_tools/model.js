@@ -211,12 +211,6 @@ define(['lib/news_special/bootstrap'], function (news) {
         }
         if (typeCheck(options.message, 'string')) {
             this._facebookMessage = encodeURIComponent(options.message);
-
-            //we'll use our own hash tags in the message string
-            if (this._hashTags === undefined) {
-                this._hashTags = [];
-            }
-            this._hashTags.length = 0;
         }
         if (options.pageUrl) {
             this.facebookPageUrl = options.pageUrl;

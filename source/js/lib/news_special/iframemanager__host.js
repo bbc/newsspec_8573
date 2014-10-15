@@ -137,6 +137,9 @@
                     this.addToIstatsQueue();
                     this.emptyThisIstatsQueue(this.istatsQueue);
                 }
+                if (this.scrollInTheData()) {
+                    scrollIframeTo(this.data.scrollPosition);
+                }
             }
         },
         postBackMessageForThisIframe: function (data) {
@@ -147,6 +150,9 @@
         },
         istatsInTheData: function () {
             return this.data.istats && this.data.istats.actionType;
+        },
+        scrollInTheData: function () {
+            return this.data.scrollPosition;
         },
         addToIstatsQueue: function () {
             this.istatsQueue.push({

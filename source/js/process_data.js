@@ -70,7 +70,7 @@ define([
 			if(isNumeric(team.cheapSeason) && (team.cheapSeason>0)){
 				dataArray.push({
 					label: team.shortName, 
-					value: team.cheapSeason.toString(), 
+					value: parseFloat(team.cheapSeason).toFixed(2), 
 					selected: (team.name === userTeam.name)
 				});				
 			}
@@ -97,7 +97,7 @@ define([
 			if(isNumeric(team.cheapSeason) && (team.cheapSeason>0)){
 				dataArray.push({
 					label: team.shortName, 
-					value: team.cheapSeason.toString(), 
+					value: parseFloat(team.cheapSeason).toFixed(2), 
 					selected: (team.name === userTeam.name)
 				});				
 			}

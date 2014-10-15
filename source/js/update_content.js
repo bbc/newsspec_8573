@@ -412,6 +412,18 @@ function (news, calculator, BarChart, processData) {
 	    }
 	);  
 
+	function scrollToTop(){
+		try {
+	    	var talker_uid = window.location.pathname,
+                message = {
+                    scrollPosition: -10,
+                    hostPageCallback: false
+                };
+                window.parent.postMessage(talker_uid + '::' + JSON.stringify(message), '*');
+	    }catch(err){
+	    	// Probably a XSS error
+	    }
+	}
 
 	/*
 		Results all elements when the user clicks start agian.
@@ -440,21 +452,17 @@ function (news, calculator, BarChart, processData) {
 		$('.pagination--button').show();
 		$('.pagination--button__restart').hide();
 		$('.pagination--button__previous').hide();
-		try {
-	    	var talker_uid = window.location.pathname,
-                message = {
-                    scrollPosition: -20,
-                    hostPageCallback: false
-                };
-                window.parent.postMessage(talker_uid + '::' + JSON.stringify(message), '*');
-	    }catch(err){
-	    	// Probably a XSS error
-	    }
+
+		scrollToTop();
 	}
 
 
 	return {
 		update: function (nextPage) {
+			if(nextPage!= 'select-team'){
+				scrollToTop(); //Scroll user to top of page
+			}
+
 			/*
 				Determine which page is being shown next and update the content accordingly
 			*/

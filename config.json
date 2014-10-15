@@ -1,6 +1,6 @@
 {
   "debug":          	"false",
-  "whichEnv":       	"live",
+  "whichEnv":       	"local",
   "project_number":		"8573",
   "storyPageUrl": 		"http://www.bbc.co.uk/news/uk-29527838",
   "cps_id": 			"29527838",

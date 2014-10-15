@@ -16,6 +16,24 @@ body{
 	background-color: #FFF;
 }
 
+.select-team--calc-info__image{
+	display: none;
+	width: 128px;
+	height: 128px;
+	margin: 20px 25px 0 0;
+	float: left;
+}
+
+.select-team--calc-info{
+	line-height: 20px;
+	color: #666;
+	font: normal 16px Arial;
+}
+
+.select-team--calc-info__top{
+	//padding-top: 30px;
+}
+
 .team-crest{
 	float: right;
 	display: none;

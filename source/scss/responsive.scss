@@ -36,6 +36,16 @@
 }
 
 @include respondMinMax(930px, false){
+	.select-team--calc-info__image{
+		display: inline-block;
+	}
+
+	.select-team--calc-info{
+		font: normal 18px Arial;
+		line-height: 22px;
+		padding-right: 120px;
+	}
+
 	.main--branding{
 		display: block;
 	}

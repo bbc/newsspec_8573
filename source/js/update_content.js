@@ -459,7 +459,7 @@ function (news, calculator, BarChart, processData) {
 
 	return {
 		update: function (nextPage) {
-			if(nextPage!= 'select-team'){
+			if(nextPage!== 'select-team'){
 				scrollToTop(); //Scroll user to top of page
 			}
 
